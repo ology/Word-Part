@@ -7,10 +7,11 @@ use parent qw(
     Chameleon5::Contrib::Forms::Validators
 );
 
+use WordPart::DataObjects::Fragment::Manager;
+
 sub init
 {
     my ( $self, %args ) = @_;
-#$self->site->logger->debug("URI: '$args{uri}'");
 #$self->site->logger->debug("PART: '$args{affix}'");
 
     $self->attrs({
@@ -24,7 +25,6 @@ sub init
     )->[0];
     if ($fragment)
     {
-        $self->{_fragment} = $fragment;
         $self->defaults({
             prefix     => $fragment->prefix,
             affix      => $fragment->affix,
@@ -48,14 +48,15 @@ sub process
 {
     my ($self) = @_;
 $self->site->logger->debug("ENTER: process()");
-$self->site->logger->debug("PART: '" . $self->{_fragment} . "'");
 
     my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
-        query => [ affix => $args{affix} ],
+        query => [ affix => $self->data->{affix} ],
     )->[0];
     if ( $fragment )
     {
+        $fragment->prefix( $self->data->{prefix} );
         $fragment->affix( $self->data->{affix} );
+        $fragment->suffix( $self->data->{suffix} );
         $fragment->definition( $self->data->{definition} );
         $fragment->save( changes_only => 1 );
         $self->site->response->push_message( 'Fragment updated.' );
@@ -69,7 +70,7 @@ $self->site->logger->debug("PART: '" . $self->{_fragment} . "'");
 #        $self->site->response->push_message( 'Fragment added.' );
 #    }
 
-    $self->site->response->redirect( $self->site->uri( 'part', affix => $self->data->{affix} ) );
+    $self->site->response->redirect( $self->site->uri('home') );
 
     return;
 }
