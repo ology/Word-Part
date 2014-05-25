@@ -17,9 +17,6 @@
 
     <pages>
         <page uri="/" name="home">
-        </page>
-
-        <page name="parts" uri="/parts/">
             <resources>
                 <resource>
                     <sub value="view_parts"/>
