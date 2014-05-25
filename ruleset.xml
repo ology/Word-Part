@@ -27,7 +27,18 @@
             </resources>
         </page>
 
-        <page name="part" uri="/part/{affix}">
+        <page name="new" uri="/edit">
+            <resources>
+                <resource>
+                    <sub value="edit_part"/>
+                    <http_method value="GET"/>
+                    <http_method value="POST"/>
+                    <class value="public"/>
+                </resource>
+            </resources>
+        </page>
+
+        <page name="edit" uri="/edit/{affix}">
             <resources>
                 <resource>
                     <sub value="edit_part"/>
