@@ -39,13 +39,13 @@
       <div class="large-12 columns">
          <div class="row">
             <div class="large-3 columns">
-                <h4>Prefix</h4>
+                <h4>Pre</h4>
             </div>
             <div class="large-3 columns">
                 <h4>Affix</h4>
             </div>
             <div class="large-3 columns">
-                <h4>Suffix</h4>
+                <h4>Post</h4>
             </div>
             <div class="large-3 columns story text-right">
                 <h4>Definition</h4>
