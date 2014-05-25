@@ -1,0 +1,100 @@
+<config>
+    <!-- forms -->
+    <admin_account_update_form>
+        <class>Chameleon5::Incentive::Base2::Forms::AdminUpdateAccount</class>
+    </admin_account_update_form>
+    <admin_password_update_form>
+        <class>Chameleon5::Incentive::Base2::Forms::AdminUpdatePassword</class>
+    </admin_password_update_form>
+    <account_update_form>
+        <class>Chameleon5::Incentive::Base2::Forms::UpdateAccount</class>
+    </account_update_form>
+    <contact_information_form>
+        <class>Chameleon5::Incentive::Base2::Forms::EnterContactInformation</class>
+    </contact_information_form>
+    <content_form>
+        <class>Chameleon5::Incentive::Base2::Forms::Content</class>
+    </content_form>
+    <login_form>
+        <class>Chameleon5::Incentive::Base2::Forms::Login</class>
+    </login_form>
+    <registration_key_form>
+        <class>Chameleon5::Incentive::Base2::Forms::EnterRegistrationKey</class>
+    </registration_key_form>
+    <initiate_password_reset_form>
+        <class>Chameleon5::Incentive::Base2::Forms::InitiatePasswordReset</class>
+    </initiate_password_reset_form>
+    <complete_password_reset_form>
+        <class>Chameleon5::Incentive::Base2::Forms::CompletePasswordReset</class>
+    </complete_password_reset_form>
+    <password_update_form>
+        <class>Chameleon5::Incentive::Base2::Forms::UpdatePassword</class>
+    </password_update_form>
+    <deposit_form>
+        <class>Chameleon5::Incentive::Base2::Forms::DepositPoints</class>
+    </deposit_form>
+    <withdraw_form>
+        <class>Chameleon5::Incentive::Base2::Forms::WithdrawPoints</class>
+    </withdraw_form>
+    <import_form>
+        <class>Chameleon5::Incentive::Base2::Forms::ImportFile</class>
+    </import_form>
+
+    <ticketing>
+        <class>OnlineRewards::Ticketing</class>
+    </ticketing>
+
+    <!-- help -->
+    <admin_help_form>
+        <class>Chameleon5::Incentive::Base2::Forms::AdminHelp</class>
+    </admin_help_form>
+    <public_help_form>
+        <class>Chameleon5::Incentive::Base2::Forms::PublicHelp</class>
+    </public_help_form>
+    <participant_help_form>
+        <class>Chameleon5::Incentive::Base2::Forms::ParticipantHelp</class>
+    </participant_help_form>
+
+    <!-- tables -->
+    <registry_search_table>
+        <class>Chameleon5::Incentive::Base2::Tables::RegistrySearch</class>
+    </registry_search_table>
+    <import_file_table>
+        <class>Chameleon5::Incentive::Base2::Tables::ImportFile</class>
+    </import_file_table>
+    <event_list>
+        <class>Chameleon5::Incentive::Base2::Tables::EventList</class>
+    </event_list>
+
+    <!-- registry activity types -->
+    <login_activity_type>
+        <value>1</value>
+    </login_activity_type>
+    <register_activity_type>
+        <value>6</value>
+    </register_activity_type>
+    <accept_terms_activity_type>
+        <value>7</value>
+    </accept_terms_activity_type>
+    <account_update_activity_type>
+        <value>9</value>
+    </account_update_activity_type>
+    <change_password_activity_type>
+        <value>12</value>
+    </change_password_activity_type>
+    <initiate_password_reset_activity>
+        <value>14</value>
+    </initiate_password_reset_activity>
+    <registration_key_activity_type>
+        <value>15</value>
+    </registration_key_activity_type>
+
+    <dataobjects>
+        <value>Bedrock::DataObjects</value>
+    </dataobjects>
+
+    <!-- API -->
+    <rpc>
+        <class>Chameleon5::Incentive::Base2::Rpc</class>
+    </rpc>
+</config>
