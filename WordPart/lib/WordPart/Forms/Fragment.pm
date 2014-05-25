@@ -12,7 +12,6 @@ use WordPart::DataObjects::Fragment::Manager;
 sub init
 {
     my ( $self, %args ) = @_;
-#$self->site->logger->debug("PART: '$args{affix}'");
 
     $self->attrs({
         key    => $args{key} || 'part',
@@ -47,7 +46,6 @@ sub init
 sub process
 {
     my ($self) = @_;
-$self->site->logger->debug("ENTER: process()");
 
     my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
         query => [ affix => $self->data->{affix} ],
