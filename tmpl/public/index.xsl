@@ -25,7 +25,6 @@
         <input type="text" placeholder="Affix or Definition" />
       </div>
       <div class="large-12 columns">
-        <p>&#160;</p>
         <xsl:call-template name="paged_results">
             <xsl:with-param name="results_node" select="/response/parts"/>
         </xsl:call-template>
