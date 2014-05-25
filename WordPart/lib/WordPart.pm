@@ -6,6 +6,7 @@ use parent qw( Chameleon5::Site::Base );
 
 our $VERSION = 0.1;
 
+use WordPart::DataObjects::Fragment::Manager;
 use WordPart::Forms::Fragment;
 use WordPart::Tables::Fragment;
 
@@ -33,11 +34,23 @@ sub edit_part
 {
     my ( $self, %args ) = @_;
 
-    my $form = WordPart::Forms::Fragment->new(
-        site  => $self,
-        uri   => $self->uri( $self->page_name, %args ),
-        %args
-    )->handle_request;
+    if ( $args{remove} )
+    {
+        my $part = WordPart::DataObjects::Fragment::Manager->get_objects(
+            query => [ affix => $args{affix} ]
+        )->[0];
+        $part->delete if $part;
+
+        $self->response->redirect('home');
+    }
+    else
+    {
+        my $form = WordPart::Forms::Fragment->new(
+            site  => $self,
+            uri   => $self->uri( $self->page_name, %args ),
+            %args
+        )->handle_request;
+    }
 
     return;
 }
