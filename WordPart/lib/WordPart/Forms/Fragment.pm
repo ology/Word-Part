@@ -19,17 +19,20 @@ sub init
         method => 'post',
     });
 
-    my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
-        query => [ affix => $args{affix} ],
-    )->[0];
-    if ($fragment)
+    if ( exists $args{affix} )
     {
-        $self->defaults({
-            prefix     => $fragment->prefix,
-            affix      => $fragment->affix,
-            suffix     => $fragment->suffix,
-            definition => $fragment->definition,
-        });
+        my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
+            query => [ affix => $args{affix} ],
+        )->[0];
+        if ($fragment)
+        {
+            $self->defaults({
+                prefix     => $fragment->prefix,
+                affix      => $fragment->affix,
+                suffix     => $fragment->suffix,
+                definition => $fragment->definition,
+            });
+        }
     }
 
     $self->meta([
@@ -57,17 +60,18 @@ sub process
         $fragment->suffix( $self->data->{suffix} );
         $fragment->definition( $self->data->{definition} );
         $fragment->save( changes_only => 1 );
-        $self->site->response->push_message( 'Fragment updated.' );
     }
-#    else
-#    {
-#        WordPart::DataObjects::Fragment->new(
-#            affix      => $self->data->{affix},
-#            definition => $self->data->{definition},
-#        )->save;
-#        $self->site->response->push_message( 'Fragment added.' );
-#    }
+    else
+    {
+        WordPart::DataObjects::Fragment->new(
+            prefix     => $self->data->{prefix},
+            affix      => $self->data->{affix},
+            suffix     => $self->data->{suffix},
+            definition => $self->data->{definition},
+        )->save;
+    }
 
+    $self->site->response->push_message( 'Fragments updated.' );
     $self->site->response->redirect( $self->site->uri('home') );
 
     return;
