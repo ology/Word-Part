@@ -50,25 +50,26 @@ sub process
 $self->site->logger->debug("ENTER: process()");
 $self->site->logger->debug("PART: '" . $self->{_fragment} . "'");
 
-    if ( $self->{_fragment} )
+    my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
+        query => [ affix => $args{affix} ],
+    )->[0];
+    if ( $fragment )
     {
-        $self->{_fragment}->affix( $self->data->{affix} );
-        $self->{_fragment}->definition( $self->data->{definition} );
-        $self->{_fragment}->save( changes_only => 1 );
-
+        $fragment->affix( $self->data->{affix} );
+        $fragment->definition( $self->data->{definition} );
+        $fragment->save( changes_only => 1 );
         $self->site->response->push_message( 'Fragment updated.' );
     }
-    else
-    {
-        WordPart::DataObjects::Fragment->new(
-            affix      => $self->data->{affix},
-            definition => $self->data->{definition},
-        )->save;
+#    else
+#    {
+#        WordPart::DataObjects::Fragment->new(
+#            affix      => $self->data->{affix},
+#            definition => $self->data->{definition},
+#        )->save;
+#        $self->site->response->push_message( 'Fragment added.' );
+#    }
 
-        $self->site->response->push_message( 'Fragment added.' );
-    }
-
-    $self->site->response->redirect( $self->site->uri( 'affix', affix => $self->data->{affix} ) );
+    $self->site->response->redirect( $self->site->uri( 'part', affix => $self->data->{affix} ) );
 
     return;
 }
