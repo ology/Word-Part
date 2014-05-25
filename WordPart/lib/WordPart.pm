@@ -36,7 +36,7 @@ sub edit_part
 
     my $form = WordPart::Forms::Fragment->new(
         site  => $self,
-        uri   => $self->uri( $self->page_name ),
+        uri   => $self->uri( $self->page_name, %args ),
         %args
     )->handle_request;
 
