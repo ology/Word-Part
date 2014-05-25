@@ -49,6 +49,18 @@
             </resources>
         </page>
 
+        <page name="remove" uri="/remove/{affix}">
+            <resources>
+                <resource>
+                    <sub value="edit_part"/>
+                    <arg name="remove" value="1"/>
+                    <http_method value="GET"/>
+                    <http_method value="POST"/>
+                    <class value="public"/>
+                </resource>
+            </resources>
+        </page>
+
     </pages>
 
 </ruleset>
