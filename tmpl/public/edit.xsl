@@ -17,7 +17,6 @@
 
             <div class="row">
                 <div class="large-12 columns">
-                    <xsl:apply-templates select=".//field[@key = 'fragment_id']" mode="auto"/>
                     <xsl:apply-templates select=".//field[@key = 'prefix']" mode="auto"/>
                     <xsl:apply-templates select=".//field[@key = 'affix']" mode="auto"/>
                     <xsl:apply-templates select=".//field[@key = 'suffix']" mode="auto"/>
