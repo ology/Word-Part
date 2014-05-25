@@ -24,9 +24,7 @@ sub view_parts
 {
     my ( $self, %args ) = @_;
 
-    my $fragments = WordPart::Tables::Fragment->new(
-        site => $self,
-    )->handle_request();
+    my $fragments = WordPart::Tables::Fragment->new( site => $self )->handle_request();
 
     return;
 }
@@ -34,7 +32,7 @@ sub view_parts
 sub edit_part
 {
     my ( $self, %args ) = @_;
-    $self->logger->debug("ENTER edit_part() with '$args{affix}'");
+#    $self->logger->debug("ENTER edit_part() with '$args{affix}'");
 
     my $form = WordPart::Forms::Fragment->new(
         site  => $self,
