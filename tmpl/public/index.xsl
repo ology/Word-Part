@@ -15,10 +15,12 @@
  <xsl:template match="/" mode="local">
 
     <div class="row">
-      <div class="large-8 columns">
-        <div class="main_header">
-            <h2>Word Parts</h2>
-        </div>
+      <div class="large-4 columns">
+        <h2>Word Parts</h2>
+      </div>
+      <div class="large-4 columns text-right">
+        <p>&#160;</p>
+        <a href="/new" title="New part" class="button tiny">New</a>
       </div>
       <div class="large-4 columns">
         <p>&#160;</p>
@@ -47,7 +49,7 @@
             <div class="large-3 columns">
                 <h4>Post</h4>
             </div>
-            <div class="large-3 columns story text-right">
+            <div class="large-3 columns text-right">
                 <h4>Definition</h4>
             </div>
          </div>
@@ -67,7 +69,7 @@
             <div class="large-3 columns">
                 <p><xsl:value-of select="@suffix"/></p>
             </div>
-            <div class="large-3 columns story text-right">
+            <div class="large-3 columns text-right">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
             </div>
          </div>
