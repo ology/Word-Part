@@ -29,16 +29,16 @@ sub init
             $self->defaults({
                 post       => $fragment->post,
                 affix      => $fragment->affix,
-                pre     => $fragment->pre,
+                pre        => $fragment->pre,
                 definition => $fragment->definition,
             });
         }
     }
 
     $self->meta([
-        post       => { widget => 'text' },
-        affix      => { widget => 'text' },
-        pre     => { widget => 'text' },
+        post  => { widget => 'text' },
+        affix => { widget => 'text' },
+        pre   => { widget => 'text' },
         definition => { widget => 'textarea' },
         submit     => {
             widget  => 'submit',
