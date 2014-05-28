@@ -39,13 +39,13 @@
       <div class="large-12 columns">
          <div class="row">
             <div class="large-2 columns">
-                <h4>Post</h4>
+                <h4>Follows</h4>
             </div>
             <div class="large-3 columns">
                 <h4>Affix</h4>
             </div>
             <div class="large-2 columns">
-                <h4>Pre</h4>
+                <h4>Precedes</h4>
             </div>
             <div class="large-5 columns text-right">
                 <h4>Definition</h4>

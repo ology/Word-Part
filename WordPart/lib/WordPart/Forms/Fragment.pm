@@ -36,9 +36,9 @@ sub init
     }
 
     $self->meta([
-        post  => { widget => 'text' },
+        post  => { widget => 'text', display => 'Follows' },
         affix => { widget => 'text' },
-        pre   => { widget => 'text' },
+        pre   => { widget => 'text', display => 'Precedes' },
         definition => { widget => 'textarea' },
         submit     => {
             widget  => 'submit',
