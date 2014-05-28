@@ -19,11 +19,9 @@
         <h2>Word Parts</h2>
       </div>
       <div class="large-4 columns text-right">
-        <p>&#160;</p>
         <a href="/new" title="New part" class="button tiny">New</a>
       </div>
       <div class="large-4 columns">
-        <p>&#160;</p>
         <input type="text" placeholder="Affix or Definition" />
       </div>
       <div class="large-12 columns">
@@ -40,16 +38,16 @@
     <div class="row">
       <div class="large-12 columns">
          <div class="row">
-            <div class="large-3 columns">
-                <h4>Pre</h4>
+            <div class="large-2 columns text-right">
+                <h4>Follows</h4>
             </div>
-            <div class="large-3 columns">
+            <div class="large-3 columns text-center">
                 <h4>Affix</h4>
             </div>
-            <div class="large-3 columns">
-                <h4>Post</h4>
+            <div class="large-2 columns">
+                <h4>Precedes</h4>
             </div>
-            <div class="large-3 columns text-right">
+            <div class="large-5 columns">
                 <h4>Definition</h4>
             </div>
          </div>
@@ -60,16 +58,16 @@
     <div class="row">
       <div class="large-12 columns">
          <div class="row">
-            <div class="large-3 columns">
-                <p><xsl:value-of select="@prefix"/></p>
+            <div class="large-2 columns text-right">
+                <p><xsl:value-of select="@post"/></p>
             </div>
-            <div class="large-3 columns">
+            <div class="large-3 columns text-center">
                 <p><xsl:value-of select="@affix"/></p>
             </div>
-            <div class="large-3 columns">
-                <p><xsl:value-of select="@suffix"/></p>
+            <div class="large-2 columns">
+                <p><xsl:value-of select="@pre"/></p>
             </div>
-            <div class="large-3 columns text-right">
+            <div class="large-5 columns">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
             </div>
          </div>

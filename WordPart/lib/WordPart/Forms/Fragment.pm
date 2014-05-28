@@ -27,20 +27,24 @@ sub init
         if ($fragment)
         {
             $self->defaults({
-                prefix     => $fragment->prefix,
+                post       => $fragment->post,
                 affix      => $fragment->affix,
-                suffix     => $fragment->suffix,
+                pre        => $fragment->pre,
                 definition => $fragment->definition,
             });
         }
     }
 
     $self->meta([
-        prefix     => { widget => 'text' },
-        affix      => { widget => 'text' },
-        suffix     => { widget => 'text' },
+        post  => { widget => 'text', display => 'Follows' },
+        affix => { widget => 'text' },
+        pre   => { widget => 'text', display => 'Precedes' },
         definition => { widget => 'textarea' },
-        submit     => { widget => 'submit', display => 'Save', attrs => { class => 'button tiny' } },
+        submit     => {
+            widget  => 'submit',
+            display => 'Save',
+            attrs   => { class => 'button tiny' }
+        },
     ]);
 
     return;
@@ -55,18 +59,18 @@ sub process
     )->[0];
     if ( $fragment )
     {
-        $fragment->prefix( $self->data->{prefix} );
+        $fragment->post( $self->data->{post} );
         $fragment->affix( $self->data->{affix} );
-        $fragment->suffix( $self->data->{suffix} );
+        $fragment->pre( $self->data->{pre} );
         $fragment->definition( $self->data->{definition} );
         $fragment->save( changes_only => 1 );
     }
     else
     {
         WordPart::DataObjects::Fragment->new(
-            prefix     => $self->data->{prefix},
+            post       => $self->data->{post},
             affix      => $self->data->{affix},
-            suffix     => $self->data->{suffix},
+            pre        => $self->data->{pre},
             definition => $self->data->{definition},
         )->save;
     }

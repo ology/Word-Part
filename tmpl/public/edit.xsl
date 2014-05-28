@@ -16,11 +16,19 @@
             <xsl:with-param name="content">
 
             <div class="row">
-                <div class="large-12 columns">
-                    <xsl:apply-templates select=".//field[@key = 'prefix']" mode="auto"/>
+                <div class="large-2 columns">
+                    <xsl:apply-templates select=".//field[@key = 'post']" mode="auto"/>
+                </div>
+                <div class="large-3 columns">
                     <xsl:apply-templates select=".//field[@key = 'affix']" mode="auto"/>
-                    <xsl:apply-templates select=".//field[@key = 'suffix']" mode="auto"/>
+                </div>
+                <div class="large-2 columns">
+                    <xsl:apply-templates select=".//field[@key = 'pre']" mode="auto"/>
+                </div>
+                <div class="large-5 columns">
                     <xsl:apply-templates select=".//field[@key = 'definition']" mode="auto"/>
+                </div>
+                <div class="large-12 columns">
                     <xsl:apply-templates select=".//field[@key = 'submit']" mode="auto"/>
                     &#160;
                     <a href="/remove/{.//field[@key = 'affix']/@value}" class="button tiny">Remove</a>
