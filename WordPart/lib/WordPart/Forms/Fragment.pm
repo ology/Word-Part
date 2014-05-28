@@ -40,7 +40,11 @@ sub init
         affix      => { widget => 'text' },
         suffix     => { widget => 'text' },
         definition => { widget => 'textarea' },
-        submit     => { widget => 'submit', display => 'Save', attrs => { class => 'button tiny' } },
+        submit     => {
+            widget  => 'submit',
+            display => 'Save',
+            attrs   => { class => 'button tiny' }
+        },
     ]);
 
     return;
