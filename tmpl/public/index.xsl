@@ -39,13 +39,13 @@
       <div class="large-12 columns">
          <div class="row">
             <div class="large-2 columns">
-                <h4>Pre</h4>
+                <h4>Post</h4>
             </div>
             <div class="large-3 columns">
                 <h4>Affix</h4>
             </div>
             <div class="large-2 columns">
-                <h4>Post</h4>
+                <h4>Pre</h4>
             </div>
             <div class="large-5 columns text-right">
                 <h4>Definition</h4>
@@ -59,13 +59,13 @@
       <div class="large-12 columns">
          <div class="row">
             <div class="large-2 columns">
-                <p><xsl:value-of select="@prefix"/></p>
+                <p><xsl:value-of select="@post"/></p>
             </div>
             <div class="large-3 columns">
                 <p><xsl:value-of select="@affix"/></p>
             </div>
             <div class="large-2 columns">
-                <p><xsl:value-of select="@suffix"/></p>
+                <p><xsl:value-of select="@pre"/></p>
             </div>
             <div class="large-5 columns text-right">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>

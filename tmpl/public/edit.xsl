@@ -17,13 +17,13 @@
 
             <div class="row">
                 <div class="large-2 columns">
-                    <xsl:apply-templates select=".//field[@key = 'prefix']" mode="auto"/>
+                    <xsl:apply-templates select=".//field[@key = 'post']" mode="auto"/>
                 </div>
                 <div class="large-3 columns">
                     <xsl:apply-templates select=".//field[@key = 'affix']" mode="auto"/>
                 </div>
                 <div class="large-2 columns">
-                    <xsl:apply-templates select=".//field[@key = 'suffix']" mode="auto"/>
+                    <xsl:apply-templates select=".//field[@key = 'pre']" mode="auto"/>
                 </div>
                 <div class="large-5 columns">
                     <xsl:apply-templates select=".//field[@key = 'definition']" mode="auto"/>
