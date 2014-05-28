@@ -16,11 +16,19 @@
             <xsl:with-param name="content">
 
             <div class="row">
-                <div class="large-12 columns">
+                <div class="large-2 columns">
                     <xsl:apply-templates select=".//field[@key = 'prefix']" mode="auto"/>
+                </div>
+                <div class="large-3 columns">
                     <xsl:apply-templates select=".//field[@key = 'affix']" mode="auto"/>
+                </div>
+                <div class="large-2 columns">
                     <xsl:apply-templates select=".//field[@key = 'suffix']" mode="auto"/>
+                </div>
+                <div class="large-5 columns">
                     <xsl:apply-templates select=".//field[@key = 'definition']" mode="auto"/>
+                </div>
+                <div class="large-12 columns">
                     <xsl:apply-templates select=".//field[@key = 'submit']" mode="auto"/>
                 </div>
             </div>
