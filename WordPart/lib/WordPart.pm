@@ -27,14 +27,16 @@ sub view_parts
 
     my $fragments = WordPart::Tables::Fragment->new(
         site  => $self,
-    )->handle_request(
-        query => [
-            affix => { like => '%a%' },
-        ],
-    );
+    )->handle_request;
 
     return;
 }
+
+=head2 search_parts()
+
+Filter the fragment table by a search term.
+
+=cut
 
 sub search_parts
 {
