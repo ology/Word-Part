@@ -49,8 +49,11 @@
             <div class="large-2 columns">
                 <h4>Precedes</h4>
             </div>
-            <div class="large-5 columns">
+            <div class="large-4 columns">
                 <h4>Definition</h4>
+            </div>
+            <div class="large-1 columns">
+                <h4>Edit</h4>
             </div>
          </div>
       </div>
@@ -69,8 +72,11 @@
             <div class="large-2 columns">
                 <p><xsl:value-of select="@post"/></p>
             </div>
-            <div class="large-5 columns">
+            <div class="large-4 columns">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
+            </div>
+            <div class="large-1 columns right">
+                <a href="/edit/{@affix}" title="Edit part '{@affix}'" class="button tiny">&#8226;</a>
             </div>
          </div>
       </div>
