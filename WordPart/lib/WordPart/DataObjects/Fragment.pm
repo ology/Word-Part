@@ -10,9 +10,9 @@ __PACKAGE__->meta->setup(
 
     columns => [
         id            => { type => 'serial', not_null => 1 },
-        post          => { type => 'varchar', length => 50 },
+        prefix        => { type => 'varchar', length => 50 },
         affix         => { type => 'varchar', default => '', length => 50, not_null => 1 },
-        pre           => { type => 'varchar', length => 50 },
+        suffix        => { type => 'varchar', length => 50 },
         definition    => { type => 'varchar', default => '', length => 255, not_null => 1 },
         etymology     => { type => 'varchar', length => 50 },
         pronunciation => { type => 'varchar', length => 50 },
