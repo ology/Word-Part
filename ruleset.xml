@@ -16,6 +16,7 @@
     </site_configuration_keys>
 
     <pages>
+
         <page uri="/" name="home">
             <resources>
                 <resource>
@@ -27,7 +28,7 @@
             </resources>
         </page>
 
-        <page name="new" uri="/new/">
+        <page name="new" uri="/new">
             <resources>
                 <resource>
                     <sub value="edit_part"/>
@@ -38,7 +39,7 @@
             </resources>
         </page>
 
-        <page name="edit" uri="/edit/{affix}/">
+        <page name="edit" uri="/edit/{affix}">
             <resources>
                 <resource>
                     <sub value="edit_part"/>
@@ -49,7 +50,7 @@
             </resources>
         </page>
 
-        <page name="remove" uri="/remove/{affix}/">
+        <page name="remove" uri="/remove/{affix}">
             <resources>
                 <resource>
                     <sub value="edit_part"/>
