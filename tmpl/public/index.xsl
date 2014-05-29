@@ -22,7 +22,9 @@
         <a href="/new" title="New part" class="button tiny">New</a>
       </div>
       <div class="large-4 columns">
-        <input type="text" placeholder="Affix" />
+        <form action="" method="post">
+            <input type="text" name="term" placeholder="Affix" />
+        </form>
       </div>
       <div class="large-12 columns">
         <xsl:call-template name="paged_results">
@@ -59,13 +61,13 @@
       <div class="large-12 columns">
          <div class="row">
             <div class="large-2 columns text-right">
-                <p><xsl:value-of select="@prefix"/></p>
+                <p><xsl:value-of select="@pre"/></p>
             </div>
             <div class="large-3 columns text-center">
                 <p><xsl:value-of select="@affix"/></p>
             </div>
             <div class="large-2 columns">
-                <p><xsl:value-of select="@suffix"/></p>
+                <p><xsl:value-of select="@post"/></p>
             </div>
             <div class="large-5 columns">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
