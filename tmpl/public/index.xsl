@@ -70,7 +70,7 @@
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
             </div>
             <div class="large-1 columns right">
-                <a href="/edit/{@affix}" title="Edit part '{@affix}'" class="button tiny round">&#8226;</a>
+                <a href="/edit/{@affix}" title="Edit part '{@affix}'" class="button tiny round"></a>
             </div>
     </div>
     <hr/>
