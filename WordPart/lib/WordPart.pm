@@ -25,36 +25,22 @@ sub view_parts
 {
     my ( $self, %args ) = @_;
 
-    my $fragments = WordPart::Tables::Fragment->new(
-        site  => $self,
-    )->handle_request;
-
-    return;
-}
-
-=head2 search_parts()
-
-Filter the fragment table by a search term.
-
-=cut
-
-sub search_parts
-{
-    my ( $self, %args ) = @_;
-
-    return unless $args{search};
+    my %query;
+    if ( $self->form('term') )
+    {
+        %query = (
+            query => [
+                affix => { like => $self->form('term') },
+            ],
+        );
+    }
 
     my $fragments = WordPart::Tables::Fragment->new(
         site  => $self,
-    )->handle_request(
-        query => [
-            affix => { like => $args{search} },
-        ],
-    );
+    )->handle_request(%query);
 
     return;
 }
-
 
 sub edit_part
 {
