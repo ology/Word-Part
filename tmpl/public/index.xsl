@@ -22,7 +22,7 @@
         <a href="/new" title="New part" class="button tiny">New</a>
       </div>
       <div class="large-4 columns">
-        <input type="text" placeholder="Affix or Definition" />
+        <input type="text" placeholder="Affix" />
       </div>
       <div class="large-12 columns">
         <xsl:call-template name="paged_results">
