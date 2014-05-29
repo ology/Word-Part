@@ -25,10 +25,34 @@ sub view_parts
 {
     my ( $self, %args ) = @_;
 
-    my $fragments = WordPart::Tables::Fragment->new( site => $self )->handle_request();
+    my $fragments = WordPart::Tables::Fragment->new(
+        site  => $self,
+    )->handle_request(
+        query => [
+            affix => { like => '%a%' },
+        ],
+    );
 
     return;
 }
+
+sub search_parts
+{
+    my ( $self, %args ) = @_;
+
+    return unless $args{search};
+
+    my $fragments = WordPart::Tables::Fragment->new(
+        site  => $self,
+    )->handle_request(
+        query => [
+            affix => { like => $args{search} },
+        ],
+    );
+
+    return;
+}
+
 
 sub edit_part
 {
