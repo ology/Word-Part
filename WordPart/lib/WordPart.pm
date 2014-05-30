@@ -57,7 +57,7 @@ sub edit_part
     if ( $args{remove} )
     {
         my $part = WordPart::DataObjects::Fragment::Manager->get_objects(
-            query => [ affix => $args{affix} ]
+            query => [ id => $args{affix_id} ]
         )->[0];
         $part->delete if $part;
 
