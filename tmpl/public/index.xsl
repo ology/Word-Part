@@ -15,15 +15,15 @@
  <xsl:template match="/" mode="local">
 
     <div class="row">
-      <div class="large-8 columns">
+      <div class="large-7 columns">
         <h2>Word Parts</h2>
       </div>
       <div class="large-1 columns">
         <a href="/" title="Reset part list" class="button tiny">Reset</a>
       </div>
-      <div class="large-2 columns">
+      <div class="large-3 columns">
         <form action="" method="post">
-            <input type="text" name="term" placeholder="Affix" />
+            <input type="text" name="term" placeholder="Affix or Definition" />
         </form>
       </div>
       <div class="large-1 columns">
