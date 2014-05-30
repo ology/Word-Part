@@ -15,17 +15,22 @@
  <xsl:template match="/" mode="local">
 
     <div class="row">
-      <div class="large-4 columns">
+      <div class="large-8 columns">
         <h2>Word Parts</h2>
       </div>
-      <div class="large-4 columns text-right">
-        <a href="/new" title="New part" class="button tiny">New</a>
+      <div class="large-1 columns">
+        <a href="/" title="Reset part list" class="button tiny">Reset</a>
       </div>
-      <div class="large-4 columns">
+      <div class="large-2 columns">
         <form action="" method="post">
             <input type="text" name="term" placeholder="Affix" />
         </form>
       </div>
+      <div class="large-1 columns">
+        <a href="/new" title="New part" class="button tiny">New</a>
+      </div>
+    </div>
+    <div class="row">
       <div class="large-12 columns">
         <xsl:call-template name="paged_results">
             <xsl:with-param name="results_node" select="/response/parts"/>
