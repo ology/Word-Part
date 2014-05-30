@@ -38,6 +38,8 @@ sub init
         affix_id   => { widget => 'hidden' },
         affix      => { widget => 'text' },
         definition => { widget => 'text' },
+        pre        => { widget => 'checkbox', display => '(?<=\w)', initial => '(?<=\w)' },
+        post       => { widget => 'checkbox', display => '(?=\w)', initial => '(?<=\w)' },
         submit     => {
             widget  => 'submit',
             display => 'Save',
