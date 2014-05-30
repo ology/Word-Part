@@ -36,8 +36,8 @@ sub view_parts
         %query = (
             query => [
                 or => [
-                    affix      => { like => $self->form('term') },
-                    definition => { like => $self->form('term') },
+                    affix      => { like => '%' . $self->form('term') . '%' },
+                    definition => { like => '%' . $self->form('term') . '%' },
                 ],
             ],
         );

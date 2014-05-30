@@ -25,8 +25,6 @@
       <div class="large-3 columns">
         <form action="" method="post">
             <input type="text" name="term" placeholder="Affix or Definition" />
-            <br/>
-            <i>Use SQL wildcard %</i>
         </form>
       </div>
       <div class="large-1 columns">
