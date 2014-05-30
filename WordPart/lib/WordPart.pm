@@ -61,7 +61,7 @@ sub edit_part
         )->[0];
         $part->delete if $part;
 
-        $self->response->redirect('home');
+        $self->response->redirect( $self->uri('home') );
     }
     else
     {
