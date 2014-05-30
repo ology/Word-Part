@@ -9,11 +9,10 @@ __PACKAGE__->meta->setup(
     table  => 'fragment',
 
     columns => [
-        id            => { type => 'serial', not_null => 1 },
-        affix         => { type => 'varchar', default => '', length => 50, not_null => 1 },
-        definition    => { type => 'varchar', default => '', length => 255, not_null => 1 },
-        etymology     => { type => 'varchar', length => 50 },
-        pronunciation => { type => 'varchar', length => 50 },
+        id         => { type => 'serial', not_null => 1 },
+        affix      => { type => 'varchar', default => '', length => 50, not_null => 1 },
+        definition => { type => 'varchar', default => '', length => 255, not_null => 1 },
+        etymology  => { type => 'varchar', length => 50 },
     ],
 
     primary_key_columns => [ 'id' ],
