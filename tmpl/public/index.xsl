@@ -24,7 +24,7 @@
       </div>
       <div class="large-3 columns">
         <form action="" method="post">
-            <input type="text" name="term" placeholder="Affix or Definition" />
+            <input type="text" name="term" placeholder="Definition" />
         </form>
       </div>
       <div class="large-1 columns">
