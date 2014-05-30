@@ -16,16 +16,16 @@
             <xsl:with-param name="content">
 
             <div class="row">
-                <div class="large-1 columns text-right" style="margin-top: 35px">
-                    (?&#60;=\w)
+                <div class="large-2 columns text-right" style="margin-top: 35px">
+                    <xsl:apply-templates select=".//field[@key = 'pre']" mode="auto"/>
                 </div>
-                <div class="large-3 columns">
+                <div class="large-2 columns">
                     <xsl:apply-templates select=".//field[@key = 'affix']" mode="auto"/>
                 </div>
-                <div class="large-1 columns" style="margin-top: 35px">
-                    (?=\w)
+                <div class="large-2 columns" style="margin-top: 35px">
+                    <xsl:apply-templates select=".//field[@key = 'post']" mode="auto"/>
                 </div>
-                <div class="large-7 columns">
+                <div class="large-6 columns">
                     <xsl:apply-templates select=".//field[@key = 'definition']" mode="auto"/>
                 </div>
             </div>

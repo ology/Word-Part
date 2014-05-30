@@ -24,13 +24,13 @@
                 </div>
                 <div class="large-2 columns" style="margin-top: 35px">
                     <xsl:apply-templates select=".//field[@key = 'post']" mode="auto"/>
-                    </div>
+                </div>
                 <div class="large-6 columns">
                     <xsl:apply-templates select=".//field[@key = 'definition']" mode="auto"/>
                 </div>
             </div>
             <div class="row">
-                <div class="large-12 columns text-right">
+                <div class="large-12 columns">
                     <xsl:apply-templates select=".//field[@key = 'submit']" mode="auto"/>
                 </div>
             </div>
