@@ -63,13 +63,13 @@
     <xsl:for-each select="//results/result">
     <div class="row">
             <div class="large-2 columns text-right">
-                <p><xsl:value-of select="@pre"/></p>
+                <p><xsl:value-of select="@post"/></p>
             </div>
             <div class="large-3 columns text-center">
                 <p><xsl:value-of select="@affix"/></p>
             </div>
             <div class="large-2 columns">
-                <p><xsl:value-of select="@post"/></p>
+                <p><xsl:value-of select="@pre"/></p>
             </div>
             <div class="large-4 columns">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
