@@ -16,15 +16,11 @@
             <xsl:with-param name="content">
 
             <div class="row">
-                <div class="large-1 columns text-right" style="margin-top: 35px">
-                    (?&#60;=\w)
-                </div>
+                <div class="large-1 columns text-right" style="margin-top: 35px">(?&#60;=\w)</div>
                 <div class="large-3 columns">
                     <xsl:apply-templates select=".//field[@key = 'affix']" mode="auto"/>
                 </div>
-                <div class="large-1 columns" style="margin-top: 35px">
-                    (?=\w)
-                </div>
+                <div class="large-1 columns" style="margin-top: 35px">(?=\w)</div>
                 <div class="large-7 columns">
                     <xsl:apply-templates select=".//field[@key = 'definition']" mode="auto"/>
                 </div>
