@@ -35,9 +35,9 @@ sub init
     }
 
     $self->meta([
-        affix      => { widget => 'text' },
         affix_id   => { widget => 'hidden' },
-        definition => { widget => 'textarea' },
+        affix      => { widget => 'text' },
+        definition => { widget => 'text' },
         submit     => {
             widget  => 'submit',
             display => 'Save',
