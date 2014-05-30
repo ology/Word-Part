@@ -18,6 +18,7 @@
       <div class="large-7 columns">
         <h2>Word Parts</h2>
       </div>
+<div style="margin-top: 10px">
       <div class="large-1 columns">
         <a href="/" title="Reset part list" class="button tiny">Reset</a>
       </div>
@@ -29,6 +30,7 @@
       <div class="large-1 columns">
         <a href="/new" title="New part" class="button tiny">New</a>
       </div>
+</div>
     </div>
     <div class="row">
       <div class="large-12 columns">
