@@ -54,11 +54,15 @@ sub process
 {
     my ($self) = @_;
 
+    $self->data->{affix} = $self->data->{pre} . $self->data->{affix} if $self->data->{pre};
+    $self->data->{affix} .= $self->data->{post} if $self->data->{post};
+
     my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
         query => [ id => $self->data->{affix_id} ],
     )->[0];
     if ( $fragment )
     {
+        $fragment->affix( $self->data->{affix} );
         $fragment->definition( $self->data->{definition} );
         $fragment->save( changes_only => 1 );
     }
