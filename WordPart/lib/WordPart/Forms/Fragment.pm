@@ -19,26 +19,24 @@ sub init
         method => 'post',
     });
 
-    if ( exists $args{affix} )
+    if ( exists $args{affix_id} )
     {
         my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
-            query => [ affix => $args{affix} ],
+            query => [ id => $args{affix_id} ],
         )->[0];
         if ($fragment)
         {
             $self->defaults({
-                post       => $fragment->post,
                 affix      => $fragment->affix,
-                pre        => $fragment->pre,
+                affix_id   => $fragment->id,
                 definition => $fragment->definition,
             });
         }
     }
 
     $self->meta([
-        post  => { widget => 'text', display => 'Follows' },
-        affix => { widget => 'text' },
-        pre   => { widget => 'text', display => 'Precedes' },
+        affix      => { widget => 'text' },
+        affix_id   => { widget => 'hidden' },
         definition => { widget => 'textarea' },
         submit     => {
             widget  => 'submit',
@@ -55,22 +53,17 @@ sub process
     my ($self) = @_;
 
     my $fragment = WordPart::DataObjects::Fragment::Manager->get_objects(
-        query => [ affix => $self->data->{affix} ],
+        query => [ id => $self->data->{affix_id} ],
     )->[0];
     if ( $fragment )
     {
-        $fragment->post( $self->data->{post} );
-        $fragment->affix( $self->data->{affix} );
-        $fragment->pre( $self->data->{pre} );
         $fragment->definition( $self->data->{definition} );
         $fragment->save( changes_only => 1 );
     }
     else
     {
         WordPart::DataObjects::Fragment->new(
-            post       => $self->data->{post},
             affix      => $self->data->{affix},
-            pre        => $self->data->{pre},
             definition => $self->data->{definition},
         )->save;
     }
