@@ -45,16 +45,10 @@
  <xsl:template name="paged_data">
 
     <div class="row">
-            <div class="large-2 columns text-right">
-                <h4>Follows</h4>
-            </div>
-            <div class="large-2 columns text-center">
+            <div class="large-3 columns">
                 <h4>Affix</h4>
             </div>
-            <div class="large-2 columns">
-                <h4>Precedes</h4>
-            </div>
-            <div class="large-5 columns">
+            <div class="large-8 columns">
                 <h4>Definition</h4>
             </div>
             <div class="large-1 columns">
@@ -64,20 +58,14 @@
     <hr/>
     <xsl:for-each select="//results/result">
     <div class="row">
-            <div class="large-2 columns text-right">
-                <p><xsl:value-of select="@post"/></p>
-            </div>
-            <div class="large-2 columns text-center">
+            <div class="large-3 columns">
                 <p><xsl:value-of select="@affix"/></p>
             </div>
-            <div class="large-2 columns">
-                <p><xsl:value-of select="@pre"/></p>
-            </div>
-            <div class="large-5 columns">
+            <div class="large-8 columns">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
             </div>
             <div class="large-1 columns right">
-                <a href="/edit/{@affix}" title="Edit part '{@affix}'" class="button tiny round"></a>
+                <a href="/edit/{@id}" title="Edit part '{@affix}'" class="button tiny round"></a>
             </div>
     </div>
     <hr/>
