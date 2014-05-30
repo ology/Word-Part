@@ -38,8 +38,8 @@ sub init
         affix_id   => { widget => 'hidden' },
         affix      => { widget => 'text' },
         definition => { widget => 'text' },
-        pre        => { widget => 'checkbox', display => '(?<=\w)', attrs => { value => '(?<=\w)' } },
-        post       => { widget => 'checkbox', display => '(?=\w)', attrs => { value => '(?=\w)' } },
+        pre        => { widget => 'checkbox', display => 'Follows', attrs => { value => '(?<=\w)' } },
+        post       => { widget => 'checkbox', display => 'Precedes', attrs => { value => '(?=\w)' } },
         submit     => {
             widget  => 'submit',
             display => 'Save',
