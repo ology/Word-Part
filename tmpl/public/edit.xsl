@@ -33,7 +33,7 @@
                 <div class="large-12 columns">
                     <xsl:apply-templates select=".//field[@key = 'submit']" mode="auto"/>
                     &#160;
-                    <a href="/remove/{.//field[@key = 'affix']/@value}" class="button tiny">Remove</a>
+                    <a href="/remove/{.//field[@key = 'affix_id']/@value}" class="button tiny">Remove</a>
                 </div>
             </div>
 
