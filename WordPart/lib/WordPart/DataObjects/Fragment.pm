@@ -16,8 +16,6 @@ __PACKAGE__->meta->setup(
     ],
 
     primary_key_columns => [ 'id' ],
-
-    unique_key => [ 'affix' ],
 );
 
 1;
