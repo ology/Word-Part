@@ -53,8 +53,11 @@
             <div class="large-4 columns">
                 <h4>Score</h4>
             </div>
-            <div class="large-8 columns">
+            <div class="large-4 columns">
                 <h4>Partition</h4>
+            </div>
+            <div class="large-4 columns">
+                <h4>Definition</h4>
             </div>
     </div>
     <hr/>
@@ -63,8 +66,11 @@
             <div class="large-4 columns">
                 <p><xsl:value-of select="part/@score"/></p>
             </div>
-            <div class="large-8 columns">
+            <div class="large-4 columns">
                 <p><xsl:value-of select="part/@partition"/></p>
+            </div>
+            <div class="large-4 columns">
+                <p><xsl:value-of select="part/@definition"/></p>
             </div>
     </div>
     <hr/>
