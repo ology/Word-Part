@@ -91,8 +91,7 @@ sub parse_word {
     # Find the known word-part positions.
     $p->knowns;
     $p->power;
-    $p->score;
-#    warn Dumper $p->{score};
+    my $score = $p->score;
 
     my $parent = $self->fast_append( tag => 'parts' );
     for my $key ( reverse sort keys %$score )
