@@ -78,8 +78,10 @@ sub edit_part
 sub parse_word {
     my ( $self, %args ) = @_;
 
+    my $word = $self->form('word');
+
     my $p = Lingua::Word::Parser->new(
-        word   => $self->form('word'),
+        word   => $word,
         dbname => 'word_part',
         dbuser => 'root',
         dbpass => 'abc123',
@@ -97,6 +99,8 @@ sub parse_word {
     {
         $self->tree_append( tag => 'part', data => $score->{$key}, parent => $parent );
     }
+
+    $self->fast_append( tag => 'word', data => { word => $word } );
 
     return;
 }
