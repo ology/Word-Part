@@ -62,7 +62,7 @@
             </resources>
         </page>
 
-        <page name="parse" uri="/parse/{word}">
+        <page name="parse" uri="/parse/">
             <resources>
                 <resource>
                     <sub value="parse_word"/>

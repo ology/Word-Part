@@ -79,7 +79,7 @@ sub parse_word {
     my ( $self, %args ) = @_;
 
     my $p = Lingua::Word::Parser->new(
-        word   => $args{word},
+        word   => $self->form('word'),
         dbname => 'word_part',
         dbuser => 'root',
         dbpass => 'abc123',
