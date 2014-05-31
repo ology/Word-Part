@@ -25,8 +25,11 @@
                 <div class="large-2 columns" style="margin-top: 35px">
                     <xsl:apply-templates select=".//field[@key = 'post']" mode="auto"/>
                 </div>
-                <div class="large-6 columns">
+                <div class="large-3 columns">
                     <xsl:apply-templates select=".//field[@key = 'definition']" mode="auto"/>
+                </div>
+                <div class="large-3 columns">
+                    <xsl:apply-templates select=".//field[@key = 'etymology']" mode="auto"/>
                 </div>
             </div>
             <div class="row">

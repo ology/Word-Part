@@ -30,14 +30,22 @@ sub init
                 affix      => $fragment->affix,
                 affix_id   => $fragment->id,
                 definition => $fragment->definition,
+                etymology  => $fragment->etymology,
             });
         }
+    }
+
+    my @choices = ();
+    for my $choice (qw( latin greek ))
+    {
+        push @choices, { value => $choice, display => ucfirst $choice };
     }
 
     $self->meta([
         affix_id   => { widget => 'hidden' },
         affix      => { widget => 'text' },
         definition => { widget => 'text' },
+        etymology  => { widget => 'select', choices => \@choices },
         pre        => { widget => 'checkbox', display => 'Follows', attrs => { value => '(?<=\w)' } },
         post       => { widget => 'checkbox', display => 'Precedes', attrs => { value => '(?=\w)' } },
         submit     => {
