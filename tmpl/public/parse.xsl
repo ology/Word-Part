@@ -15,10 +15,15 @@
  <xsl:template match="/" mode="local">
 
     <div class="row">
-      <div class="large-7 columns">
+      <div class="large-5 columns">
         <h2>Word Parse</h2>
       </div>
 <div style="margin-top: 10px">
+      <div class="large-2 columns">
+        <form action="/parse/" method="post">
+            <input type="text" name="word" placeholder="Parse" value="{/response/word/@word}"/>
+        </form>
+      </div>
       <div class="large-1 columns">
         <a href="/" title="Reset part list" class="button tiny">Reset</a>
       </div>
@@ -49,7 +54,7 @@
                 <h4>Score</h4>
             </div>
             <div class="large-8 columns">
-                <h4>"<xsl:value-of select="/response/append/@uri2"/>"</h4>
+                <h4>Partition</h4>
             </div>
     </div>
     <hr/>
