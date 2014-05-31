@@ -28,7 +28,7 @@
         </form>
       </div>
       <div class="large-1 columns">
-        <a href="/new" title="New part" class="button tiny">New</a>
+        <a href="/new" title="New part" class="button tiny" accesskey="n">New</a>
       </div>
 </div>
     </div>
