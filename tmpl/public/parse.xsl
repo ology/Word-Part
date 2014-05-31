@@ -45,20 +45,20 @@
  <xsl:template name="paged_data">
 
     <div class="row">
-            <div class="large-2 columns">
-                <h4>Word:</h4>
+            <div class="large-4 columns">
+                <h4>Score</h4>
             </div>
-            <div class="large-10 columns">
+            <div class="large-8 columns">
                 <h4>"<xsl:value-of select="/response/append/@uri2"/>"</h4>
             </div>
     </div>
     <hr/>
     <xsl:for-each select="/response/parts/part">
     <div class="row">
-            <div class="large-5 columns">
+            <div class="large-4 columns">
                 <p><xsl:value-of select="part/@score"/></p>
             </div>
-            <div class="large-7 columns">
+            <div class="large-8 columns">
                 <p><xsl:value-of select="part/@partition"/></p>
             </div>
     </div>
