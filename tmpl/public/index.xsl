@@ -48,8 +48,11 @@
             <div class="large-3 columns">
                 <h4>Affix</h4>
             </div>
-            <div class="large-8 columns">
+            <div class="large-5 columns">
                 <h4>Definition</h4>
+            </div>
+            <div class="large-3 columns">
+                <h4>Etymology</h4>
             </div>
             <div class="large-1 columns">
                 <h4>Edit</h4>
@@ -61,8 +64,11 @@
             <div class="large-3 columns">
                 <p><xsl:value-of select="@affix"/></p>
             </div>
-            <div class="large-8 columns">
+            <div class="large-5 columns">
                 <p><xsl:value-of select="@definition" disable-output-escaping="yes"/></p>
+            </div>
+            <div class="large-3 columns">
+                <p><xsl:value-of select="@etymology"/></p>
             </div>
             <div class="large-1 columns right">
                 <a href="/edit/{@id}" title="Edit part '{@affix}'" class="button tiny round"></a>
