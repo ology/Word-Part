@@ -92,9 +92,10 @@ sub parse_word {
     my $score = $p->score;
 #    warn Dumper $score;
 
+    my $parent = $self->fast_append( tag => 'parts' );
     for my $key ( sort keys %$score )
     {
-        $self->tree_append( tag => 'parts', data => { '_'. $key => $score->{$key} } );
+        $self->tree_append( tag => 'part', data => $score->{$key}, parent => $parent );
     }
 
     return;
