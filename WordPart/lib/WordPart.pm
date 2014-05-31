@@ -84,17 +84,16 @@ sub parse_word {
         dbuser => 'root',
         dbpass => 'abc123',
     );
-    #warn Dumper $p->{lex};
+#    warn Dumper $p->{lex};
 
     # Find the known word-part positions.
     my ($known) = $p->knowns;
     my $combos = $p->power;
     my $score = $p->score;
-    #warn Dumper $score;
-#    warn Dumper $score->{ [ sort keys $score ]->[-1] };
+#    warn Dumper $score;
 
-#    $self->tree_append( tag => 'score', data => $score );
-    $self->fast_append( tag => 'score', data => { dump => Dumper($score) } );
+#    $self->tree_append( tag => 'parts', data => { map { '_' . $_ => $known->{$_} } keys %$known } );
+    $self->tree_append( tag => 'parts', data => { map { '_' . $_ => $score->{$_} } keys %$score } );
 
     return;
 }
