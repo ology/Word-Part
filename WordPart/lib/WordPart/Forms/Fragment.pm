@@ -72,6 +72,7 @@ sub process
     {
         $fragment->affix( $self->data->{affix} );
         $fragment->definition( $self->data->{definition} );
+        $fragment->etymology( $self->data->{etymology} );
         $fragment->save( changes_only => 1 );
     }
     else
@@ -79,6 +80,7 @@ sub process
         WordPart::DataObjects::Fragment->new(
             affix      => $self->data->{affix},
             definition => $self->data->{definition},
+            etymology  => $self->data->{etymology},
         )->save;
     }
 
