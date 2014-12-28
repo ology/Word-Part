@@ -5,8 +5,6 @@ use warnings;
 
 use parent qw( Chameleon5::Contrib::PagedResults );
 
-use DateTime::Format::Strptime;
-
 use WordPart::DataObjects::Fragment::Manager;
 
 sub init
