@@ -33,7 +33,7 @@ sub load_data
     $manager_args{page}     = $self->page;
     $manager_args{per_page} = $self->per_page;
 
-    my $manager   = WordPart::DataObjects::Fragment::Manager;
+    my $manager = WordPart::DataObjects::Fragment::Manager;
 
     my @results = @{ $manager->get_objects( %manager_args ) };
 
