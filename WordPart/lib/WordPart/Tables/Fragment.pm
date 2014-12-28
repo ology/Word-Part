@@ -34,13 +34,11 @@ sub load_data
     $manager_args{per_page} = $self->per_page;
 
     my $manager   = WordPart::DataObjects::Fragment::Manager;
-    my $formatter = DateTime::Format::Strptime->new( pattern => '%B %e, %Y' );
 
-    for my $result ( @{ $manager->get_objects( %manager_args ) } )
-    {
-        $self->add_result_tree(
-            %{ $result->as_tree_tz( tz => $self->site->time_zone, formatter => $formatter ) } );
-    }
+    my @results = @{ $manager->get_objects( %manager_args ) };
+
+    $self->add_result_tree( %{ $_->as_tree } ) for @$results;
+
     $self->total_results( $manager->get_objects_count( %manager_args ) );
 
     return;
