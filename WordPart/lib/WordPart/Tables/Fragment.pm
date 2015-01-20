@@ -33,9 +33,10 @@ sub load_data
 
     my $manager = WordPart::DataObjects::Fragment::Manager;
 
-    my @results = @{ $manager->get_objects( %manager_args ) };
-
-    $self->add_result_tree( %{ $_->as_tree } ) for @$results;
+    for my $result ( @{ $manager->get_objects( %manager_args ) } )
+    {
+        $self->add_result_tree( %{ $result->as_tree } );
+    }
 
     $self->total_results( $manager->get_objects_count( %manager_args ) );
 
