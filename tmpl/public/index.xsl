@@ -59,7 +59,7 @@
             <div class="large-3 columns">
                 <h4>Etymology</h4>
             </div>
-            <div class="large-1 columns">
+            <div class="large-1 columns" align="right">
                 <h4>Edit</h4>
             </div>
     </div>
@@ -75,7 +75,7 @@
             <div class="large-3 columns">
                 <p><xsl:value-of select="@etymology"/></p>
             </div>
-            <div class="large-1 columns right">
+            <div class="large-1 columns right" align="right">
                 <a href="/edit/{@id}" title="Edit part '{@affix}'" class="button tiny round"></a>
             </div>
     </div>
