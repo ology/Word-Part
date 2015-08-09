@@ -1,3 +1,4 @@
+<a href="/"><img src="/images/graph-partitioning.png" /></a>
 <p>
     <form action="/search">
         <input type="radio" name="type" value="affix" <% checked == "affix" ? "checked" : "" %> /> Affix

@@ -1,3 +1,4 @@
+<a href="/"><img src="/images/graph-partitioning.png" /></a>
 <form action="/<% method %>" method="post">
     Follows: <input type="checkbox" name="prefix"/>
     Affix: <input type="text" name="affix" value="<% affix %>"/>
