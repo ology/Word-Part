@@ -54,7 +54,8 @@ padding-right: 30px;
 
 
 #header {
-background-image: url("/images/perldancer.jpg");
+// background-image: url("/images/perldancer.jpg");
+background-image: url("/images/graph-partitioning.png");
 background-repeat: no-repeat;
 background-position: top left;
 height: 64px;
