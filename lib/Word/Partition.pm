@@ -86,26 +86,28 @@ get '/edit' => require_login sub {
 };
 
 get '/parse' => require_login sub {
+    my $results;
     my $query = params->{query};
 
-    my $p = Lingua::Word::Parser->new(
-        word   => $query,
-        dbname => config->{plugins}{Database}{database},
-        dbuser => config->{plugins}{Database}{username},
-        dbpass => config->{plugins}{Database}{password},
-        dbtype => config->{plugins}{Database}{driver},
-        dbhost => config->{plugins}{Database}{host},
-    );
+    if ( $query ) {
+        my $p = Lingua::Word::Parser->new(
+            word   => $query,
+            dbname => config->{plugins}{Database}{database},
+            dbuser => config->{plugins}{Database}{username},
+            dbpass => config->{plugins}{Database}{password},
+            dbtype => config->{plugins}{Database}{driver},
+            dbhost => config->{plugins}{Database}{host},
+        );
 
-    # Find the known word-part positions.
-    $p->knowns;
-    $p->power;
-    my $score = $p->score( '[', ']' );
+        # Find the known word-part positions.
+        $p->knowns;
+        $p->power;
+        my $score = $p->score( '[', ']' );
 
-    my $results;
-    for my $key ( reverse sort keys %$score )
-    {
-        push @$results, $score->{$key};
+        for my $key ( reverse sort keys %$score )
+        {
+            push @$results, $score->{$key};
+        }
     }
 
     template 'parse',
