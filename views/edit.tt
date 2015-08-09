@@ -1,13 +1,64 @@
-<a href="/"><img src="/images/graph-partitioning.png" /></a>
+<div class="row">
+    <div class="large-12 columns">
+        <a href="/"><img src="/images/graph-partitioning.png" /></a>
+    </div>
+</div>
+
+<p/>
 <form action="/<% method %>" method="post">
-    Follows: <input type="checkbox" name="prefix"/>
-    Affix: <input type="text" name="affix" value="<% affix %>"/>
-    Precedes: <input type="checkbox" name="suffix"/>
-    Defn: <input type="text" name="definition" value="<% definition %>"/>
-    Etym: <input type="text" name="etym" value="<% etymology %>"/>
-    <input type="submit" name="<% method %>" value="<% method %>"/>
+
+    <div class="row">
+        <div class="large-3 medium-3 columns">
+            <div class="callout panel">
+                <input id="prefix" type="checkbox"><label for="prefix">Precedes</label>
+            </div>
+        </div>
+        <div class="large-3 medium-3 columns">
+            <label>Affix</label>
+            <input type="text" name="affix" value="<% affix %>" />
+        </div>
+        <div class="large-3 medium-3 columns">
+            <div class="callout panel">
+                <input id="suffix" type="checkbox"><label for="suffix">Follows</label>
+            </div>
+        </div>
+        <div class="large-3 medium-3 columns">
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-9 columns">
+            <label>Definition</label>
+            <input type="text" value="<% definition %>" />
+        </div>
+        <div class="large-3 medium-3 columns">
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-9 columns">
+            <label>Etymology</label>
+            <select>
+                <option value="greek">Greek</option>
+                <option value="latin">Latin</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="large-3 medium-3 columns">
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-2 medium-2 columns">
+            <input type="submit" name="<% method %>" value="<% method %>" class="small round button" />
+        </div>
+    </div>
+
 </form>
+
+<p/>
 <form action="/delete" method="delete">
-<input type="hidden" name="id" value="<% id %>" />
-<input type="submit" name="delete" value="delete" />
+    <div class="row">
+        <div class="large-2 medium-2 columns">
+            <input type="hidden" name="id" value="<% id %>" />
+            <input type="submit" name="delete" value="delete" class="small round button" />
+        </div>
+    </div>
 </form>
