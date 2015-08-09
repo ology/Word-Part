@@ -1,11 +1,9 @@
-<p>
-    <form action="/parse">
-        <a href="/"><img src="/images/graph-partitioning.png" /></a>
-        <input type="text" name="query" value="<% query %>" />
-        <input type="submit" name="submit" value="Submit" />
-    </form>
-</p>
-
+<a href="/"><img src="/images/graph-partitioning.png" /></a>
+<form action="/parse">
+    <input type="text" name="query" value="<% query %>" />
+    <input type="submit" name="submit" value="Submit" />
+</form>
+<p/>
 <% IF query.length %>
     <% IF results.size %>
         <b>Score</b> |

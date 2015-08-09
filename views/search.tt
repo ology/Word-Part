@@ -1,13 +1,11 @@
 <a href="/"><img src="/images/graph-partitioning.png" /></a>
-<p>
-    <form action="/search">
-        <input type="radio" name="type" value="affix" <% checked == "affix" ? "checked" : "" %> /> Affix
-        <input type="radio" name="type" value="definition" <% checked == "definition" ? "checked" : "" %> /> Definition
-        <input type="text" name="query" value="<% query %>" />
-        <input type="submit" name="submit" value="Submit" />
-    </form>
-</p>
-
+<form action="/search">
+    <input type="radio" name="type" value="affix" <% checked == "affix" ? "checked" : "" %> /> Affix
+    <input type="radio" name="type" value="definition" <% checked == "definition" ? "checked" : "" %> /> Definition
+    <input type="text" name="query" value="<% query %>" />
+    <input type="submit" name="submit" value="Submit" />
+</form>
+<p/>
 <% IF query.length %>
     <% IF results.size %>
         Results:
