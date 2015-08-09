@@ -1,7 +1,7 @@
 <p>
     <form action="/search">
-        <input type="radio" name="type" value="affix" checked /> Affix
-        <input type="radio" name="type" value="definition" /> Definition
+        <input type="radio" name="type" value="affix" <% checked == "affix" ? "checked" : "" %> /> Affix
+        <input type="radio" name="type" value="definition" <% checked == "definition" ? "checked" : "" %> /> Definition
         <br/>
         Query: <input type="text" name="query" value="<% query %>" />
         <br/>

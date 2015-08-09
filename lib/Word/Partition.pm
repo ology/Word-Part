@@ -137,6 +137,7 @@ get '/search' => require_login sub {
       {
         query   => $query,
         results => $results,
+        checked => $type,
       };
 };
 
