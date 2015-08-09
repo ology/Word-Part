@@ -1,0 +1,24 @@
+<p>
+    <form action="/search">
+        <input type="radio" name="type" value="affix" checked /> Affix
+        <input type="radio" name="type" value="definition" /> Definition
+        <br/>
+        Query: <input type="text" name="query" value="<% query %>" />
+        <br/>
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+</p>
+
+<% IF query.length %>
+    <% IF results.size %>
+        Results:
+        <ol>
+        <% FOREACH r = results %>
+            <li><% r.affix %> : <% r.definition %> [<% r.etymology %>]
+            <a href="/edit?id=<% r.id %>">Edit</a>
+        <% END %>
+        </ol>
+    <% ELSE %>
+        No result
+    <% END %>
+<% END %>

@@ -1,0 +1,12 @@
+<form action="/<% method %>" method="post">
+    Follows: <input type="checkbox" name="prefix"/>
+    Affix: <input type="text" name="affix" value="<% affix %>"/>
+    Precedes: <input type="checkbox" name="suffix"/>
+    Defn: <input type="text" name="definition" value="<% definition %>"/>
+    Etym: <input type="text" name="etym" value="<% etymology %>"/>
+    <input type="submit" name="<% method %>" value="<% method %>"/>
+</form>
+<form action="/delete" method="delete">
+<input type="hidden" name="id" value="<% id %>" />
+<input type="submit" name="delete" value="delete" />
+</form>

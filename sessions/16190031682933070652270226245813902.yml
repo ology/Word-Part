@@ -1,0 +1,4 @@
+--- !!perl/hash:Dancer::Session::YAML
+id: 16190031682933070652270226245813902
+logged_in_user: gene
+logged_in_user_realm: users

@@ -1,0 +1,22 @@
+<p>
+    <form action="/parse">
+        Query: <input type="text" name="query" value="<% query %>" />
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+</p>
+
+<% IF query.length %>
+    <% IF results.size %>
+        <b>Score</b> |
+        <b>Partition</b> |
+        <b>Definition</b>
+        <% FOREACH r = results %>
+            <hr/>
+                <% r.0.score %> |
+                <% r.0.partition %> |
+                <% r.0.definition %>
+        <% END %>
+    <% ELSE %>
+        No result
+    <% END %>
+<% END %>
