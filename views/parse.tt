@@ -22,14 +22,18 @@
 <p/>
 <% IF query.length %>
     <% IF results.size %>
-        <b>Score</b> |
-        <b>Partition</b> |
-        <b>Definition</b>
         <% FOREACH r = results %>
-            <hr/>
-                <% r.0.score %> |
-                <% r.0.partition %> |
+            <div class="row">
+                <div class="large-4 columns">
+                    <% r.0.score %>
+                </div>
+                <div class="large-4 columns">
+                <% r.0.partition %>
+                </div>
+                <div class="large-4 columns">
                 <% r.0.definition %>
+                </div>
+            </div>
         <% END %>
     <% ELSE %>
         No result

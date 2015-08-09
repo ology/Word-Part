@@ -29,13 +29,38 @@
 <p/>
 <% IF query.length %>
     <% IF results.size %>
-        Results:
-        <ol>
+        <div class="row">
+            <div class="large-3 columns">
+                <h4>Affix</h4>
+            </div>
+            <div class="large-5 columns">
+                <h4>Definition</h4>
+            </div>
+            <div class="large-3 columns">
+                <h4>Etymology</h4>
+            </div>
+            <div class="large-1 columns" align="right">
+                <h4>Edit</h4>
+            </div>
+        </div>
+ 
         <% FOREACH r = results %>
-            <li><% r.affix %> : <% r.definition %> [<% r.etymology %>]
-            <a href="/edit?id=<% r.id %>">Edit</a>
+            <div class="row">
+                <div class="large-3 columns">
+                    <p><% r.affix %></p>
+                </div>
+                <div class="large-5 columns">
+                    <p><% r.definition %></p>
+                </div>
+                <div class="large-3 columns">
+                    <p><% r.etymology %></p>
+                </div>
+                <div class="large-1 columns right" align="right">
+                    <a href="/edit?id=<% r.id %>" title="Edit part '<% r.affix %>'" class="button tiny round"></a>
+                </div>
+            </div>
+
         <% END %>
-        </ol>
     <% ELSE %>
         No result
     <% END %>
