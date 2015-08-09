@@ -35,13 +35,10 @@
 
           <ol>          
             <li>
-              <h2>Words are like LEGO</h2>
+              <h2>Words are made of components</h2>
 
               <p>
-              Your application is configured via a global configuration file,
-              <tt>config.yml</tt> and an "environment" configuration file,
-              <tt>environments/development.yml</tt>. Edit those files if you
-              want to change the settings of your application.
+              Called morphemes!
               </p>
             </li>
 
@@ -49,11 +46,7 @@
               <h2>They can be deconstructed</h2>
 
               <p>
-              The default route that displays this page can be removed,
-              it's just here to help you get started. The template used to
-              generate this content is located in 
-              <code>views/index.tt</code>.
-              You can add some routes to <tt>lib/music.pm</tt>. 
+              Into meaningful morpheme chains!
               </p>
             </li>
 
@@ -61,8 +54,7 @@
                 <h2>And they can be synthesized</h2>
 
                 <p>
-                Once you've made your changes, restart your standalone server
-                (bin/app.pl) and you're ready to test your web application.
+                From definitions emerges scientific terminology...
                 </p>
             </li>
 
