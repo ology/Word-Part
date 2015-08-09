@@ -2,24 +2,20 @@
       <div id="sidebar">
         <ul id="sidebar-items">
           <li>
-            <h3>Word Parts Lexicon</h3>
+            <h3>Word Part Lexicon</h3>
             <ul class="links">
               <li><a href="/new">New Entry</a></li>
               <li><a href="/search">Search Entries</a></li>
+              <li><a href="/parse">Search Entries</a></li>
             </ul>
           </li>
           
           <li>
-            <h3>Browse the documentation</h3>
+            <h3>Browse the Sources</h3>
 
             <ul class="links">
-              <li><a
-              href="https://metacpan.org/pod/Dancer::Introduction">Introduction</a></li>
-              <li><a href="https://metacpan.org/pod/Dancer::Cookbook">Cookbook</a></li>
-              <li><a href="https://metacpan.org/pod/Dancer::Deployment">Deployment Guide</a></li>
-              <li><a
-              href="https://metacpan.org/pod/Dancer::Tutorial"
-              title="a tutorial to build a small blog engine with Dancer">Tutorial</a></li>
+              <li><a href="https://metacpan.org/release/Lingua-Word-Parser">Lingua::Word::Parser</a></li>
+              <li><a href="https://github.com/ology/Word-Part">Word-Part</a></li>
             </ul>
           </li>
 
