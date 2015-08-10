@@ -10,7 +10,7 @@
     <div class="row">
         <div class="large-3 medium-3 columns">
             <div class="callout panel">
-                <input id="prefix" type="checkbox"><label for="prefix">Precedes</label>
+                <input id="prefix" type="checkbox"><label for="prefix">Follows</label>
             </div>
         </div>
         <div class="large-3 medium-3 columns">
@@ -19,7 +19,7 @@
         </div>
         <div class="large-3 medium-3 columns">
             <div class="callout panel">
-                <input id="suffix" type="checkbox"><label for="suffix">Follows</label>
+                <input id="suffix" type="checkbox"><label for="suffix">Precedes</label>
             </div>
         </div>
         <div class="large-3 medium-3 columns">
@@ -49,16 +49,16 @@
         <div class="large-2 medium-2 columns">
             <input type="submit" name="<% method %>" value="<% method %>" class="small round button" />
         </div>
-    </div>
-
-</form>
-
-<p/>
-<form action="/delete" method="delete">
-    <div class="row">
+        <div class="large-5 medium-5 columns">
+			&nbsp;
+        </div>
         <div class="large-2 medium-2 columns">
-            <input type="hidden" name="id" value="<% id %>" />
-            <input type="submit" name="delete" value="delete" class="small round button" />
+			<% IF id %>
+			<a href="/delete?id=<% id %>" class="small round button">Delete</a>
+			<% END %>
+        </div>
+        <div class="large-3 medium-3 columns">
         </div>
     </div>
+
 </form>
