@@ -13,8 +13,7 @@ public/css/error.css
 public/500.html
 public/dispatch.fcgi
 public/dispatch.cgi
-public/images/perldancer-bg.jpg
-public/images/perldancer.jpg
+public/images/graph-partitioning.png
 public/javascripts/jquery.min.js
 public/favicon.ico
 MANIFEST.SKIP
