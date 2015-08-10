@@ -28,7 +28,7 @@
     <div class="row">
         <div class="large-9 columns">
             <label>Definition</label>
-            <input type="text" value="<% definition %>" />
+            <input type="text" name="definition" value="<% definition %>" />
         </div>
         <div class="large-3 medium-3 columns">
         </div>
@@ -36,7 +36,7 @@
     <div class="row">
         <div class="large-9 columns">
             <label>Etymology</label>
-            <select>
+            <select name="etymology">
                 <option value="greek">Greek</option>
                 <option value="latin">Latin</option>
                 <option value="other">Other</option>
