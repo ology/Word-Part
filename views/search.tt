@@ -39,7 +39,7 @@
             <div class="large-3 columns">
                 <h4>Etymology</h4>
             </div>
-            <div class="large-1 columns" align="right">
+            <div class="large-1 columns">
                 <h4>Edit</h4>
             </div>
         </div>
@@ -55,7 +55,7 @@
                 <div class="large-3 columns">
                     <p><% r.etymology %></p>
                 </div>
-                <div class="large-1 columns right" align="right">
+                <div class="large-1 columns">
                     <a href="/edit?id=<% r.id %>" title="Edit part '<% r.affix %>'" class="button tiny round"></a>
                 </div>
             </div>
