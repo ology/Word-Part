@@ -121,6 +121,8 @@ get '/search' => require_login sub {
     my $query = params->{query};
     my $type  = params->{type};
 
+    $type //= 'affix';
+
     my ( $rs, $results );
     if ( length $query ) {
         $rs = _perform_search( $query, $type );
