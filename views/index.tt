@@ -48,9 +48,9 @@
               <h2>They can be deconstructed</h2>
 
               <p>
-              A term can be broken into meaningful morpheme chains.
+              A term can be parsed into meaningful morpheme chains.
               There can be many possible chains for a given term, depending on what parts are known (are present in the lexicon).
-              For "automobile", one chain might be "aut" + "o" + "mobile."
+              Each chain is given a ratio score based on how familiar the partitions are.  That is known vs unknown parts.
               </p>
             </li>
 
@@ -60,7 +60,6 @@
               <p>
               Given a definition, a scientific term may be generated.
               There may be a number of possible terms matching a given definition.
-              For a definition of "self" + "motion" the term "automobile" may be produced.
               </p>
             </li>
 
