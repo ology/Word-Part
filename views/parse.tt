@@ -22,6 +22,7 @@
 <% IF query.length %>
     <% IF results.size %>
         <% FOREACH r = results %>
+            <hr/>
             <div class="row">
                 <div class="large-4 columns">
                     <% r.0.score %>
