@@ -20,13 +20,6 @@ get '/new' => require_login sub {
         };
 };
 
-sub prefix_suffix {
-    my ( $affix, $prefix, $suffix ) = @_;
-    $affix  = '(?<=\w)' . $affix if $suffix;
-    $affix .= '(?=\w)'           if $prefix;
-    return $affix;
-}
-
 post '/add' => require_login sub {
     my $affix = prefix_suffix(
         params->{affix}, params->{prefix}, params->{suffix}
@@ -170,6 +163,13 @@ sub _perform_search {
     );
 
     return $fragments;
+}
+
+sub prefix_suffix {
+    my ( $affix, $prefix, $suffix ) = @_;
+    $affix  = '(?<=\w)' . $affix if $suffix;
+    $affix .= '(?=\w)'           if $prefix;
+    return $affix;
 }
 
 true;
