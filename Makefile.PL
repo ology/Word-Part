@@ -17,6 +17,9 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     PREREQ_PM => {
+        'Readonly'   => 0,
+        'DBI'        => 0,
+        'Template'   => 0,
         'Test::More' => 0,
         'YAML'       => 0,
         'Dancer'     => 1.3140,
