@@ -4,13 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>WordPart</title>
+<title>Gene Boggs</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 <meta name="generator" content="pod2s5 0.09" />
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="Tue Aug 11 07:57:48 2015" />
-<meta name="author" content="gene" />
+<meta name="presdate" content="Tue Aug 11 10:56:55 2015" />
+<meta name="author" content="geneboggs" />
 <meta name="company" content="&nbsp;" />
 <!-- configuration parameters -->
 <meta name="defaultView" content="slideshow" />
@@ -47,77 +47,133 @@ img#me05 {top: 43px;left: 36px;}
 <div id="currentSlide"></div>
 <div id="header"></div>
 <div id="footer">
-<h1>elmer.local &#8226; Tue Aug 11 07:57:48 2015</h1>
-<h2>WordPart</h2></div>
+<h1>hg.local &#8226; Tue Aug 11 10:56:55 2015</h1>
+<h2>Gene Boggs</h2></div>
 </div><div class="slide">
 <h1>Word-part Manipulation
 
 </h1><p>Database manipulation of word-part fragments
 
-</p><p>And scored combinations of parsed terminology
+</p><p>Scoring combinations of parsed and defined terminology
 
 </p></div>
 <div class="slide">
 <h1>Data Model
 
-</h1><pre>affix       definition              etymology
----------------------------------------------
-ab          from, away              latin
-bio         life                    greek
-o           combining               NULL
-ortho       straight, right angles  greek
-phile?      loving, thriving        greek
-ic          belonging               greek
-... </pre><p>"orthophilic" - belonging or thriving at right angles
+</h1><pre> affix       definition              etymology
+ ---------------------------------------------
+ ab          from, away              latin
+ bio         life                    greek
+ o           combining               NULL
+ ortho       straight, right angles  greek
+ phile?      loving, thriving        greek
+ ic          belonging               greek
+ ... </pre><p><a href="http://localhost:5000/parse?query=orthophilic">"orthophilic" - belonging to things that thrive at right angles</a>
 
-</p><p><a href="http://localhost:5000/parse?query=orthophilic">http://localhost:5000/parse?query=orthophilic</a>
+</p><hr/>
+
+<p>Used <a href="https://metacpan.org/release/DBIx-Class-Schema-Loader">DBIx::Class::Schema::Loader</a> for my existing database
 
 </p></div>
 <div class="slide">
-<h1>ROUTES
+<h1>ROUTES: Verbs & Behaviors
 
-</h1><img src="" style="float:right" />
+</h1><img src="pix/railroad.jpg" style="float:right" />
 
-<p>Verb - Behavior
+<ul><li level="1">get
 
-</p><ul><li level="1">get - Select a record
+<p>Direct to index
 
-</li><li level="1">post - Insert a record
+</p><p>Show the edit and parse forms
 
-</li></ul></div>
+</p><p>Search for records
+
+</p><p>Delete a record (anchor)
+
+</p></li><li level="1">post
+
+<p>Add a record
+
+</p><p>Update a record
+
+</p></li></ul></div>
 <div class="slide">
 <h1>Authorization
 
-</h1><pre></pre></div>
+</h1><p>Using <a href="Dancer::Plugin::Auth::Extensible">Dancer::Plugin::Auth::Extensible</a>.
+
+</p><pre> get '/parse' => require_login sub { ... </pre><p>Provides <code>/login</code> and <code>/logout</code> routes.
+
+</p><p>Configured in the <code>config.yml</code> file.
+
+</p></div>
 <div class="slide">
-<h1>search
+<h1>Search by Affix or Definition
 
-</h1><h2>By affix
-
-</h2><pre></pre><h2>By definition
-
-</h2><pre></pre></div>
+</h1><pre> get '/search' => require_login sub {
+    ...
+    my $type = params->{type};
+    $type //= 'affix';  # Option via form: 'definition'
+    ...
+    my $fragments = $schema->resultset('Fragment')->search(
+        {
+            $type => { like => "%$like%" },
+        },
+        {
+            order_by => { -asc => 'affix' }
+        }
+    );
+    ...
+ } </pre></div>
 <div class="slide">
-<h1>post
+<h1>Post by ID or Database Columns
 
-</h1><pre></pre></div>
+</h1><pre> post '/update' => require_login sub {
+    my $fragment = $schema->resultset('Fragment')->find(
+        {
+            id => params->{id}
+        }
+    );
+    ...
+ } </pre><p><p/>
+
+</p><pre> post '/add' => require_login sub {
+    ...
+    $schema->resultset('Fragment')->create(
+        {
+            affix      => $affix,
+            definition => params->{definition},
+            etymology  => params->{etymology},
+        }
+    );
+    ...
+ }; </pre></div>
 <div class="slide">
-<h1>edit
+<h1>New/Edit Template
 
-</h1><pre></pre></div>
-<div class="slide">
-<h1>edit Template
-
-</h1><pre></pre></div>
+</h1><pre> ...
+ &lt;input name="affix" type="text" value="&lt;% affix %>" autofocus />
+ ...
+ &lt;input name="prefix" type="checkbox">&lt;label for="prefix">Prefix&lt;/label>
+ &lt;input name="suffix" type="checkbox">&lt;label for="suffix">Suffix&lt;/label>
+ ...
+ &lt;select name="etymology">
+     &lt;option value="">Choose a language...&lt;/option>
+     &lt;option value="greek" &lt;% etymology == "greek" ? "selected" : "" %>>Greek&lt;/option>
+ ...
+ &lt;input name="definition" type="text" value="&lt;% definition %>" />
+ ...
+ &lt;input type="submit" name="&lt;% method %>" value="&lt;% method FILTER ucfirst %>" class="small round button" />
+ ... </pre></div>
 <div class="slide">
 <h1>Links
 
 </h1><p>The code behind this presentation:
 
-</p><p><a href="https://github.com/ology/Word-Part">https://github.com/ology/Word-Part</a>
+</p><p><a href="https://github.com/ology/Word-Part">Word-Part on github</a>
 
-</p><p><a href="https://metacpan.org/release/Lingua-Word-Parser">https://metacpan.org/release/Lingua-Word-Parser</a>
+</p><p><a href="https://metacpan.org/release/Lingua-Word-Parser">Lingua::Word::Parser</a>
 
-</p><p><a href="https://metacpan.org/release/Pod-S5">https://metacpan.org/release/Pod-S5</a>
+</p><p><a href="https://metacpan.org/release/Pod-S5">Pod::S5</a>
 
 </p></div></body></html>

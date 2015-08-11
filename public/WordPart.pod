@@ -4,81 +4,153 @@ package WordPart;
 
 Database manipulation of word-part fragments
 
-And scored combinations of parsed terminology
+Scoring combinations of parsed and defined terminology
 
 =head1 Data Model
 
 =begin text
 
-affix       definition              etymology
----------------------------------------------
-ab          from, away              latin
-bio         life                    greek
-o           combining               NULL
-ortho       straight, right angles  greek
-phile?      loving, thriving        greek
-ic          belonging               greek
-...
+ affix       definition              etymology
+ ---------------------------------------------
+ ab          from, away              latin
+ bio         life                    greek
+ o           combining               NULL
+ ortho       straight, right angles  greek
+ phile?      loving, thriving        greek
+ ic          belonging               greek
+ ...
 
 =end text
 
-"orthophilic" - belonging or thriving at right angles
-
-L<http://localhost:5000/parse?query=orthophilic>
-
-=head1 ROUTES
+L<"orthophilic" - belonging to things that thrive at right angles|http://localhost:5000/parse?query=orthophilic>
 
 =begin html
 
-<img src="" style="float:right" />
+<hr/>
 
 =end html
 
-Verb - Behavior
+Used L<DBIx::Class::Schema::Loader|https://metacpan.org/release/DBIx-Class-Schema-Loader> for my existing database
+
+=head1 ROUTES: Verbs & Behaviors
+
+=begin html
+
+<img src="pix/railroad.jpg" style="float:right" />
+
+=end html
 
 =over 4
 
-=item get - Select a record
+=item get
 
-=item post - Insert a record
+Direct to index
+
+Show the edit and parse forms
+
+Search for records
+
+Delete a record (anchor)
+
+=item post
+
+Add a record
+
+Update a record
 
 =back
 
 =head1 Authorization
 
+Using L<Dancer::Plugin::Auth::Extensible>.
+
 =begin text
+
+ get '/parse' => require_login sub { ...
 
 =end text
 
-=head1 search
+Provides <code>/login</code> and <code>/logout</code> routes.
 
-=head2 By affix
+Configured in the <code>config.yml</code> file.
+
+=head1 Search by Affix or Definition
 
 =begin text
+
+ get '/search' => require_login sub {
+    ...
+    my $type = params->{type};
+    $type //= 'affix';  # Option via form: 'definition'
+    ...
+    my $fragments = $schema->resultset('Fragment')->search(
+        {
+            $type => { like => "%$like%" },
+        },
+        {
+            order_by => { -asc => 'affix' }
+        }
+    );
+    ...
+ }
 
 =end text
 
-=head2 By definition
+=head1 Post by ID or Database Columns
 
 =begin text
+
+ post '/update' => require_login sub {
+    my $fragment = $schema->resultset('Fragment')->find(
+        {
+            id => params->{id}
+        }
+    );
+    ...
+ }
 
 =end text
 
-=head1 post
+=for html
+
+<p/>
+
+=end html
 
 =begin text
+
+ post '/add' => require_login sub {
+    ...
+    $schema->resultset('Fragment')->create(
+        {
+            affix      => $affix,
+            definition => params->{definition},
+            etymology  => params->{etymology},
+        }
+    );
+    ...
+ };
 
 =end text
 
-=head1 edit
+=head1 New/Edit Template
 
 =begin text
 
-=end text
-
-=head1 edit Template
-
-=begin text
+ ...
+ <input name="affix" type="text" value="<% affix %>" autofocus />
+ ...
+ <input name="prefix" type="checkbox"><label for="prefix">Prefix</label>
+ <input name="suffix" type="checkbox"><label for="suffix">Suffix</label>
+ ...
+ <select name="etymology">
+     <option value="">Choose a language...</option>
+     <option value="greek" <% etymology == "greek" ? "selected" : "" %>>Greek</option>
+ ...
+ <input name="definition" type="text" value="<% definition %>" />
+ ...
+ <input type="submit" name="<% method %>" value="<% method FILTER ucfirst %>" class="small round button" />
+ ...
 
 =end text
 
@@ -86,14 +158,14 @@ Verb - Behavior
 
 The code behind this presentation:
 
-L<https://github.com/ology/Word-Part>
+L<Word-Part on github|https://github.com/ology/Word-Part>
 
-L<https://metacpan.org/release/Lingua-Word-Parser>
+L<Lingua::Word::Parser|https://metacpan.org/release/Lingua-Word-Parser>
 
-L<https://metacpan.org/release/Pod-S5>
+L<Pod::S5|https://metacpan.org/release/Pod-S5>
 
 =cut
 
 1;
 __END__
-:!pod2s5 --theme yatil %
+:!pod2s5 --theme yatil --name "Gene Boggs" %
