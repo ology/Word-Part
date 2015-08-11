@@ -58,6 +58,10 @@
 
         <% END %>
     <% ELSE %>
-        No result
+        <div class="row">
+            <div class="large-12 columns">
+                <b>No result</b>
+            </div>
+        </div>
     <% END %>
 <% END %>
