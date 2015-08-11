@@ -10,7 +10,9 @@
             <input type="submit" name="submit" value="Parse" class="small round button" />
         </div>
         <div class="large-7 columns">
-            <a href="https://en.wiktionary.org/wiki/<% query %>" target="_blank">https://en.wiktionary.org/wiki/<% query %></a>
+            <% IF query %>
+                <a href="https://en.wiktionary.org/wiki/<% query %>" target="_blank">https://en.wiktionary.org/wiki/<% query %></a>
+            <% END %>
         </div>
     </div>
 </form>
