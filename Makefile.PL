@@ -8,7 +8,7 @@ my $eumm_version = $ExtUtils::MakeMaker::VERSION;
 $eumm_version =~ s/_//;
 
 WriteMakefile(
-    ($eumm_version >= 6.3001 ? ('LICENSE'=> 'perl') : ()),
+    ($eumm_version >= 6.3001 ? (LICENSE => 'perl') : ()),
     NAME         => 'Word::Partition',
     AUTHOR       => 'GENE BOGGS <gene@cpan.org>',
     VERSION_FROM => 'lib/Word/Partition.pm',
