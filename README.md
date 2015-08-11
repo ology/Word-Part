@@ -1,6 +1,6 @@
-=head1 Dancer Word-part Database CRUD
+Dancer Word-part Database CRUD
 
-=head1 Setup instructions:
+Setup instructions:
 
 0. Install Perl
 1. Install a database (mysql is used in this repo)
@@ -13,5 +13,3 @@
 8. Populate the word_part database  (e.g. `mysql -u root -p word_part < word_part.sql`)
 9. Start the application!  (e.g. `plackup bin/app.pl`)
 10. Browse to http://localhost:5000
-
-=cut
