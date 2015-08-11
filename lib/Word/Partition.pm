@@ -22,8 +22,8 @@ get '/new' => require_login sub {
 
 post '/add' => require_login sub {
     my $affix = params->{affix};
-    $affix    = '(?<=\w)' . $affix if params->{prefix};
-    $affix   .= '(?=\w)'           if params->{suffix};
+    $affix    = '(?<=\w)' . $affix if params->{suffix};
+    $affix   .= '(?=\w)'           if params->{prefix};
 
     my $schema = schema 'word_part';
     $schema->resultset('Fragment')->create(
@@ -59,8 +59,8 @@ post '/update' => require_login sub {
         unless $fragment;
 
     my $affix = params->{affix};
-    $affix    = '(?<=\w)' . $affix if params->{prefix};
-    $affix   .= '(?=\w)'           if params->{suffix};
+    $affix    = '(?<=\w)' . $affix if params->{suffix};
+    $affix   .= '(?=\w)'           if params->{prefix};
 
     $fragment->affix($affix);
     $fragment->definition( params->{definition} );
