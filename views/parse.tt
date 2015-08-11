@@ -42,10 +42,10 @@
                     <% r.0.score %>
                 </div>
                 <div class="large-4 columns">
-                <% r.0.partition %>
+                    <% r.0.partition %>
                 </div>
                 <div class="large-4 columns">
-                <% r.0.definition %>
+                    <% r.0.definition %>
                 </div>
             </div>
         <% END %>
