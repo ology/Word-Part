@@ -128,8 +128,17 @@ get '/search' => require_login sub {
 
     my ( $rs, $results );
     if ( length $query ) {
-        $rs = _perform_search( $query, $type );
-        while ( my $result = $rs->next ) {
+        my $schema = schema 'word_part';
+        my $fragments = $schema->resultset('Fragment')->search(
+            {
+                $type => { like => "%$query%" },
+            },
+            {
+                order_by => { -asc => 'affix' }
+            }
+        );
+
+        while ( my $result = $fragments->next ) {
             push @$results,
                 {
                     id         => $result->id,
@@ -147,23 +156,6 @@ get '/search' => require_login sub {
         checked => $type,
       };
 };
-
-sub _perform_search {
-    my ( $query, $type ) = @_;
-
-    my $schema = schema 'word_part';
-
-    my $fragments = $schema->resultset('Fragment')->search(
-        {
-            $type => { like => "%$query%" },
-        },
-        {
-            order_by => { -asc => 'affix' }
-        }
-    );
-
-    return $fragments;
-}
 
 sub prefix_suffix {
     my ( $affix, $prefix, $suffix ) = @_;
