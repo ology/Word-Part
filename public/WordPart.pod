@@ -62,7 +62,7 @@ Update a record
 
 =head1 Authorization
 
-Using L<Dancer::Plugin::Auth::Extensible>.
+Using L<Dancer::Plugin::Auth::Extensible>
 
 =begin text
 
@@ -70,9 +70,9 @@ Using L<Dancer::Plugin::Auth::Extensible>.
 
 =end text
 
-Provides <code>/login</code> and <code>/logout</code> routes.
+Provides <code>/login</code> and <code>/logout</code> routes
 
-Configured in the <code>config.yml</code> file.
+Configured in the <code>config.yml</code> file
 
 =head1 Search by Affix or Definition
 
