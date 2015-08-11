@@ -16,6 +16,12 @@
           <li><a href="https://github.com/ology/Word-Part">Word-Part</a></li>
         </ul>
       </li>
+      <li>
+        <h3>View the slideshow</h3>
+        <ul class="links">
+          <li><a href="http://localhost:5000/WordPart/index.html">Word-part Manipulation</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
 
