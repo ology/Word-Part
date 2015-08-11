@@ -121,15 +121,21 @@ get '/parse' => require_login sub {
 
 get '/search' => require_login sub {
     my $query = params->{query};
-    my $type  = params->{type};
+    my @parts = $query =~ m/^(-?)(\w+)(-?)$/g;
 
+    my $type = params->{type};
     $type //= 'affix';
 
     my $results;
     if ( length $query ) {
+        my $prefix = $parts[0]  ? '(?<=\w)' : '';
+        my $affix  = $parts[1];
+        my $suffix = $parts[-1] ? '(?=\w)'  : '';
+        my $like   = quotemeta( "$prefix$affix$suffix" );
+
         my $fragments = $schema->resultset('Fragment')->search(
             {
-                $type => { like => "%$query%" },
+                $type => { like => "%$like%" },
             },
             {
                 order_by => { -asc => 'affix' }
