@@ -14,19 +14,7 @@
                 <input name="suffix" type="checkbox"><label for="suffix">Suffix</label>
             </div>
         </div>
-        <div class="large-6 medium-6 columns">
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-6 medium-6 columns">
-            <label>Definition</label>
-            <input type="text" name="definition" value="<% definition %>" />
-        </div>
-        <div class="large-6 medium-6 columns">
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-6 medium-6 columns">
+        <div class="large-3 medium-3 columns">
             <label>Etymology</label>
             <select name="etymology">
                 <option value="">Choose a language...</option>
@@ -35,22 +23,26 @@
                 <option value="other" <% etymology == "other" ? "selected" : "" %>>Other</option>
             </select>
         </div>
-        <div class="large-6 medium-6 columns">
+        <div class="large-3 medium-3 columns">
         </div>
     </div>
     <div class="row">
-        <div class="large-2 medium-2 columns">
+        <div class="large-6 medium-6 columns">
+            <label>Definition</label>
+            <input type="text" name="definition" value="<% definition %>" />
+        </div>
+        <div class="large-1 medium-1 columns">
             <input type="submit" name="<% method %>" value="<% method FILTER ucfirst %>" class="small round button" />
         </div>
-        <div class="large-2 medium-2 columns">
-			&nbsp;
+        <div class="large-1 medium-1 columns">
+            &nbsp;
         </div>
-        <div class="large-2 medium-2 columns">
+        <div class="large-1 medium-1 columns">
 			<% IF id %>
                 <a href="/delete?id=<% id %>" class="small round button" onclick="return confirm('Delete <% affix %>?')">Delete</a>
 			<% END %>
         </div>
-        <div class="large-6 medium-6 columns">
+        <div class="large-3 medium-3 columns">
         </div>
     </div>
 
