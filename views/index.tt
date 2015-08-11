@@ -6,7 +6,8 @@
         <ul class="links">
           <li><a href="/new">New Entry</a></li>
           <li><a href="/search">Search Entries</a></li>
-          <li><a href="/parse">Parse a Word</a></li>
+          <li><a href="/parse">Parse a Term</a></li>
+          <li>Build a Term</li>
         </ul>
       </li>
       <li>
