@@ -29,6 +29,7 @@
         <div class="large-6 medium-6 columns">
             <label>Etymology</label>
             <select name="etymology">
+                <option value="">Choose a language...</option>
                 <option value="greek" <% etymology == "greek" ? "selected" : "" %>>Greek</option>
                 <option value="latin" <% etymology == "latin" ? "selected" : "" %>>Latin</option>
                 <option value="other" <% etymology == "other" ? "selected" : "" %>>Other</option>
