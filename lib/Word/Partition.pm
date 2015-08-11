@@ -4,6 +4,7 @@ use Dancer ':syntax';
 use Dancer::Plugin::DBIC;
 use Dancer::Plugin::Auth::Extensible;
 
+use Carp;
 use Lingua::Word::Parser;
 
 our $VERSION = '0.1';
@@ -54,6 +55,8 @@ post '/update' => require_login sub {
             id => params->{id}
         }
     );
+    croak "Can't find fragment for id: " . params->{id}
+        unless $fragment;
 
     my $affix = params->{affix};
     $affix    = '(?<=\w)' . $affix if params->{prefix};
