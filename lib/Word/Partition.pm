@@ -20,10 +20,17 @@ get '/new' => require_login sub {
         };
 };
 
+sub prefix_suffix {
+    my ( $affix, $prefix, $suffix ) = @_;
+    $affix  = '(?<=\w)' . $affix if $suffix;
+    $affix .= '(?=\w)'           if $prefix;
+    return $affix;
+}
+
 post '/add' => require_login sub {
-    my $affix = params->{affix};
-    $affix    = '(?<=\w)' . $affix if params->{suffix};
-    $affix   .= '(?=\w)'           if params->{prefix};
+    my $affix = prefix_suffix(
+        params->{affix}, params->{prefix}, params->{suffix}
+    );
 
     my $schema = schema 'word_part';
     $schema->resultset('Fragment')->create(
@@ -58,9 +65,9 @@ post '/update' => require_login sub {
     croak "Can't find fragment for id: " . params->{id}
         unless $fragment;
 
-    my $affix = params->{affix};
-    $affix    = '(?<=\w)' . $affix if params->{suffix};
-    $affix   .= '(?=\w)'           if params->{prefix};
+    my $affix = prefix_suffix(
+        params->{affix}, params->{prefix}, params->{suffix}
+    );
 
     $fragment->affix($affix);
     $fragment->definition( params->{definition} );
