@@ -137,20 +137,25 @@ Configured in the <code>config.yml</code> file.
 
 =begin text
 
- ...
- <input name="affix" type="text" value="<% affix %>" autofocus />
- ...
- <input name="prefix" type="checkbox"><label for="prefix">Prefix</label>
- <input name="suffix" type="checkbox"><label for="suffix">Suffix</label>
- ...
- <select name="etymology">
-     <option value="">Choose a language...</option>
-     <option value="greek" <% etymology == "greek" ? "selected" : "" %>>Greek</option>
- ...
- <input name="definition" type="text" value="<% definition %>" />
- ...
- <input type="submit" name="<% method %>" value="<% method FILTER ucfirst %>" class="small round button" />
- ...
+ <form action="/<% method %>" method="post">
+     ...
+     <input name="affix" type="text" value="<% affix %>" autofocus />
+     ...
+     <input name="prefix" type="checkbox"><label for="prefix">Prefix</label>
+     <input name="suffix" type="checkbox"><label for="suffix">Suffix</label>
+     ...
+     <select name="etymology">
+         <option value="">Choose a language...</option>
+         <option value="greek" <% etymology == "greek" ? "selected" : "" %>>Greek</option>
+     ...
+     <input name="definition" type="text" value="<% definition %>" />
+     ...
+     <input type="submit" name="<% method %>" value="<% method FILTER ucfirst %>" class="small round button" />
+     ...
+     <% IF id %>
+         <a href="/delete?id=<% id %>" class="small round button" onclick="return confirm('Delete <% affix %>?')">Delete</a>
+     <% END %>
+ </form>
 
 =end text
 

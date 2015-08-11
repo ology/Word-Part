@@ -9,7 +9,7 @@
 <meta name="generator" content="pod2s5 0.09" />
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="Tue Aug 11 10:56:55 2015" />
+<meta name="presdate" content="Tue Aug 11 11:28:15 2015" />
 <meta name="author" content="geneboggs" />
 <meta name="company" content="&nbsp;" />
 <!-- configuration parameters -->
@@ -47,7 +47,7 @@ img#me05 {top: 43px;left: 36px;}
 <div id="currentSlide"></div>
 <div id="header"></div>
 <div id="footer">
-<h1>hg.local &#8226; Tue Aug 11 10:56:55 2015</h1>
+<h1>hg.local &#8226; Tue Aug 11 11:28:15 2015</h1>
 <h2>Gene Boggs</h2></div>
 </div><div class="slide">
 <h1>Word-part Manipulation
@@ -151,20 +151,25 @@ img#me05 {top: 43px;left: 36px;}
 <div class="slide">
 <h1>New/Edit Template
 
-</h1><pre> ...
- &lt;input name="affix" type="text" value="&lt;% affix %>" autofocus />
- ...
- &lt;input name="prefix" type="checkbox">&lt;label for="prefix">Prefix&lt;/label>
- &lt;input name="suffix" type="checkbox">&lt;label for="suffix">Suffix&lt;/label>
- ...
- &lt;select name="etymology">
-     &lt;option value="">Choose a language...&lt;/option>
-     &lt;option value="greek" &lt;% etymology == "greek" ? "selected" : "" %>>Greek&lt;/option>
- ...
- &lt;input name="definition" type="text" value="&lt;% definition %>" />
- ...
- &lt;input type="submit" name="&lt;% method %>" value="&lt;% method FILTER ucfirst %>" class="small round button" />
- ... </pre></div>
+</h1><pre> &lt;form action="/&lt;% method %>" method="post">
+     ...
+     &lt;input name="affix" type="text" value="&lt;% affix %>" autofocus />
+     ...
+     &lt;input name="prefix" type="checkbox">&lt;label for="prefix">Prefix&lt;/label>
+     &lt;input name="suffix" type="checkbox">&lt;label for="suffix">Suffix&lt;/label>
+     ...
+     &lt;select name="etymology">
+         &lt;option value="">Choose a language...&lt;/option>
+         &lt;option value="greek" &lt;% etymology == "greek" ? "selected" : "" %>>Greek&lt;/option>
+     ...
+     &lt;input name="definition" type="text" value="&lt;% definition %>" />
+     ...
+     &lt;input type="submit" name="&lt;% method %>" value="&lt;% method FILTER ucfirst %>" class="small round button" />
+     ...
+     &lt;% IF id %>
+         &lt;a href="/delete?id=&lt;% id %>" class="small round button" onclick="return confirm('Delete &lt;% affix %>?')">Delete&lt;/a>
+     &lt;% END %>
+ &lt;/form> </pre></div>
 <div class="slide">
 <h1>Links
 
