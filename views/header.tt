@@ -1,6 +1,6 @@
 <p/>
 <div class="row">
-    <div class="large-5 columns">
+    <div class="large-3 columns">
         <a href="/"><img src="/images/graph-partitioning.png" /></a>
         <a href="/"><b>Word Part</b></a>
     </div>
@@ -25,7 +25,7 @@
         |
         <a href="/logout">Logout</a>
     </div>
-    <div class="large-3 columns">
+    <div class="large-5 columns">
     </div>
 <% page %>
 </div>
