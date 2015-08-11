@@ -7,7 +7,7 @@
 
 <p/>
 <form action="/<% method %>" method="post">
-
+    <input name="id" type="hidden" value="<% id %>" />
     <div class="row">
         <div class="large-3 medium-3 columns">
             <label>Affix</label>
