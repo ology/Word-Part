@@ -10,20 +10,16 @@
 
     <div class="row">
         <div class="large-3 medium-3 columns">
-            <div class="callout panel">
-                <input name="prefix" type="checkbox"><label for="prefix">Follows</label>
-            </div>
-        </div>
-        <div class="large-3 medium-3 columns">
             <label>Affix</label>
             <input type="text" name="affix" value="<% affix %>" />
         </div>
         <div class="large-3 medium-3 columns">
             <div class="callout panel">
-                <input name="suffix" type="checkbox"><label for="suffix">Precedes</label>
+                <input name="prefix" type="checkbox"><label for="prefix">Prefix</label>
+                <input name="suffix" type="checkbox"><label for="suffix">Suffix</label>
             </div>
         </div>
-        <div class="large-3 medium-3 columns">
+        <div class="large-6 medium-6 columns">
         </div>
     </div>
     <div class="row">
