@@ -4,7 +4,7 @@
 <form action="/parse">
     <div class="row">
         <div class="large-3 columns">
-            <input type="text" name="query" value="<% query %>" />
+            <input type="text" name="query" value="<% query %>" autofocus />
         </div>
         <div class="large-2 columns">
             <input type="submit" name="submit" value="Parse" class="small round button" />
