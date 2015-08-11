@@ -16,7 +16,6 @@
             </div>
         </div>
         <div class="large-3 columns">
-            <label>Lookup</label>
             <input type="text" name="query" value="<% query %>" />
         </div>
         <div class="large-2 columns">
