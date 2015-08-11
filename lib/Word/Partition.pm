@@ -121,13 +121,13 @@ get '/parse' => require_login sub {
 
 get '/search' => require_login sub {
     my $query = params->{query};
-    my @parts = $query =~ m/^(-?)(\w+)(-?)$/g;
 
     my $type = params->{type};
     $type //= 'affix';
 
     my $results;
     if ( length $query ) {
+        my @parts  = $query =~ m/^(-?)(\w+)(-?)$/g;
         my $prefix = $parts[0]  ? '(?<=\w)' : '';
         my $affix  = $parts[1];
         my $suffix = $parts[-1] ? '(?=\w)'  : '';
