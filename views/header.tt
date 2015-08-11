@@ -2,7 +2,7 @@
 <div class="row">
     <div class="large-5 columns">
         <a href="/"><img src="/images/graph-partitioning.png" /></a>
-        <b>Word Part</b>
+        <a href="/"><b>Word Part</b></a>
     </div>
     <div class="large-4 columns">
         <% IF request.path == "/new" %>
