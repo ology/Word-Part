@@ -12,7 +12,7 @@
 <script src="/foundation-5.5.2/js/vendor/modernizr.js"></script>
 
 <!-- Grab jQuery from a CDN, fall back to local if necessary -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script type="text/javascript">/* <![CDATA[ */
     !window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.min.js"><\/script>')
 /* ]]> */</script>
