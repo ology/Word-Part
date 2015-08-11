@@ -30,7 +30,7 @@ L<http://localhost:5000/parse?query=orthophilic>
 
 =begin html
 
-<img src=""/ style="float:right">
+<img src="" style="float:right" />
 
 =end html
 
@@ -50,13 +50,15 @@ Verb - Behavior
 
 =end text
 
-=head1 get by affix
+=head1 search
+
+=head2 By affix
 
 =begin text
 
 =end text
 
-=head1 get by definition
+=head2 By definition
 
 =begin text
 
@@ -87,6 +89,8 @@ The code behind this presentation:
 L<https://github.com/ology/Word-Part>
 
 L<https://metacpan.org/release/Lingua-Word-Parser>
+
+L<https://metacpan.org/release/Pod-S5>
 
 =cut
 
