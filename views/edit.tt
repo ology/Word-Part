@@ -51,7 +51,7 @@
         </div>
         <div class="large-2 medium-2 columns">
 			<% IF id %>
-			<a href="/delete?id=<% id %>" class="small round button">Delete</a>
+			<a href="/delete?id=<% id %>" class="small round button" onclick="return confirm('Delete <% affix %>?')">Delete</a>
 			<% END %>
         </div>
         <div class="large-6 medium-6 columns">
