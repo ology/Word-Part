@@ -39,7 +39,7 @@
     </div>
     <div class="row">
         <div class="large-2 medium-2 columns">
-            <input type="submit" name="<% method %>" value="<% method %>" class="small round button" />
+            <input type="submit" name="<% method %>" value="<% method FILTER ucfirst %>" class="small round button" />
         </div>
         <div class="large-2 medium-2 columns">
 			&nbsp;
