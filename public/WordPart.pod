@@ -1,0 +1,95 @@
+package WordPart;
+
+=head1 Word-part Manipulation
+
+Database manipulation of word-part fragments
+
+And scored combinations of parsed terminology
+
+=head1 Data Model
+
+=begin text
+
+affix       definition              etymology
+---------------------------------------------
+ab          from, away              latin
+bio         life                    greek
+o           combining               NULL
+ortho       straight, right angles  greek
+phile?      loving, thriving        greek
+ic          belonging               greek
+...
+
+=end text
+
+"orthophilic" - belonging or thriving at right angles
+
+L<http://localhost:5000/parse?query=orthophilic>
+
+=head1 ROUTES
+
+=begin html
+
+<img src=""/ style="float:right">
+
+=end html
+
+Verb - Behavior
+
+=over 4
+
+=item get - Select a record
+
+=item post - Insert a record
+
+=back
+
+=head1 Authorization
+
+=begin text
+
+=end text
+
+=head1 get by affix
+
+=begin text
+
+=end text
+
+=head1 get by definition
+
+=begin text
+
+=end text
+
+=head1 post
+
+=begin text
+
+=end text
+
+=head1 edit
+
+=begin text
+
+=end text
+
+=head1 edit Template
+
+=begin text
+
+=end text
+
+=head1 Links
+
+The code behind this presentation:
+
+L<https://github.com/ology/Word-Part>
+
+L<https://metacpan.org/release/Lingua-Word-Parser>
+
+=cut
+
+1;
+__END__
+:!pod2s5 --theme yatil %

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>WordPart</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta name="generator" content="pod2s5 0.09" />
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="Tue Aug 11 06:13:37 2015" />
+<meta name="author" content="gene" />
+<meta name="company" content="&nbsp;" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="ui/yatil/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<!-- embedded styles -->
+<style type="text/css" media="all">
+.imgcon {width: 525px; margin: 0 auto; padding: 0; text-align: center;}
+#anim {width: 270px; height: 320px; position: relative; margin-top: 0.5em;}
+#anim img {position: absolute; top: 42px; left: 24px;}
+img#me01 {top: 0; left: 0;}
+img#me02 {left: 23px;}
+img#me04 {top: 44px;}
+img#me05 {top: 43px;left: 36px;}
+</style>
+<!-- S5 JS -->
+<script src="ui/default/slides.js" type="text/javascript"></script>
+<!--
+   tom AT cpan.org:
+   this will not work, it's not contained
+   in the downloadable S5
+   <script src="/mint/?js" type="text/javascript"></script></head>
+-->
+<body>
+
+<div class="layout">
+
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header"></div>
+<div id="footer">
+<h1>elmer.local &#8226; Tue Aug 11 06:13:37 2015</h1>
+<h2>WordPart</h2></div>
+</div><div class="slide">
+<h1>Word-part Manipulation
+
+</h1><p>Database manipulation of word-part fragments
+
+</p><p>And scored combinations of parsed terminology
+
+</p></div>
+<div class="slide">
+<h1>Data Model
+
+</h1><pre>affix       definition              etymology
+---------------------------------------------
+ab          from, away              latin
+bio         life                    greek
+o           combining               NULL
+ortho       straight, right angles  greek
+phile?      loving, thriving        greek
+ic          belonging               greek
+... </pre><p>"orthophilic" - belonging or thriving at right angles
+
+</p><p><a href="http://localhost:5000/parse?query=orthophilic">http://localhost:5000/parse?query=orthophilic</a>
+
+</p></div>
+<div class="slide">
+<h1>ROUTES
+
+</h1><img src=""/ style="float:right">
+
+<p>Verb - Behavior
+
+</p><ul><li level="1">get - Select a record
+
+</li><li level="1">post - Insert a record
+
+</li></ul></div>
+<div class="slide">
+<h1>Authorization
+
+</h1><pre></pre></div>
+<div class="slide">
+<h1>get by affix
+
+</h1><pre></pre></div>
+<div class="slide">
+<h1>get by definition
+
+</h1><pre></pre></div>
+<div class="slide">
+<h1>post
+
+</h1><pre></pre></div>
+<div class="slide">
+<h1>edit
+
+</h1><pre></pre></div>
+<div class="slide">
+<h1>edit Template
+
+</h1><pre></pre></div>
+<div class="slide">
+<h1>Links
+
+</h1><p>The code behind this presentation:
+
+</p><p><a href="https://github.com/ology/Word-Part">https://github.com/ology/Word-Part</a>
+
+</p><p><a href="https://metacpan.org/release/Lingua-Word-Parser">https://metacpan.org/release/Lingua-Word-Parser</a>
+
+</p></div></body></html>
