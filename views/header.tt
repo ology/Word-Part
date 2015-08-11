@@ -5,19 +5,23 @@
         <b>Word Part</b>
     </div>
     <div class="large-4 columns">
-        <% if request.path == "/new" %>
-            <b>New</b>
+        <% IF request.path == "/edit" %>
+            <b>Update</b>
         <% ELSE %>
-            <a href="/new">New</a>
+            <% IF request.path == "/new" %>
+                <b>New</b>
+            <% ELSE %>
+                <a href="/new">New</a>
+            <% END %>
         <% END %>
         |
-        <% if request.path == "/search" %>
+        <% IF request.path == "/search" %>
             <b>Lookup</b>
         <% ELSE %>
             <a href="/search">Lookup</a>
         <% END %>
         |
-        <% if request.path == "/parse" %>
+        <% IF request.path == "/parse" %>
             <b>Parse</b>
         <% ELSE %>
             <a href="/parse">Parse</a>
