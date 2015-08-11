@@ -45,6 +45,9 @@ get '/delete' => require_login sub {
             id => params->{id}
         }
     );
+    croak "Can't find fragment for id: " . params->{id}
+        unless $fragment;
+
     $fragment->delete();
     template 'search', {};
 };
