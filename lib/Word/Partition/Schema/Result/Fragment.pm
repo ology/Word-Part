@@ -80,6 +80,10 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+__PACKAGE__->add_unique_constraint(
+    constraint_name => [ qw( affix ) ],
+);
+
 
 # Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-08-08 17:45:45
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Fx86RyxUGGShyZtdMc8qJg
