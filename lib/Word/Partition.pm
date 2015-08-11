@@ -6,6 +6,9 @@ use Dancer::Plugin::Auth::Extensible;
 
 use Carp;
 use Lingua::Word::Parser;
+use Readonly;
+
+Readonly my $schema => schema 'word_part';
 
 our $VERSION = '0.1';
 
@@ -25,7 +28,6 @@ post '/add' => require_login sub {
         params->{affix}, params->{prefix}, params->{suffix}
     );
 
-    my $schema = schema 'word_part';
     $schema->resultset('Fragment')->create(
         {
             affix      => $affix,
@@ -38,7 +40,6 @@ post '/add' => require_login sub {
 };
 
 get '/delete' => require_login sub {
-    my $schema   = schema 'word_part';
     my $fragment = $schema->resultset('Fragment')->find(
         {
             id => params->{id}
@@ -49,7 +50,6 @@ get '/delete' => require_login sub {
 };
 
 post '/update' => require_login sub {
-    my $schema   = schema 'word_part';
     my $fragment = $schema->resultset('Fragment')->find(
         {
             id => params->{id}
@@ -71,7 +71,6 @@ post '/update' => require_login sub {
 };
 
 get '/edit' => require_login sub {
-    my $schema   = schema 'word_part';
     my $fragment = $schema->resultset('Fragment')->single(
         {
             id => params->{id}
@@ -128,7 +127,6 @@ get '/search' => require_login sub {
 
     my ( $rs, $results );
     if ( length $query ) {
-        my $schema = schema 'word_part';
         my $fragments = $schema->resultset('Fragment')->search(
             {
                 $type => { like => "%$query%" },
