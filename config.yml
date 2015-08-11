@@ -36,7 +36,7 @@ plugins:
         host: 'localhost'
         port: 3306
         username: 'root'
-        password: 'abc123'
+        password: ''
         connection_check_threshold: 10
         dbi_params:
             RaiseError: 1
@@ -47,8 +47,8 @@ plugins:
     "word_part":
         schema_class: Word::Partition::Schema
         dsn: "dbi:mysql:database=word_part"
-        user: root
-        password: abc123
+        user: 'root'
+        password: ''
   Auth::Extensible:
         realms:
             users:
