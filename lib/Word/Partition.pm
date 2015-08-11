@@ -125,7 +125,6 @@ get '/search' => require_login sub {
 
     $type //= 'affix';
 
-    my ( $rs, $results );
     if ( length $query ) {
         my $fragments = $schema->resultset('Fragment')->search(
             {
