@@ -58,15 +58,17 @@ Update a record
 
 Using L<Dancer::Plugin::Auth::Extensible|https://metacpan.org/pod/Dancer::Plugin::Auth::Extensible>
 
+Provides <code>/login</code> and <code>/logout</code> routes
+
+Configured in the <code>config.yml</code> file
+
+Restrict a route with this handy code:
+
 =begin text
 
  get '/parse' => require_login sub { ...
 
 =end text
-
-Provides <code>/login</code> and <code>/logout</code> routes
-
-Configured in the <code>config.yml</code> file
 
 =head1 Search by Affix or Definition
 
