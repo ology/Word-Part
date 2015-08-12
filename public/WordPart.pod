@@ -28,6 +28,20 @@ Used L<DBIx::Class::Schema::Loader|https://metacpan.org/release/DBIx-Class-Schem
 
 L<"biophilic" - belonging to things that thrive on life|http://localhost:5000/parse?query=biophilic>
 
+=head1 Word Parts as Regular Expressions
+
+A few examples will suffice:
+
+C<climate?> - A standalone root affix
+
+C<climate?(?:ize)?> - A root with a suffix
+
+C<a?climate?(?:ize)?> - A root with both prefix and suffix
+
+C<a(?=\w)> - A prefix ("must precede")
+
+C<(?<=\w)ize> - A suffix ("must follow")
+
 =head1 Routes: Verbs & Behaviors
 
 =begin html
@@ -59,9 +73,9 @@ Update a record
 Using
 L<Dancer::Plugin::Auth::Extensible|https://metacpan.org/pod/Dancer::Plugin::Auth::Extensible>
 
-Provides <code>/login</code> and <code>/logout</code> routes
+Provides C</login> and C</logout> routes
 
-Configured in the <code>config.yml</code> file
+Configured in the C<config.yml> file
 
 Restrict a route with this handy code:
 
@@ -75,8 +89,6 @@ Restrict a route with this handy code:
 
 Using
 L<Dancer::Plugin::DBIC|https://metacpan.org/pod/Dancer::Plugin::DBIC>
-and
-L<Dancer::Plugin::Database|https://metacpan.org/pod/Dancer::Plugin::Database>
 
 =begin text
 

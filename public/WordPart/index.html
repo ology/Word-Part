@@ -9,7 +9,7 @@
 <meta name="generator" content="pod2s5 0.09" />
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="Tue Aug 11 20:08:45 2015" />
+<meta name="presdate" content="Wed Aug 12 14:58:22 2015" />
 <meta name="author" content="gene" />
 <meta name="company" content="&nbsp;" />
 <!-- configuration parameters -->
@@ -47,7 +47,7 @@ img#me05 {top: 43px;left: 36px;}
 <div id="currentSlide"></div>
 <div id="header"></div>
 <div id="footer">
-<h1>Gene Boggs &#8226; Tue Aug 11 20:08:45 2015</h1>
+<h1>Gene Boggs &#8226; Wed Aug 12 14:58:22 2015</h1>
 <h2>WordPart</h2></div>
 </div><div class="slide">
 <h1>Word-part Manipulation
@@ -73,6 +73,22 @@ img#me05 {top: 43px;left: 36px;}
  phile?      loving, thriving        greek
  ic          belonging               greek
  ... </pre><p><a href="http://localhost:5000/parse?query=biophilic">"biophilic" - belonging to things that thrive on life</a>
+
+</p></div>
+<div class="slide">
+<h1>Word Parts as Regular Expressions
+
+</h1><p>A few examples will suffice:
+
+</p><p><code>climate?</code> - A standalone root affix
+
+</p><p><code>climate?(?:ize)?</code> - A root with a suffix
+
+</p><p><code>a?climate?(?:ize)?</code> - A root with both prefix and suffix
+
+</p><p><code>a(?=\w)</code> - A prefix ("must precede")
+
+</p><p><code>(?<=\w)ize</code> - A suffix ("must follow")
 
 </p></div>
 <div class="slide">
@@ -113,8 +129,6 @@ img#me05 {top: 43px;left: 36px;}
 
 </h1><p>Using
 <a href="https://metacpan.org/pod/Dancer::Plugin::DBIC">Dancer::Plugin::DBIC</a>
-and
-<a href="https://metacpan.org/pod/Dancer::Plugin::Database">Dancer::Plugin::Database</a>
 
 </p><pre> get '/search' => require_login sub {
     ...
@@ -141,9 +155,9 @@ and
         }
     );
     ...
- } </pre><p><p/>
+ } </pre><p/>
 
-</p><pre> post '/add' => require_login sub {
+<pre> post '/add' => require_login sub {
     ...
     $schema->resultset('Fragment')->create(
         {
