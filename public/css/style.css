@@ -189,5 +189,9 @@ font-family: sans-serif;
 font-size: 10px;
 }
 
-.error { background: #CEE5F5; padding: 0.5em;
-         border: 1px solid #AACBE2; }
+.error {
+background: #F5A9A9;
+padding: 0.5em;
+border: 1px solid #AACBE2;
+text-align: center;
+}
