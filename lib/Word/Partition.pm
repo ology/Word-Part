@@ -197,10 +197,10 @@ get '/search' => require_login sub {
 
     my $results;
     if ( length $query ) {
-        my ( $prefix, $affix, $suffix ) = $query =~ m/^(-?)(\w+)(-?)$/g;
+        my ( $suffix, $affix, $prefix ) = $query =~ m/^(-?)(\w+)(-?)$/g;
         $prefix = $prefix ? $PREFIX : '';
         $suffix = $suffix ? $SUFFIX : '';
-        my $like = quotemeta( "$prefix$affix$suffix" );
+        my $like = quotemeta( "$suffix$affix$prefix" );
 
         my $fragments = $SCHEMA->resultset('Fragment')->search(
             {
