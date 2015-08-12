@@ -8,7 +8,9 @@ use Carp;
 use Lingua::Word::Parser;
 use Readonly;
 
-Readonly my $schema => schema 'word_part';
+Readonly my $SCHEMA => schema 'word_part';
+Readonly my $PREFIX => '(?<=\w)';
+Readonly my $SUFFIX => '(?=\w)';
 
 our $VERSION = '0.1';
 
@@ -28,7 +30,7 @@ post '/add' => require_login sub {
         params->{affix}, params->{prefix}, params->{suffix}
     );
 
-    $schema->resultset('Fragment')->create(
+    $SCHEMA->resultset('Fragment')->create(
         {
             affix      => $affix,
             definition => params->{definition},
@@ -40,7 +42,7 @@ post '/add' => require_login sub {
 };
 
 get '/delete' => require_login sub {
-    my $fragment = $schema->resultset('Fragment')->find(
+    my $fragment = $SCHEMA->resultset('Fragment')->find(
         {
             id => params->{id}
         }
@@ -53,7 +55,7 @@ get '/delete' => require_login sub {
 };
 
 post '/update' => require_login sub {
-    my $fragment = $schema->resultset('Fragment')->find(
+    my $fragment = $SCHEMA->resultset('Fragment')->find(
         {
             id => params->{id}
         }
@@ -74,7 +76,7 @@ post '/update' => require_login sub {
 };
 
 get '/edit' => require_login sub {
-    my $fragment = $schema->resultset('Fragment')->single(
+    my $fragment = $SCHEMA->resultset('Fragment')->single(
         {
             id => params->{id}
         }
@@ -131,12 +133,12 @@ get '/search' => require_login sub {
     my $results;
     if ( length $query ) {
         my @parts  = $query =~ m/^(-?)(\w+)(-?)$/g;
-        my $prefix = $parts[0] ? '(?<=\w)' : '';
+        my $prefix = $parts[0] ? $PREFIX : '';
         my $affix  = $parts[1];
-        my $suffix = $parts[2] ? '(?=\w)'  : '';
+        my $suffix = $parts[2] ? $SUFFIX : '';
         my $like   = quotemeta( "$prefix$affix$suffix" );
 
-        my $fragments = $schema->resultset('Fragment')->search(
+        my $fragments = $SCHEMA->resultset('Fragment')->search(
             {
                 $type => { like => "%$like%" },
             },
@@ -175,8 +177,8 @@ sub login_page_handler {
 
 sub prefix_suffix {
     my ( $affix, $prefix, $suffix ) = @_;
-    $affix  = '(?<=\w)' . $affix if $suffix;
-    $affix .= '(?=\w)'           if $prefix;
+    $affix  = $SUFFIX . $affix if $suffix;
+    $affix .= $PREFIX          if $prefix;
     return $affix;
 }
 
