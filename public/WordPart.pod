@@ -56,7 +56,8 @@ Update a record
 
 =head1 Authorization
 
-Using L<Dancer::Plugin::Auth::Extensible|https://metacpan.org/pod/Dancer::Plugin::Auth::Extensible>
+Using
+L<Dancer::Plugin::Auth::Extensible|https://metacpan.org/pod/Dancer::Plugin::Auth::Extensible>
 
 Provides <code>/login</code> and <code>/logout</code> routes
 
@@ -66,14 +67,16 @@ Restrict a route with this handy code:
 
 =begin text
 
- get '/parse' => require_login sub { ...
+ get '/search' => require_login sub { ...
 
 =end text
 
 =head1 Search by Affix or Definition
 
-Using L<Dancer::Plugin::DBIC|https://metacpan.org/pod/Dancer::Plugin::DBIC>
-and L<Dancer::Plugin::Database|https://metacpan.org/pod/Dancer::Plugin::Database>
+Using
+L<Dancer::Plugin::DBIC|https://metacpan.org/pod/Dancer::Plugin::DBIC>
+and
+L<Dancer::Plugin::Database|https://metacpan.org/pod/Dancer::Plugin::Database>
 
 =begin text
 
