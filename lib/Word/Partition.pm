@@ -5,7 +5,6 @@ use Dancer::Plugin::DBIC;
 use Dancer::Plugin::Auth::Extensible;
 use Dancer::Plugin::FlashMessage;
 
-use Carp;
 use Lingua::Word::Parser;
 use Readonly;
 
