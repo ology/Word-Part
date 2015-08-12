@@ -165,7 +165,16 @@ get '/search' => require_login sub {
 };
 
 sub login_page_handler {
-    template 'login';
+    my $login_fail_message = vars->{login_failed} ? 'LOGIN FAILED' : '';
+    template 'login',
+        {
+            return_url         => params->{return_url},
+            login_fail_message => $login_fail_message,
+        };
+#,
+#        {
+#            return_url => params->{return_url};
+#        };
 }
 
 sub prefix_suffix {
