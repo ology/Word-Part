@@ -44,12 +44,13 @@ post '/add' => require_login sub {
                 etymology  => params->{etymology},
             }
         );
+
+        redirect '/search';
     }
     else {
         flash error => 'Neither affix nor definition can be NULL';
+        redirect '/new';
     }
-
-    redirect '/search';
 };
 
 get '/delete' => require_login sub {
@@ -70,12 +71,14 @@ get '/delete' => require_login sub {
 };
 
 post '/update' => require_login sub {
+    my $id = params->{id};
+
     my $fragment = $SCHEMA->resultset('Fragment')->find(
         {
-            id => params->{id}
+            id => $id,
         }
     );
-    flash error => "Can't find fragment for id: " . params->{id}
+    flash error => "Can't find fragment for id: $id"
         unless $fragment;
 
     if ( params->{affix} && params->{definition} ) {
@@ -87,12 +90,13 @@ post '/update' => require_login sub {
         $fragment->definition( params->{definition} );
         $fragment->etymology( params->{etymology} );
         $fragment->update;
+
+        redirect '/search';
     }
     else {
         flash error => 'Neither affix nor definition can be NULL';
+        redirect "/edit=id=$id";
     }
-
-    redirect '/search';
 };
 
 get '/edit' => require_login sub {
