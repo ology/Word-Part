@@ -138,9 +138,8 @@ get '/search' => require_login sub {
 
     my $results;
     if ( length $query ) {
-        my @parts  = $query =~ m/^(-?)(\w+)(-?)$/g;
+        my ( $prefix, $affix, $suffix )  = $query =~ m/^(-?)(\w+)(-?)$/g;
         my $prefix = $parts[0] ? $PREFIX : '';
-        my $affix  = $parts[1];
         my $suffix = $parts[2] ? $SUFFIX : '';
         my $like   = quotemeta( "$prefix$affix$suffix" );
 
