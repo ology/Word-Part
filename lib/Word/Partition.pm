@@ -14,6 +14,16 @@ Readonly my $SUFFIX => '(?<=\w)';
 
 our $VERSION = '0.1';
 
+=head1 NAME
+
+Word::Partition - Interact with word-parts
+
+=head1 ROUTES
+
+=head2 get
+
+=cut
+
 get '/' => sub {
     my $count = $SCHEMA->resultset('Fragment')->search->count;
 
@@ -23,6 +33,10 @@ get '/' => sub {
         };
 };
 
+=head2 new
+
+=cut
+
 get '/new' => require_login sub {
     template 'edit',
         {
@@ -30,9 +44,13 @@ get '/new' => require_login sub {
         };
 };
 
+=head2 add
+
+=cut
+
 post '/add' => require_login sub {
     if ( params->{affix} && params->{definition} ) {
-        my $affix = prefix_suffix(
+        my $affix = _prefix_suffix(
             params->{affix}, params->{prefix}, params->{suffix}
         );
 
@@ -51,6 +69,10 @@ post '/add' => require_login sub {
         redirect '/new';
     }
 };
+
+=head2 delete
+
+=cut
 
 get '/delete' => require_login sub {
     my $id = params->{id};
@@ -71,6 +93,10 @@ get '/delete' => require_login sub {
     redirect '/search';
 };
 
+=head2 update
+
+=cut
+
 post '/update' => require_login sub {
     my $id = params->{id};
 
@@ -85,7 +111,7 @@ post '/update' => require_login sub {
     }
 
     if ( params->{affix} && params->{definition} ) {
-        my $affix = prefix_suffix(
+        my $affix = _prefix_suffix(
             params->{affix}, params->{prefix}, params->{suffix}
         );
 
@@ -101,6 +127,10 @@ post '/update' => require_login sub {
         redirect "/edit=id=$id";
     }
 };
+
+=head2 edit
+
+=cut
 
 get '/edit' => require_login sub {
     my $fragment = $SCHEMA->resultset('Fragment')->single(
@@ -118,6 +148,10 @@ get '/edit' => require_login sub {
             method     => 'update',
         };
 };
+
+=head2 parse
+
+=cut
 
 get '/parse' => require_login sub {
     my $results;
@@ -150,6 +184,10 @@ get '/parse' => require_login sub {
         results => $results,
       };
 };
+
+=head2 search
+
+=cut
 
 get '/search' => require_login sub {
     my $query = params->{query};
@@ -192,7 +230,7 @@ get '/search' => require_login sub {
       };
 };
 
-sub login_page_handler {
+sub _login_page_handler {
     my $login_fail_message = vars->{login_failed} ? 'LOGIN FAILED' : '';
     template 'login',
         {
@@ -201,7 +239,7 @@ sub login_page_handler {
         };
 }
 
-sub prefix_suffix {
+sub _prefix_suffix {
     my ( $affix, $prefix, $suffix ) = @_;
     $affix  = $SUFFIX . $affix if $suffix;
     $affix .= $PREFIX          if $prefix;
