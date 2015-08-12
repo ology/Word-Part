@@ -79,8 +79,10 @@ post '/update' => require_login sub {
             id => $id,
         }
     );
-    flash error => "Can't find fragment for id: $id"
-        unless $fragment;
+    unless ( $fragment ) {
+        flash error => "Can't find fragment for id: $id";
+        redirect '/search';
+    }
 
     if ( params->{affix} && params->{definition} ) {
         my $affix = prefix_suffix(
