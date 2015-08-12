@@ -6,6 +6,8 @@ package WordPart;
 
 =item Scoring combinations of parsed and defined terminology
 
+=item Web GUI interaction
+
 =head1 Data Model
 
 Used L<DBIx::Class::Schema::Loader|https://metacpan.org/release/DBIx-Class-Schema-Loader> for my existing database
