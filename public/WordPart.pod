@@ -8,6 +8,8 @@ Scoring combinations of parsed and defined terminology
 
 =head1 Data Model
 
+Used L<DBIx::Class::Schema::Loader|https://metacpan.org/release/DBIx-Class-Schema-Loader> for my existing database
+
 =begin text
 
  affix       definition              etymology
@@ -22,15 +24,7 @@ Scoring combinations of parsed and defined terminology
 
 =end text
 
-L<"orthophilic" - belonging to things that thrive at right angles|http://localhost:5000/parse?query=orthophilic>
-
-=begin html
-
-<hr/>
-
-=end html
-
-Used L<DBIx::Class::Schema::Loader|https://metacpan.org/release/DBIx-Class-Schema-Loader> for my existing database
+L<"biophilic" - belonging to things that thrive on life|http://localhost:5000/parse?query=biophilic>
 
 =head1 ROUTES: Verbs & Behaviors
 
@@ -46,9 +40,7 @@ Used L<DBIx::Class::Schema::Loader|https://metacpan.org/release/DBIx-Class-Schem
 
 Direct to index
 
-Show the edit and parse forms
-
-Search for records
+Show search, edit and parse forms
 
 Delete a record (anchor)
 
@@ -62,7 +54,7 @@ Update a record
 
 =head1 Authorization
 
-Using L<Dancer::Plugin::Auth::Extensible>
+Using L<Dancer::Plugin::Auth::Extensible|https://metacpan.org/pod/Dancer::Plugin::Auth::Extensible>
 
 =begin text
 
@@ -75,6 +67,9 @@ Provides <code>/login</code> and <code>/logout</code> routes
 Configured in the <code>config.yml</code> file
 
 =head1 Search by Affix or Definition
+
+Using L<Dancer::Plugin::DBIC|https://metacpan.org/pod/Dancer::Plugin::DBIC>
+and L<Dancer::Plugin::Database|https://metacpan.org/pod/Dancer::Plugin::Database>
 
 =begin text
 

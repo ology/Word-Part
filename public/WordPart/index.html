@@ -4,13 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>Gene Boggs</title>
+<title>WordPart</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 <meta name="generator" content="pod2s5 0.09" />
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="Tue Aug 11 11:36:07 2015" />
-<meta name="author" content="geneboggs" />
+<meta name="presdate" content="Tue Aug 11 19:10:55 2015" />
+<meta name="author" content="gene" />
 <meta name="company" content="&nbsp;" />
 <!-- configuration parameters -->
 <meta name="defaultView" content="slideshow" />
@@ -47,8 +47,8 @@ img#me05 {top: 43px;left: 36px;}
 <div id="currentSlide"></div>
 <div id="header"></div>
 <div id="footer">
-<h1>hg.local &#8226; Tue Aug 11 11:36:07 2015</h1>
-<h2>Gene Boggs</h2></div>
+<h1>Gene Boggs &#8226; Tue Aug 11 19:10:55 2015</h1>
+<h2>WordPart</h2></div>
 </div><div class="slide">
 <h1>Word-part Manipulation
 
@@ -60,7 +60,9 @@ img#me05 {top: 43px;left: 36px;}
 <div class="slide">
 <h1>Data Model
 
-</h1><pre> affix       definition              etymology
+</h1><p>Used <a href="https://metacpan.org/release/DBIx-Class-Schema-Loader">DBIx::Class::Schema::Loader</a> for my existing database
+
+</p><pre> affix       definition              etymology
  ---------------------------------------------
  ab          from, away              latin
  bio         life                    greek
@@ -68,11 +70,7 @@ img#me05 {top: 43px;left: 36px;}
  ortho       straight, right angles  greek
  phile?      loving, thriving        greek
  ic          belonging               greek
- ... </pre><p><a href="http://localhost:5000/parse?query=orthophilic">"orthophilic" - belonging to things that thrive at right angles</a>
-
-</p><hr/>
-
-<p>Used <a href="https://metacpan.org/release/DBIx-Class-Schema-Loader">DBIx::Class::Schema::Loader</a> for my existing database
+ ... </pre><p><a href="http://localhost:5000/parse?query=biophilic">"biophilic" - belonging to things that thrive on life</a>
 
 </p></div>
 <div class="slide">
@@ -84,9 +82,7 @@ img#me05 {top: 43px;left: 36px;}
 
 <p>Direct to index
 
-</p><p>Show the edit and parse forms
-
-</p><p>Search for records
+</p><p>Show search, edit and parse forms
 
 </p><p>Delete a record (anchor)
 
@@ -100,7 +96,7 @@ img#me05 {top: 43px;left: 36px;}
 <div class="slide">
 <h1>Authorization
 
-</h1><p>Using <a href="Dancer::Plugin::Auth::Extensible">Dancer::Plugin::Auth::Extensible</a>
+</h1><p>Using <a href="https://metacpan.org/pod/Dancer::Plugin::Auth::Extensible">Dancer::Plugin::Auth::Extensible</a>
 
 </p><pre> get '/parse' => require_login sub { ... </pre><p>Provides <code>/login</code> and <code>/logout</code> routes
 
@@ -110,7 +106,10 @@ img#me05 {top: 43px;left: 36px;}
 <div class="slide">
 <h1>Search by Affix or Definition
 
-</h1><pre> get '/search' => require_login sub {
+</h1><p>Using <a href="https://metacpan.org/pod/Dancer::Plugin::DBIC">Dancer::Plugin::DBIC</a>
+and <a href="https://metacpan.org/pod/Dancer::Plugin::Database">Dancer::Plugin::Database</a>
+
+</p><pre> get '/search' => require_login sub {
     ...
     my $type = params->{type};
     $type //= 'affix';  # Option via form: 'definition'
