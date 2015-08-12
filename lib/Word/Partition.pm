@@ -248,3 +248,11 @@ sub _prefix_suffix {
 }
 
 true;
+
+__END__
+
+=head1 AUTHOR
+
+Gene Boggs <gene@cpan.org>
+
+=cut
