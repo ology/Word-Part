@@ -38,7 +38,7 @@ post '/add' => require_login sub {
         }
     );
 
-    template 'search';
+    redirect '/search';
 };
 
 get '/delete' => require_login sub {
@@ -51,7 +51,8 @@ get '/delete' => require_login sub {
         unless $fragment;
 
     $fragment->delete();
-    template 'search';
+
+    redirect '/search';
 };
 
 post '/update' => require_login sub {
@@ -72,7 +73,7 @@ post '/update' => require_login sub {
     $fragment->etymology( params->{etymology} );
     $fragment->update;
 
-    template 'search';
+    redirect '/search';
 };
 
 get '/edit' => require_login sub {
