@@ -171,10 +171,6 @@ sub login_page_handler {
             return_url         => params->{return_url},
             login_fail_message => $login_fail_message,
         };
-#,
-#        {
-#            return_url => params->{return_url};
-#        };
 }
 
 sub prefix_suffix {
