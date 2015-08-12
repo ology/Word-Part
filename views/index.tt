@@ -5,7 +5,7 @@
         <h3><b>Word Part Lexicon</b></h3>
         <ul class="links">
           <li><a href="/new">New Entry</a></li>
-          <li><a href="/search">Search Entries</a></li>
+          <li><a href="/search">Search Entries</a> (<% entries %>)</li>
           <li><a href="/parse">Parse a Term</a></li>
           <li>Build a Term</li>
         </ul>

@@ -15,7 +15,12 @@ Readonly my $SUFFIX => '(?=\w)';
 our $VERSION = '0.1';
 
 get '/' => sub {
-    template 'index';
+    my $count = $SCHEMA->resultset('Fragment')->search->count;
+
+    template 'index',
+        {
+            entries => $count,
+        };
 };
 
 get '/new' => require_login sub {
