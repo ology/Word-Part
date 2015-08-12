@@ -113,7 +113,7 @@ L<Dancer::Plugin::Database|https://metacpan.org/pod/Dancer::Plugin::Database>
 
 =end text
 
-=for html
+=begin html
 
 <p/>
 
