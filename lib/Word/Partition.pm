@@ -9,8 +9,8 @@ use Lingua::Word::Parser;
 use Readonly;
 
 Readonly my $SCHEMA => schema 'word_part';
-Readonly my $PREFIX => '(?<=\w)';
-Readonly my $SUFFIX => '(?=\w)';
+Readonly my $PREFIX => '(?=\w)';
+Readonly my $SUFFIX => '(?<=\w)';
 
 our $VERSION = '0.1';
 
