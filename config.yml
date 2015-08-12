@@ -36,7 +36,7 @@ plugins:
         host: 'localhost'
         port: 3306
         username: 'root'
-        password: ''
+        password: 'abc123'
         connection_check_threshold: 10
         dbi_params:
             RaiseError: 1
@@ -48,7 +48,7 @@ plugins:
         schema_class: Word::Partition::Schema
         dsn: "dbi:mysql:database=word_part"
         user: 'root'
-        password: ''
+        password: 'abc123'
   Auth::Extensible:
         realms:
             users:
@@ -56,20 +56,23 @@ plugins:
                 # optionally set DB connection name to use (see named 
                 # connections in Dancer::Plugin::Database docs)
 #                db_connection_name: 'foo'
- 
+
                 # Optionally disable roles support, if you only want to check
                 # for successful logins but don't need to use role-based access:
                 disable_roles: 1
                 # After /login: If no return_url is given: land here ('/' is default)
 #                user_home_page: '/'
 #                exit_page: '/'
- 
+#                no_default_pages: 1
+#                login_page_handler: 'Word::Partition:login_page_handler'
+#                login_page: '/Users/gene/sandbox/Word-Part/views/login.tt'
+
                 # optionally specify names of tables if they're not the defaults
                 # (defaults are 'users', 'roles' and 'user_roles')
                 users_table: 'api_access'
 #                roles_table: 'roles'
 #                user_roles_table: 'user_roles'
- 
+
                 # optionally set the column names (see the SUGGESTED SCHEMA
                 # section below for the default names; if you use them, they'll
                 # Just Work)
