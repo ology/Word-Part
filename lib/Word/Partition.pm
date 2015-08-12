@@ -31,17 +31,19 @@ get '/new' => require_login sub {
 };
 
 post '/add' => require_login sub {
-    my $affix = prefix_suffix(
-        params->{affix}, params->{prefix}, params->{suffix}
-    );
+    if ( params->{affix} && params->{definition} ) {
+        my $affix = prefix_suffix(
+            params->{affix}, params->{prefix}, params->{suffix}
+        );
 
-    $SCHEMA->resultset('Fragment')->create(
-        {
-            affix      => $affix,
-            definition => params->{definition},
-            etymology  => params->{etymology},
-        }
-    );
+        $SCHEMA->resultset('Fragment')->create(
+            {
+                affix      => $affix,
+                definition => params->{definition},
+                etymology  => params->{etymology},
+            }
+        );
+    }
 
     redirect '/search';
 };
@@ -69,14 +71,16 @@ post '/update' => require_login sub {
     croak "Can't find fragment for id: " . params->{id}
         unless $fragment;
 
-    my $affix = prefix_suffix(
-        params->{affix}, params->{prefix}, params->{suffix}
-    );
+    if ( params->{affix} && params->{definition} ) {
+        my $affix = prefix_suffix(
+            params->{affix}, params->{prefix}, params->{suffix}
+        );
 
-    $fragment->affix($affix);
-    $fragment->definition( params->{definition} );
-    $fragment->etymology( params->{etymology} );
-    $fragment->update;
+        $fragment->affix($affix);
+        $fragment->definition( params->{definition} );
+        $fragment->etymology( params->{etymology} );
+        $fragment->update;
+    }
 
     redirect '/search';
 };
