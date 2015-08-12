@@ -50,6 +50,8 @@ plugins:
         user: 'root'
         password: 'abc123'
   Auth::Extensible:
+        exit_page: '/'
+        login_page_handler: 'Word::Partition::login_page_handler'
         realms:
             users:
                 provider: 'Database'
@@ -60,12 +62,7 @@ plugins:
                 # Optionally disable roles support, if you only want to check
                 # for successful logins but don't need to use role-based access:
                 disable_roles: 1
-                # After /login: If no return_url is given: land here ('/' is default)
-#                user_home_page: '/'
-#                exit_page: '/'
-#                no_default_pages: 1
-#                login_page_handler: 'Word::Partition:login_page_handler'
-#                login_page: '/Users/gene/sandbox/Word-Part/views/login.tt'
+                # After /logout land here ('/' is default)
 
                 # optionally specify names of tables if they're not the defaults
                 # (defaults are 'users', 'roles' and 'user_roles')
