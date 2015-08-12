@@ -20,7 +20,9 @@ Word::Partition - Interact with word-parts
 
 =head1 ROUTES
 
-=head2 get
+=head2 /
+
+Go to the index page
 
 =cut
 
@@ -33,7 +35,9 @@ get '/' => sub {
         };
 };
 
-=head2 new
+=head2 /new
+
+Show the form to create a new entry
 
 =cut
 
@@ -44,7 +48,9 @@ get '/new' => require_login sub {
         };
 };
 
-=head2 add
+=head2 /add
+
+Create a new entry in the database
 
 =cut
 
@@ -70,7 +76,9 @@ post '/add' => require_login sub {
     }
 };
 
-=head2 delete
+=head2 /delete
+
+Delete an entry from the database
 
 =cut
 
@@ -93,7 +101,9 @@ get '/delete' => require_login sub {
     redirect '/search';
 };
 
-=head2 update
+=head2 /update
+
+Update an existing entry in the database
 
 =cut
 
@@ -128,7 +138,9 @@ post '/update' => require_login sub {
     }
 };
 
-=head2 edit
+=head2 /edit
+
+Show the form to update an entry
 
 =cut
 
@@ -149,7 +161,9 @@ get '/edit' => require_login sub {
         };
 };
 
-=head2 parse
+=head2 /parse
+
+Show the parse form and results
 
 =cut
 
@@ -185,7 +199,9 @@ get '/parse' => require_login sub {
       };
 };
 
-=head2 search
+=head2 /search
+
+Show the search form and results
 
 =cut
 
