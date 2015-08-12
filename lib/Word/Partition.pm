@@ -164,6 +164,10 @@ get '/search' => require_login sub {
       };
 };
 
+sub login_page_handler {
+    template 'login';
+}
+
 sub prefix_suffix {
     my ( $affix, $prefix, $suffix ) = @_;
     $affix  = '(?<=\w)' . $affix if $suffix;
