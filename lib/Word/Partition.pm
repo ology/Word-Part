@@ -3,6 +3,7 @@ package Word::Partition;
 use Dancer ':syntax';
 use Dancer::Plugin::DBIC;
 use Dancer::Plugin::Auth::Extensible;
+use Dancer::Plugin::FlashMessage;
 
 use Carp;
 use Lingua::Word::Parser;
@@ -44,6 +45,9 @@ post '/add' => require_login sub {
             }
         );
     }
+    else {
+        flash error => 'Neither affix nor definition can be NULL';
+    }
 
     redirect '/search';
 };
@@ -51,13 +55,16 @@ post '/add' => require_login sub {
 get '/delete' => require_login sub {
     my $fragment = $SCHEMA->resultset('Fragment')->find(
         {
-            id => params->{id}
+            id => params->{id},
         }
     );
-    croak "Can't find fragment for id: " . params->{id}
-        unless $fragment;
 
-    $fragment->delete();
+    if ( $fragment ) {
+        $fragment->delete();
+    }
+    else {
+        flash error => 'No fragment can be found for id ' . params->{id};
+    }
 
     redirect '/search';
 };
@@ -68,7 +75,7 @@ post '/update' => require_login sub {
             id => params->{id}
         }
     );
-    croak "Can't find fragment for id: " . params->{id}
+    flash error => "Can't find fragment for id: " . params->{id}
         unless $fragment;
 
     if ( params->{affix} && params->{definition} ) {
@@ -80,6 +87,9 @@ post '/update' => require_login sub {
         $fragment->definition( params->{definition} );
         $fragment->etymology( params->{etymology} );
         $fragment->update;
+    }
+    else {
+        flash error => 'Neither affix nor definition can be NULL';
     }
 
     redirect '/search';

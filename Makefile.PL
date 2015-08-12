@@ -19,6 +19,7 @@ WriteMakefile(
         'Dancer::Plugin::DBIC'             => 0,
         'Dancer::Plugin::Auth::Extensible' => 0,
         'Dancer::Plugin::Database'         => 0,
+        'Dancer::Plugin::FlashMessage'     => 0,
         'DBI'                              => 0,
         'Lingua::Word::Parser'             => 0,
         'Readonly'                         => 0,

@@ -27,5 +27,12 @@
     </div>
     <div class="large-5 columns">
     </div>
-<% page %>
 </div>
+
+<% IF flash.error %>
+    <div class="large-12 columns">
+        <div class="error">
+            <% flash.error %>
+        </div>
+    </div>
+<% END %>
