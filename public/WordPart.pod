@@ -26,7 +26,7 @@ Used L<DBIx::Class::Schema::Loader|https://metacpan.org/release/DBIx-Class-Schem
 
 L<"biophilic" - belonging to things that thrive on life|http://localhost:5000/parse?query=biophilic>
 
-=head1 ROUTES: Verbs & Behaviors
+=head1 Routes: Verbs & Behaviors
 
 =begin html
 
@@ -36,7 +36,7 @@ L<"biophilic" - belonging to things that thrive on life|http://localhost:5000/pa
 
 =over 4
 
-=item get
+=item B<get>
 
 Direct to index
 
@@ -44,7 +44,7 @@ Show search, edit and parse forms
 
 Delete a record (anchor)
 
-=item post
+=item B<post>
 
 Add a record
 
@@ -154,15 +154,55 @@ and L<Dancer::Plugin::Database|https://metacpan.org/pod/Dancer::Plugin::Database
 
 =end text
 
+=head1 Parse a Word
+
+Break a word into known parts with
+L<Lingua::Word::Parser|https://metacpan.org/release/Lingua-Word-Parser>
+
+=begin text
+
+ get '/parse' => require_login sub {
+    ...
+    if ( $query ) {
+        my $p = Lingua::Word::Parser->new(
+            word   => $query,
+            dbname => config->{plugins}{Database}{database},
+            dbuser => config->{plugins}{Database}{username},
+            dbpass => config->{plugins}{Database}{password},
+            dbtype => config->{plugins}{Database}{driver},
+            dbhost => config->{plugins}{Database}{host},
+        );
+        $p->knowns;
+        $p->power;
+        my $score = $p->score( '[', ']' );
+        ...
+ }
+
+=end text
+
+=head1 Build a Term
+
+=begin html
+
+<img src="pix/blueprint.jpg" style="float:right" />
+
+=end html
+
+Currently this is a manual process of looking up possible affixes by
+definition, then stitching them together, by hand.
+
 =head1 Links
 
 The code behind this presentation:
 
-L<Word-Part on github|https://github.com/ology/Word-Part>
+L<Word-Part|https://github.com/ology/Word-Part>
+on github
 
 L<Lingua::Word::Parser|https://metacpan.org/release/Lingua-Word-Parser>
+on CPAN
 
 L<Pod::S5|https://metacpan.org/release/Pod-S5>
+on CPAN
 
 =cut
 

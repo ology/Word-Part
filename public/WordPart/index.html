@@ -9,7 +9,7 @@
 <meta name="generator" content="pod2s5 0.09" />
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="Tue Aug 11 19:10:55 2015" />
+<meta name="presdate" content="Tue Aug 11 19:34:31 2015" />
 <meta name="author" content="gene" />
 <meta name="company" content="&nbsp;" />
 <!-- configuration parameters -->
@@ -47,7 +47,7 @@ img#me05 {top: 43px;left: 36px;}
 <div id="currentSlide"></div>
 <div id="header"></div>
 <div id="footer">
-<h1>Gene Boggs &#8226; Tue Aug 11 19:10:55 2015</h1>
+<h1>Gene Boggs &#8226; Tue Aug 11 19:34:31 2015</h1>
 <h2>WordPart</h2></div>
 </div><div class="slide">
 <h1>Word-part Manipulation
@@ -74,11 +74,11 @@ img#me05 {top: 43px;left: 36px;}
 
 </p></div>
 <div class="slide">
-<h1>ROUTES: Verbs & Behaviors
+<h1>Routes: Verbs & Behaviors
 
 </h1><img src="pix/railroad.jpg" style="float:right" />
 
-<ul><li level="1">get
+<ul><li level="1"><b>get</b>
 
 <p>Direct to index
 
@@ -86,7 +86,7 @@ img#me05 {top: 43px;left: 36px;}
 
 </p><p>Delete a record (anchor)
 
-</p></li><li level="1">post
+</p></li><li level="1"><b>post</b>
 
 <p>Add a record
 
@@ -170,14 +170,48 @@ and <a href="https://metacpan.org/pod/Dancer::Plugin::Database">Dancer::Plugin::
      &lt;% END %>
  &lt;/form> </pre></div>
 <div class="slide">
+<h1>Parse a Word
+
+</h1><p>Break a word into known parts with
+<a href="https://metacpan.org/release/Lingua-Word-Parser">Lingua::Word::Parser</a>
+
+</p><pre> get '/parse' => require_login sub {
+    ...
+    if ( $query ) {
+        my $p = Lingua::Word::Parser->new(
+            word   => $query,
+            dbname => config->{plugins}{Database}{database},
+            dbuser => config->{plugins}{Database}{username},
+            dbpass => config->{plugins}{Database}{password},
+            dbtype => config->{plugins}{Database}{driver},
+            dbhost => config->{plugins}{Database}{host},
+        );
+        $p->knowns;
+        $p->power;
+        my $score = $p->score( '[', ']' );
+        ...
+ } </pre></div>
+<div class="slide">
+<h1>Build a Term
+
+</h1><img src="pix/blueprint.jpg" style="float:right" />
+
+<p>Currently a manual process of looking up possible affixes by definition,
+then stitching it together by hand.
+
+</p></div>
+<div class="slide">
 <h1>Links
 
 </h1><p>The code behind this presentation:
 
-</p><p><a href="https://github.com/ology/Word-Part">Word-Part on github</a>
+</p><p><a href="https://github.com/ology/Word-Part">Word-Part</a>
+on github
 
 </p><p><a href="https://metacpan.org/release/Lingua-Word-Parser">Lingua::Word::Parser</a>
+on CPAN
 
 </p><p><a href="https://metacpan.org/release/Pod-S5">Pod::S5</a>
+on CPAN
 
 </p></div></body></html>
