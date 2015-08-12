@@ -51,7 +51,7 @@ plugins:
         password: 'abc123'
   Auth::Extensible:
         exit_page: '/'
-        login_page_handler: 'Word::Partition::login_page_handler'
+        login_page_handler: 'Word::Partition::_login_page_handler'
         realms:
             users:
                 provider: 'Database'
