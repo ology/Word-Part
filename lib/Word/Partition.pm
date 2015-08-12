@@ -131,9 +131,9 @@ get '/search' => require_login sub {
     my $results;
     if ( length $query ) {
         my @parts  = $query =~ m/^(-?)(\w+)(-?)$/g;
-        my $prefix = $parts[0]  ? '(?<=\w)' : '';
+        my $prefix = $parts[0] ? '(?<=\w)' : '';
         my $affix  = $parts[1];
-        my $suffix = $parts[-1] ? '(?=\w)'  : '';
+        my $suffix = $parts[2] ? '(?=\w)'  : '';
         my $like   = quotemeta( "$prefix$affix$suffix" );
 
         my $fragments = $schema->resultset('Fragment')->search(
