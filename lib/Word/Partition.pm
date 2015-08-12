@@ -54,9 +54,11 @@ post '/add' => require_login sub {
 };
 
 get '/delete' => require_login sub {
+    my $id = params->{id};
+
     my $fragment = $SCHEMA->resultset('Fragment')->find(
         {
-            id => params->{id},
+            id => $id,
         }
     );
 
@@ -64,7 +66,7 @@ get '/delete' => require_login sub {
         $fragment->delete();
     }
     else {
-        flash error => 'No fragment can be found for id ' . params->{id};
+        flash error => "No fragment can be found for id $id";
     }
 
     redirect '/search';
