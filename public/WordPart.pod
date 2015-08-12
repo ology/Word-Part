@@ -2,9 +2,9 @@ package WordPart;
 
 =head1 Word-part Manipulation
 
-Database manipulation of word-part fragments
+=item Database manipulation of word-part fragments
 
-Scoring combinations of parsed and defined terminology
+=item Scoring combinations of parsed and defined terminology
 
 =head1 Data Model
 
