@@ -172,7 +172,7 @@ get '/parse' => require_login sub {
     my $results;
     my $query = params->{query};
 
-    if ( length $query > $MAX_QUERY_SIZE ) {
+    if ( $query && length $query > $MAX_QUERY_SIZE ) {
         flash error => "The word cannot have more than $MAX_QUERY_SIZE letters";
     }
     else {
