@@ -8,7 +8,7 @@ use Dancer::Plugin::FlashMessage;
 use Lingua::Word::Parser;
 use Readonly;
 
-Readonly my $SCHEMA => schema 'word_part';
+Readonly my $SCHEMA => schema config->{plugins}{Database}{database};
 Readonly my $PREFIX => '(?=\w)';
 Readonly my $SUFFIX => '(?<=\w)';
 Readonly my $MAX_QUERY_SIZE => 30;
