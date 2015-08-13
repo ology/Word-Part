@@ -175,26 +175,24 @@ get '/parse' => require_login sub {
     if ( $query && length $query > $MAX_QUERY_SIZE ) {
         flash error => "The word cannot have more than $MAX_QUERY_SIZE letters";
     }
-    else {
-        if ( $query ) {
-            my $p = Lingua::Word::Parser->new(
-                word   => $query,
-                dbname => config->{plugins}{Database}{database},
-                dbuser => config->{plugins}{Database}{username},
-                dbpass => config->{plugins}{Database}{password},
-                dbtype => config->{plugins}{Database}{driver},
-                dbhost => config->{plugins}{Database}{host},
-            );
+    elsif ( $query ) {
+        my $p = Lingua::Word::Parser->new(
+            word   => $query,
+            dbname => config->{plugins}{Database}{database},
+            dbuser => config->{plugins}{Database}{username},
+            dbpass => config->{plugins}{Database}{password},
+            dbtype => config->{plugins}{Database}{driver},
+            dbhost => config->{plugins}{Database}{host},
+        );
 
-            # Find the known word-part positions.
-            $p->knowns;
-            $p->power;
-            my $score = $p->score( '[', ']', '<br/>' );
+        # Find the known word-part positions.
+        $p->knowns;
+        $p->power;
+        my $score = $p->score( '[', ']', '<br/>' );
 
-            for my $key ( reverse sort keys %$score )
-            {
-                push @$results, $score->{$key};
-            }
+        for my $key ( reverse sort keys %$score )
+        {
+            push @$results, $score->{$key};
         }
     }
 
