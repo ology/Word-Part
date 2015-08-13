@@ -46,7 +46,7 @@ C<(?<=\w)e?d> - A suffix ("must follow")
 
 =begin html
 
-<img src="pix/routing.jpg" style="float:right" />
+<img src="pix/routing.jpg" style="float:right; height:400px; width:360px;" />
 
 =end html
 
