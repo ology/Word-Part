@@ -184,7 +184,7 @@ get '/parse' => require_login sub {
         # Find the known word-part positions.
         $p->knowns;
         $p->power;
-        my $score = $p->score( '[', ']' );
+        my $score = $p->score( '[', ']', '<br/>' );
 
         for my $key ( reverse sort keys %$score )
         {
