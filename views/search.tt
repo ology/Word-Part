@@ -38,7 +38,7 @@
         </div>
  
         <% FOREACH r = results %>
-            <center><hr width="80%" /></center>
+            <hr />
             <div class="row">
                 <div class="large-4 columns">
                     <p><a href="/edit?id=<% r.id %>" title="Edit part '<% r.affix %>'"><% r.affix %></a></p>
