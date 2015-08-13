@@ -13,3 +13,8 @@
 8. Populate the word_part database  (e.g. `mysql -u root -p word_part < word_part.sql`)
 9. Start the application!  (e.g. `plackup bin/app.pl`)
 10. Browse to [http://localhost:5000](http://localhost:5000)
+
+## To regenerate the schema files from an altered database:
+
+perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e \
+    'make_schema_at("Word::Partition::Schema", { debug => 1 }, [ "dbi:mysql:database=word_part","root", "abc123" ])'
