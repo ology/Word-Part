@@ -20,9 +20,17 @@
       <li>
         <h3><b>View the slideshow</b></h3>
         <ul class="links">
-          <li><a href="http://localhost:5000/WordPart/index.html">Word-part Manipulation</a></li>
+          <li><a href="/WordPart/index.html">Word-part Manipulation</a></li>
         </ul>
       </li>
+      <% IF logged_in_user %>
+        <li>
+          <h3><b>Meta</b></h3>
+          <ul class="links">
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </li>
+      <% END %>
     </ul>
   </div>
 

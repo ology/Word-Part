@@ -30,9 +30,12 @@ Go to the index page
 get '/' => sub {
     my $count = $SCHEMA->resultset('Fragment')->search->count;
 
+    my $user = logged_in_user || '';
+
     template 'index',
         {
-            entries => $count,
+            entries        => $count,
+            logged_in_user => $user,
         };
 };
 
