@@ -138,7 +138,7 @@ post '/update' => require_login sub {
     }
     else {
         flash error => 'Neither affix nor definition can be NULL';
-        redirect "/edit=id=$id";
+        redirect "/edit?id=$id";
     }
 };
 
