@@ -149,6 +149,11 @@ Show the form to update an entry
 =cut
 
 get '/edit' => require_login sub {
+    unless ( params->{id} ) {
+        redirect '/new';
+        return;
+    }
+
     my $fragment = $SCHEMA->resultset('Fragment')->single(
         {
             id => params->{id}
