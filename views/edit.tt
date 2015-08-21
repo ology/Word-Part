@@ -10,9 +10,9 @@
         </div>
         <div class="large-3 medium-3 columns">
             <div class="callout panel">
-                <input name="prefix" type="checkbox" data-toggle="tooltip" title="Affix is a Prefix">
+                <input id="prefix" name="prefix" type="checkbox" data-toggle="tooltip" title="Affix is a Prefix">
                 <label for="prefix">Prefix</label>
-                <input name="suffix" type="checkbox" data-toggle="tooltip" title="Affix is a Suffix">
+                <input id="suffix" name="suffix" type="checkbox" data-toggle="tooltip" title="Affix is a Suffix">
                 <label for="suffix">Suffix</label>
             </div>
         </div>

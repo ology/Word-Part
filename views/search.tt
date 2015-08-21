@@ -7,9 +7,10 @@
             <input type="text" name="query" value="<% query %>" placeholder=" -foo, foo or foo-" autofocus />
         </div>
         <div class="large-3 columns">
-            <input type="radio" name="type" value="affix" <% checked == "affix" ? "checked" : "" %> /> Affix
-            &nbsp;
-            <input type="radio" name="type" value="definition" <% checked == "definition" ? "checked" : "" %> /> Definition
+            <input type="radio" name="type" id="affix" value="affix" <% checked == "affix" ? "checked" : "" %> />
+            <label for="affix">Affix</label>
+            <input type="radio" name="type" id="definition" value="definition" <% checked == "definition" ? "checked" : "" %> />
+            <label for="definition">Definition</label>
         </div>
         <div class="large-2 columns">
             <input type="submit" name="submit" value="Lookup" class="small round button" />
