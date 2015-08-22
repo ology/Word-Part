@@ -37,12 +37,14 @@
                 <h4>Etymology</h4>
             </div>
         </div>
- 
+
+        <% i = 0 %>
         <% FOREACH r = results %>
+            <% i = i + 1 %>
             <hr />
             <div class="row">
                 <div class="large-4 columns">
-                    <p><a href="/edit?id=<% r.id %>" title="Edit part '<% r.affix %>'"><% r.affix %></a></p>
+                    <p><% i %>. &nbsp; <a href="/edit?id=<% r.id %>" title="Edit part '<% r.affix %>'"><% r.affix %></a></p>
                 </div>
                 <div class="large-5 columns">
                     <p><% r.definition %></p>
