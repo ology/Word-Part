@@ -237,7 +237,7 @@ get '/search' => require_login sub {
                 $type => { like => "%$like%" },
             },
             {
-                order_by => { -asc => 'affix' }
+                order_by => { -asc => $type }
             }
         );
 
