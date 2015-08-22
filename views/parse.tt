@@ -32,19 +32,27 @@
             </div>
         </div>
 
-        <% FOREACH r = results %>
+        <% FOREACH row = results %>
+            <% FOREACH r = row %>
             <hr />
             <div class="row">
                 <div class="large-3 columns">
-                    <% r.0.score %>
+                    <% r.score.knowns %>:<% r.score.unknowns %> chunks
+                    /
+                    <% r.score.knownc %>:<% r.score.unknownc %> chars
                 </div>
                 <div class="large-3 columns">
-                    <% r.0.partition %>
+                <% FOREACH p = r.partition %>
+                    <% p %><br />
+                <% END %>
                 </div>
                 <div class="large-6 columns">
-                    <% r.0.definition %>
+                <% FOREACH d = r.definition %>
+                    <% d %><br />
+                <% END %>
                 </div>
             </div>
+            <% END %>
         <% END %>
     <% ELSE %>
         <div class="row">
