@@ -234,7 +234,7 @@ get '/search' => require_login sub {
 
         my $fragments = $SCHEMA->resultset('Fragment')->search(
             {
-                $type => { like => "%$like%" },
+                $type => { like => '%' . $like . '%' },
             },
             {
                 order_by => { -asc => $type }
