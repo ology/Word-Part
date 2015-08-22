@@ -226,11 +226,12 @@ get '/search' => require_login sub {
     my $results;
     if ( length $query ) {
         # Allow entry of prefix/suffix indicators with hyphens
-        my ( $suffix, $affix, $prefix ) = $query =~ m/^(-?)(\w+)(-?)$/g;
+        my ( $suffix, $affix, $prefix ) = $query =~ m/^(-?)([;,\s\w]+)(-?)$/g;
         $affix //= '';
         $prefix = $prefix ? $PREFIX : '';
         $suffix = $suffix ? $SUFFIX : '';
         my $like = quotemeta( "$suffix$affix$prefix" );
+#        my $like = "$suffix$affix$prefix";
 
         my $fragments = $SCHEMA->resultset('Fragment')->search(
             {
