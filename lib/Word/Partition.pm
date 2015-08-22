@@ -227,6 +227,7 @@ get '/search' => require_login sub {
     if ( length $query ) {
         # Allow entry of prefix/suffix indicators with hyphens
         my ( $suffix, $affix, $prefix ) = $query =~ m/^(-?)(\w+)(-?)$/g;
+        $affix //= '';
         $prefix = $prefix ? $PREFIX : '';
         $suffix = $suffix ? $SUFFIX : '';
         my $like = quotemeta( "$suffix$affix$prefix" );
