@@ -257,9 +257,10 @@ get '/search' => require_login sub {
 
     template 'search',
       {
-        query   => $query,
-        results => $results,
-        checked => $type,
+        query     => $query,
+        results   => $results,
+        checked   => $type,
+        etymology => $etym,
       };
 };
 
