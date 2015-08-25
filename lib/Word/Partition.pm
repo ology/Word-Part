@@ -223,6 +223,8 @@ get '/search' => require_login sub {
     my $type = params->{type};
     $type //= 'affix';
 
+    my $etym = params->{etymology};
+
     my $results;
     if ( length $query ) {
         # Allow entry of prefix/suffix indicators with hyphens
@@ -235,6 +237,7 @@ get '/search' => require_login sub {
         my $fragments = $SCHEMA->resultset('Fragment')->search(
             {
                 $type => { like => '%' . $like . '%' },
+                $etym ? ( etymology => $etym ) : (),
             },
             {
                 order_by => { -asc => $type }
