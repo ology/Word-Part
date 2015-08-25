@@ -8,13 +8,12 @@
             <label>Affix</label>
             <input type="text" name="affix" value="<% affix %>" autofocus placeholder="Required" />
         </div>
-        <div class="large-3 medium-3 columns">
-            <div class="callout panel">
-                <input id="prefix" name="prefix" type="checkbox" data-toggle="tooltip" title="Affix is a Prefix">
-                <label for="prefix">Prefix</label>
-                <input id="suffix" name="suffix" type="checkbox" data-toggle="tooltip" title="Affix is a Suffix">
-                <label for="suffix">Suffix</label>
-            </div>
+        <div class="large-2 medium-2 columns">
+            <input id="prefix" name="prefix" type="checkbox" data-toggle="tooltip" title="Affix is a Prefix">
+            <label for="prefix">Prefix</label>
+            <br/>
+            <input id="suffix" name="suffix" type="checkbox" data-toggle="tooltip" title="Affix is a Suffix">
+            <label for="suffix">Suffix</label>
         </div>
         <div class="large-3 medium-3 columns">
             <label>Etymology</label>
@@ -25,28 +24,25 @@
                 <option value="other" <% etymology == "other" ? "selected" : "" %>>Other</option>
             </select>
         </div>
-        <div class="large-3 medium-3 columns">
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-6 medium-6 columns">
-            <label>Definition</label>
-            <input type="text" name="definition" value="<% definition %>" placeholder="Required" />
-        </div>
-        <div class="large-1 medium-1 columns">
+        <div class="large-2 medium-2 columns">
             <input type="submit" name="<% method %>" value="<% method FILTER ucfirst %>"
                 class="small round button" />
         </div>
-        <div class="large-1 medium-1 columns">
-            &nbsp;
+        <div class="large-2 medium-2 columns">
         </div>
-        <div class="large-1 medium-1 columns">
+    </div>
+    <div class="row">
+        <div class="large-8 medium-8 columns">
+            <label>Definition</label>
+            <input type="text" name="definition" value="<% definition %>" placeholder="Required" />
+        </div>
+        <div class="large-2 medium-2 columns">
 			<% IF id %>
                 <a href="/delete?id=<% id %>" class="small round button"
                     onclick="return confirm('Delete <% affix %>?')">Delete</a>
 			<% END %>
         </div>
-        <div class="large-3 medium-3 columns">
+        <div class="large-2 medium-2 columns">
         </div>
     </div>
 
