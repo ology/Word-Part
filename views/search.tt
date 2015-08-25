@@ -4,24 +4,16 @@
 <form action="/search">
     <div class="row">
         <div class="large-3 columns">
+            <label for="query">Query</label>
             <input type="text" name="query" value="<% query %>" placeholder=" -foo, foo or foo-" autofocus />
         </div>
-        <div class="large-3 columns">
+        <div class="large-2 columns">
             <input type="radio" name="type" id="affix" value="affix" <% checked == "affix" ? "checked" : "" %> />
             <label for="affix">Affix</label>
+            <br/>
             <input type="radio" name="type" id="definition" value="definition" <% checked == "definition" ? "checked" : "" %> />
             <label for="definition">Definition</label>
         </div>
-        <div class="large-2 columns">
-            <input type="submit" name="submit" value="Lookup" class="small round button" />
-        </div>
-        <div class="large-4 columns">
-            <% IF query %>
-                <a href="https://en.wiktionary.org/wiki/<% query %>" target="_blank">https://en.wiktionary.org/wiki/<% query %></a>
-            <% END %>
-        </div>
-    </div>
-    <div class="row">
         <div class="large-3 columns">
             <label>Etymology</label>
             <select name="etymology">
@@ -31,7 +23,17 @@
                 <option value="other" <% etymology == "other" ? "selected" : "" %>>Other</option>
             </select>
         </div>
-        <div class="large-9 columns">
+        <div class="large-2 columns">
+            <input type="submit" name="submit" value="Lookup" class="small round button" />
+        </div>
+        <div class="large-2 columns">
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <% IF query %>
+                <a href="https://en.wiktionary.org/wiki/<% query %>" target="_blank">https://en.wiktionary.org/wiki/<% query %></a>
+            <% END %>
         </div>
     </div>
 </form>
