@@ -4,6 +4,7 @@
 <form action="/parse">
     <div class="row">
         <div class="large-3 columns">
+            <label for="query">Word</label>
             <input type="text" name="query" value="<% query %>" placeholder=" term" autofocus />
         </div>
         <div class="large-2 columns">
