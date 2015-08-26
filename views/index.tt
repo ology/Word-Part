@@ -40,13 +40,15 @@
 
   <div id="content">
     <div id="header">
-      <h1>Word Part</h1>
+      <h1>Word Partition</h1>
       <h2>Partition Words into Scored Fragments</h2>
     </div>
 
     <div id="getting-started">
+<!--  
       <h1>Summary</h1>
       <h2>What this all means in a nutshell</h2>
+ -->
 
       <ol>          
         <li>
