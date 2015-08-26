@@ -4,7 +4,9 @@
       <li>
         <h3><b>Word Part Lexicon</b></h3>
         <ul class="links">
-          <li><a href="/new">New Entry</a></li>
+          <% IF logged_in_user %>
+            <li><a href="/new">New Entry</a></li>
+          <% END %>
           <li><a href="/search">Search Entries</a> (<% entries %>)</li>
           <li><a href="/parse">Parse a Term</a></li>
           <li>Build a Term</li>
