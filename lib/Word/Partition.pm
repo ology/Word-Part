@@ -12,6 +12,7 @@ Readonly my $SCHEMA => schema config->{plugins}{Database}{database};
 Readonly my $PREFIX => '(?=\w)';
 Readonly my $SUFFIX => '(?<=\w)';
 Readonly my $MAX_QUERY_SIZE => 30;
+Readonly my $LOGGED_IN_USER => logged_in_user;
 
 our $VERSION = '0.1';
 
@@ -30,12 +31,10 @@ Go to the index page
 get '/' => sub {
     my $count = $SCHEMA->resultset('Fragment')->search->count;
 
-    my $user = logged_in_user || '';
-
     template 'index',
         {
             entries        => $count,
-            logged_in_user => $user,
+            logged_in_user => $LOGGED_IN_USER,
         };
 };
 
@@ -48,7 +47,8 @@ Show the form to create a new entry
 get '/new' => require_login sub {
     template 'edit',
         {
-            method => 'add',
+            method         => 'add',
+            logged_in_user => $LOGGED_IN_USER,
         };
 };
 
@@ -162,11 +162,12 @@ get '/edit' => require_login sub {
 
     template 'edit',
         {
-            id         => $fragment->id,
-            affix      => $fragment->affix,
-            definition => $fragment->definition,
-            etymology  => $fragment->etymology,
-            method     => 'update',
+            id             => $fragment->id,
+            affix          => $fragment->affix,
+            definition     => $fragment->definition,
+            etymology      => $fragment->etymology,
+            method         => 'update',
+            logged_in_user => $LOGGED_IN_USER,
         };
 };
 
@@ -176,7 +177,7 @@ Show the parse form and results
 
 =cut
 
-get '/parse' => require_login sub {
+get '/parse' => sub {
     my $results;
     my $query = params->{query};
 
@@ -206,8 +207,9 @@ get '/parse' => require_login sub {
 
     template 'parse',
       {
-        query   => $query,
-        results => $results,
+        query          => $query,
+        results        => $results,
+        logged_in_user => $LOGGED_IN_USER,
       };
 };
 
@@ -217,7 +219,7 @@ Show the search form and results
 
 =cut
 
-get '/search' => require_login sub {
+get '/search' => sub {
     my $query = params->{query};
 
     my $type = params->{type};
@@ -257,10 +259,11 @@ get '/search' => require_login sub {
 
     template 'search',
         {
-            query     => $query,
-            results   => $results,
-            checked   => $type,
-            etymology => $etym,
+            query          => $query,
+            results        => $results,
+            checked        => $type,
+            etymology      => $etym,
+            logged_in_user => $LOGGED_IN_USER,
         };
 };
 
