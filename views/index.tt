@@ -25,14 +25,16 @@
           <li><a href="/WordPart/index.html">Word-part Manipulation</a></li>
         </ul>
       </li>
-      <% IF logged_in_user %>
         <li>
           <h3><b>Meta</b></h3>
           <ul class="links">
-            <li><a href="/logout">Logout</a></li>
+            <% IF logged_in_user %>
+              <li><a href="/logout">Logout</a></li>
+            <% ELSE %>
+              <li><a href="/login">Login</a></li>
+            <% END %>
           </ul>
         </li>
-      <% END %>
     </ul>
   </div>
 
