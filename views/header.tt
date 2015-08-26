@@ -22,8 +22,10 @@
         <% ELSE %>
             <a href="/parse">Parse</a>
         <% END %>
-        |
-        <a href="/logout">Logout</a>
+        <% IF logged_in_user %>
+            |
+            <a href="/logout">Logout</a>
+        <% END %>
     </div>
     <div class="large-5 columns">
     </div>

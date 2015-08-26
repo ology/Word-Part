@@ -59,7 +59,14 @@
             <hr />
             <div class="row">
                 <div class="large-4 columns">
-                    <p><% i %>. &nbsp; <a href="/edit?id=<% r.id %>" title="Edit part '<% r.affix %>'"><% r.affix %></a></p>
+                    <p>
+                        <% i %>. &nbsp;
+                        <% IF logged_in_user %>
+                            <a href="/edit?id=<% r.id %>" title="Edit part '<% r.affix %>'"><% r.affix %></a>
+                        <% ELSE %>
+                            <% r.affix %>
+                        <% END %>
+                    </p>
                 </div>
                 <div class="large-5 columns">
                     <p><% r.definition %></p>
