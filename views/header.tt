@@ -5,12 +5,14 @@
         <a href="/"><b>Word Part</b></a>
     </div>
     <div class="large-4 columns">
-        <% IF request.path == "/new" %>
-            <b>New</b>
-        <% ELSE %>
-            <a href="/new">New</a>
+        <% IF logged_in_user %>
+            <% IF request.path == "/new" %>
+                <b>New</b>
+            <% ELSE %>
+                <a href="/new">New</a>
+            <% END %>
+            |
         <% END %>
-        |
         <% IF request.path == "/search" %>
             <b>Lookup</b>
         <% ELSE %>
