@@ -12,7 +12,6 @@ Readonly my $SCHEMA => schema config->{plugins}{Database}{database};
 Readonly my $PREFIX => '(?=\w)';
 Readonly my $SUFFIX => '(?<=\w)';
 Readonly my $MAX_QUERY_SIZE => 30;
-Readonly my $LOGGED_IN_USER => logged_in_user;
 
 our $VERSION = '0.1';
 
@@ -31,10 +30,12 @@ Go to the index page
 get '/' => sub {
     my $count = $SCHEMA->resultset('Fragment')->search->count;
 
+    my $user = logged_in_user;
+
     template 'index',
         {
             entries        => $count,
-            logged_in_user => $LOGGED_IN_USER,
+            logged_in_user => $user,
         };
 };
 
@@ -45,10 +46,12 @@ Show the form to create a new entry
 =cut
 
 get '/new' => require_login sub {
+    my $user = logged_in_user;
+
     template 'edit',
         {
             method         => 'add',
-            logged_in_user => $LOGGED_IN_USER,
+            logged_in_user => $user,
         };
 };
 
@@ -160,6 +163,8 @@ get '/edit' => require_login sub {
         }
     );
 
+    my $user = logged_in_user;
+
     template 'edit',
         {
             id             => $fragment->id,
@@ -167,7 +172,7 @@ get '/edit' => require_login sub {
             definition     => $fragment->definition,
             etymology      => $fragment->etymology,
             method         => 'update',
-            logged_in_user => $LOGGED_IN_USER,
+            logged_in_user => $user,
         };
 };
 
@@ -205,11 +210,13 @@ get '/parse' => sub {
         }
     }
 
+    my $user = logged_in_user;
+
     template 'parse',
       {
         query          => $query,
         results        => $results,
-        logged_in_user => $LOGGED_IN_USER,
+        logged_in_user => $user,
       };
 };
 
@@ -257,13 +264,15 @@ get '/search' => sub {
         }
     }
 
+    my $user = logged_in_user;
+
     template 'search',
         {
             query          => $query,
             results        => $results,
             checked        => $type,
             etymology      => $etym,
-            logged_in_user => $LOGGED_IN_USER,
+            logged_in_user => $user,
         };
 };
 
