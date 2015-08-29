@@ -275,7 +275,7 @@ sub _update_entry {
             id => $args{id},
         }
     );
-    unless ( $args{fragment} ) {
+    unless ( $fragment ) {
         flash error => "Can't find fragment for id: $args{id}";
         redirect '/search';
     }
@@ -283,7 +283,7 @@ sub _update_entry {
     if ( $args{affix} && $args{definition} ) {
         my $affix = _prefix_suffix( $args{affix}, $args{prefix}, $args{suffix} );
 
-        $fragment->affix($affix);
+        $fragment->affix( $args{affix} );
         $fragment->definition( $args{definition} );
         $fragment->etymology( $args{etymology} );
         $fragment->update;
