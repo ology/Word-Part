@@ -29,9 +29,7 @@ Go to the index page
 
 get '/' => sub {
     my $count = $SCHEMA->resultset('Fragment')->search->count;
-
     my $user = logged_in_user;
-
     template 'index',
         {
             entries        => $count,
@@ -47,7 +45,6 @@ Show the form to create a new entry
 
 get '/new' => require_login sub {
     my $user = logged_in_user;
-
     template 'edit',
         {
             method         => 'add',
