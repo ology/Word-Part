@@ -63,16 +63,12 @@ Create a new entry in the database
 
 post '/add' => require_login sub {
     if ( params->{affix} && params->{definition} ) {
-        my $affix = _prefix_suffix(
-            params->{affix}, params->{prefix}, params->{suffix}
-        );
-
-        $SCHEMA->resultset('Fragment')->create(
-            {
-                affix      => $affix,
-                definition => params->{definition},
-                etymology  => params->{etymology},
-            }
+        _add_entry(
+            affix      => params->{affix},
+            prefix     => params->{prefix},
+            suffix     => params->{suffix},
+            definition => params->{definition},
+            etymology  => params->{etymology},
         );
 
         redirect '/search';
@@ -275,6 +271,20 @@ get '/search' => sub {
             logged_in_user => $user,
         };
 };
+
+sub _add_entry {
+    my %args = @_;
+
+    my $affix = _prefix_suffix( $args{affix}, $args{prefix}, $args{suffix} );
+
+    $SCHEMA->resultset('Fragment')->create(
+        {
+            affix      => $affix,
+            definition => $args{definition},
+            etymology  => $args{etymology},
+        }
+    );
+}
 
 sub _login_page_handler {
     my $login_fail_message = vars->{login_failed} ? 'LOGIN FAILED' : '';
