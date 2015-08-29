@@ -62,21 +62,14 @@ Create a new entry in the database
 =cut
 
 post '/add' => require_login sub {
-    if ( params->{affix} && params->{definition} ) {
-        _add_entry(
-            affix      => params->{affix},
-            prefix     => params->{prefix},
-            suffix     => params->{suffix},
-            definition => params->{definition},
-            etymology  => params->{etymology},
-        );
-
-        redirect '/search';
-    }
-    else {
-        flash error => 'Neither affix nor definition can be NULL';
-        redirect '/new';
-    }
+    _add_entry(
+        affix      => params->{affix},
+        prefix     => params->{prefix},
+        suffix     => params->{suffix},
+        definition => params->{definition},
+        etymology  => params->{etymology},
+    );
+    redirect '/search';
 };
 
 =head2 /delete
@@ -98,34 +91,14 @@ Update an existing entry in the database
 =cut
 
 post '/update' => require_login sub {
-    my $id = params->{id};
-
-    my $fragment = $SCHEMA->resultset('Fragment')->find(
-        {
-            id => $id,
-        }
+    _update_entry(
+        id         => params->{id},
+        affix      => params->{affix},
+        prefix     => params->{prefix},
+        suffix     => params->{suffix},
+        definition => params->{definition},
+        etymology  => params->{etymology},
     );
-    unless ( $fragment ) {
-        flash error => "Can't find fragment for id: $id";
-        redirect '/search';
-    }
-
-    if ( params->{affix} && params->{definition} ) {
-        my $affix = _prefix_suffix(
-            params->{affix}, params->{prefix}, params->{suffix}
-        );
-
-        $fragment->affix($affix);
-        $fragment->definition( params->{definition} );
-        $fragment->etymology( params->{etymology} );
-        $fragment->update;
-
-        redirect '/search';
-    }
-    else {
-        flash error => 'Neither affix nor definition can be NULL';
-        redirect "/edit?id=$id";
-    }
 };
 
 =head2 /edit
@@ -262,15 +235,21 @@ get '/search' => sub {
 sub _add_entry {
     my %args = @_;
 
-    my $affix = _prefix_suffix( $args{affix}, $args{prefix}, $args{suffix} );
+    if ( params->{affix} && params->{definition} ) {
+        my $affix = _prefix_suffix( $args{affix}, $args{prefix}, $args{suffix} );
 
-    $SCHEMA->resultset('Fragment')->create(
-        {
-            affix      => $affix,
-            definition => $args{definition},
-            etymology  => $args{etymology},
-        }
-    );
+        $SCHEMA->resultset('Fragment')->create(
+            {
+                affix      => $affix,
+                definition => $args{definition},
+                etymology  => $args{etymology},
+            }
+        );
+    }
+    else {
+        flash error => 'Neither affix nor definition can be NULL';
+        redirect '/new';
+    }
 }
 
 sub _delete_entry {
@@ -285,6 +264,35 @@ sub _delete_entry {
     }
     else {
         flash error => "No fragment can be found for id $id";
+    }
+}
+
+sub _update_entry {
+    my %args = @_;
+
+    my $fragment = $SCHEMA->resultset('Fragment')->find(
+        {
+            id => $args{id},
+        }
+    );
+    unless ( $args{fragment} ) {
+        flash error => "Can't find fragment for id: $args{id}";
+        redirect '/search';
+    }
+
+    if ( $args{affix} && $args{definition} ) {
+        my $affix = _prefix_suffix( $args{affix}, $args{prefix}, $args{suffix} );
+
+        $fragment->affix($affix);
+        $fragment->definition( $args{definition} );
+        $fragment->etymology( $args{etymology} );
+        $fragment->update;
+
+        redirect '/search';
+    }
+    else {
+        flash error => 'Neither affix nor definition can be empty';
+        redirect "/edit?id=$args{id}";
     }
 }
 
