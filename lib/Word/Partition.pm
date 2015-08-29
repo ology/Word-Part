@@ -315,6 +315,13 @@ sub _search_term {
     return \@results;
 }
 
+sub _prefix_suffix {
+    my ( $affix, $prefix, $suffix ) = @_;
+    $affix  = $SUFFIX . $affix if $suffix;
+    $affix .= $PREFIX          if $prefix;
+    return $affix;
+}
+
 sub _login_page_handler {
     my $login_fail_message = vars->{login_failed} ? 'LOGIN FAILED' : '';
     template 'login',
@@ -322,13 +329,6 @@ sub _login_page_handler {
             return_url         => params->{return_url},
             login_fail_message => $login_fail_message,
         };
-}
-
-sub _prefix_suffix {
-    my ( $affix, $prefix, $suffix ) = @_;
-    $affix  = $SUFFIX . $affix if $suffix;
-    $affix .= $PREFIX          if $prefix;
-    return $affix;
 }
 
 true;
