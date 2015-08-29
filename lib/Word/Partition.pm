@@ -76,8 +76,7 @@ Delete an entry from the database
 =cut
 
 get '/delete' => require_login sub {
-    my $id = params->{id};
-    _delete_entry($id);
+    _delete_entry( params->{id} );
     redirect '/search';
 };
 
