@@ -139,38 +139,13 @@ Show the parse form and results
 =cut
 
 get '/parse' => sub {
-    my $results;
-    my $query = params->{query};
-
-    if ( $query && length $query > $MAX_QUERY_SIZE ) {
-        flash error => "The word cannot have more than $MAX_QUERY_SIZE letters";
-    }
-    elsif ( $query ) {
-        my $p = Lingua::Word::Parser->new(
-            word   => $query,
-            dbname => config->{plugins}{Database}{database},
-            dbuser => config->{plugins}{Database}{username},
-            dbpass => config->{plugins}{Database}{password},
-            dbtype => config->{plugins}{Database}{driver},
-            dbhost => config->{plugins}{Database}{host},
-        );
-
-        # Find the known word-part positions.
-        $p->knowns;
-        $p->power;
-        my $score = $p->score_parts( '[', ']' );
-
-        for my $key ( reverse sort keys %$score )
-        {
-            push @$results, $score->{$key};
-        }
-    }
+    my $results = _parse_word( params->{query} );
 
     my $user = logged_in_user;
 
     template 'parse',
       {
-        query          => $query,
+        query          => params->{query},
         results        => $results,
         logged_in_user => $user,
       };
@@ -294,6 +269,38 @@ sub _update_entry {
         flash error => 'Neither affix nor definition can be empty';
         redirect "/edit?id=$args{id}";
     }
+}
+
+sub _parse_word {
+    my $query = shift;
+
+    my $results;
+
+    if ( $query && length $query > $MAX_QUERY_SIZE ) {
+        flash error => "The word cannot have more than $MAX_QUERY_SIZE letters";
+    }
+    elsif ( $query ) {
+        my $p = Lingua::Word::Parser->new(
+            word   => $query,
+            dbname => config->{plugins}{Database}{database},
+            dbuser => config->{plugins}{Database}{username},
+            dbpass => config->{plugins}{Database}{password},
+            dbtype => config->{plugins}{Database}{driver},
+            dbhost => config->{plugins}{Database}{host},
+        );
+
+        # Find the known word-part positions.
+        $p->knowns;
+        $p->power;
+        my $score = $p->score_parts( '[', ']' );
+
+        for my $key ( reverse sort keys %$score )
+        {
+            push @$results, $score->{$key};
+        }
+    }
+
+    return $results;
 }
 
 sub _login_page_handler {
