@@ -159,18 +159,16 @@ Show the search form and results
 
 get '/search' => sub {
     my $query = params->{query};
+    my $etym  = params->{etymology};
+    my $type  = params->{type};
 
-    my $type = params->{type};
     $type //= 'affix';
-
-    my $etym = params->{etymology};
 
     my $results = _search_term(
         query     => $query,
         type      => $type,
         etymology => $etym,
     );
-
 
     my $user = logged_in_user;
 
