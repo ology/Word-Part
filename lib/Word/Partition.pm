@@ -87,20 +87,7 @@ Delete an entry from the database
 
 get '/delete' => require_login sub {
     my $id = params->{id};
-
-    my $fragment = $SCHEMA->resultset('Fragment')->find(
-        {
-            id => $id,
-        }
-    );
-
-    if ( $fragment ) {
-        $fragment->delete();
-    }
-    else {
-        flash error => "No fragment can be found for id $id";
-    }
-
+    _delete_entry($id);
     redirect '/search';
 };
 
@@ -284,6 +271,21 @@ sub _add_entry {
             etymology  => $args{etymology},
         }
     );
+}
+
+sub _delete_entry {
+    my $id = shift;
+    my $fragment = $SCHEMA->resultset('Fragment')->find(
+        {
+            id => $id,
+        }
+    );
+    if ( $fragment ) {
+        $fragment->delete();
+    }
+    else {
+        flash error => "No fragment can be found for id $id";
+    }
 }
 
 sub _login_page_handler {
