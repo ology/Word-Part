@@ -165,35 +165,12 @@ get '/search' => sub {
 
     my $etym = params->{etymology};
 
-    my $results;
-    if ( length $query ) {
-        # Allow entry of prefix/suffix indicators with hyphens
-        my ( $suffix, $affix, $prefix ) = $query =~ m/^(-?)([;,\s\w]+)(-?)$/g;
-        $affix //= '';
-        $prefix = $prefix ? $PREFIX : '';
-        $suffix = $suffix ? $SUFFIX : '';
-        my $like = quotemeta( "$suffix$affix$prefix" );
+    my $results = _search_term(
+        query     => $query,
+        type      => $type,
+        etymology => $etym,
+    );
 
-        my $fragments = $SCHEMA->resultset('Fragment')->search(
-            {
-                $type => { like => '%' . $like . '%' },
-                $etym ? ( etymology => $etym ) : (),
-            },
-            {
-                order_by => { -asc => $type }
-            }
-        );
-
-        while ( my $result = $fragments->next ) {
-            push @$results,
-                {
-                    id         => $result->id,
-                    affix      => $result->affix,
-                    definition => $result->definition,
-                    etymology  => $result->etymology,
-                };
-        }
-    }
 
     my $user = logged_in_user;
 
@@ -301,6 +278,43 @@ sub _parse_word {
     }
 
     return $results;
+}
+
+sub _search_term {
+    my %args = @_;
+
+    my @results;
+
+    if ( length $args{query} ) {
+        # Allow entry of prefix/suffix indicators with hyphens
+        my ( $suffix, $affix, $prefix ) = $args{query} =~ m/^(-?)([;,.\s\w]+)(-?)$/g;
+        $affix //= '';
+        $prefix = $prefix ? $PREFIX : '';
+        $suffix = $suffix ? $SUFFIX : '';
+        my $like = quotemeta( "$suffix$affix$prefix" );
+
+        my $fragments = $SCHEMA->resultset('Fragment')->search(
+            {
+                $args{type} => { like => '%' . $like . '%' },
+                $args{etym} ? ( etymology => $args{etym} ) : (),
+            },
+            {
+                order_by => { -asc => $args{type} }
+            }
+        );
+
+        while ( my $result = $fragments->next ) {
+            push @results,
+                {
+                    id         => $result->id,
+                    affix      => $result->affix,
+                    definition => $result->definition,
+                    etymology  => $result->etymology,
+                };
+        }
+    }
+
+    return \@results;
 }
 
 sub _login_page_handler {
