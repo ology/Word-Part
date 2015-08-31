@@ -26,6 +26,7 @@ WriteMakefile(
         'Template'                         => 0,
         'Test::More'                       => 0,
         'YAML'                             => 0,
+        'Test::WWW::Mechanize::PSGI'       => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Word-Partition-*' },

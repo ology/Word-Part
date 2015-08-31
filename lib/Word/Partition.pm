@@ -29,9 +29,7 @@ Go to the index page
 
 get '/' => sub {
     my $count = $SCHEMA->resultset('Fragment')->search->count;
-
     my $user = logged_in_user;
-
     template 'index',
         {
             entries        => $count,
@@ -47,7 +45,6 @@ Show the form to create a new entry
 
 get '/new' => require_login sub {
     my $user = logged_in_user;
-
     template 'edit',
         {
             method         => 'add',
@@ -62,25 +59,14 @@ Create a new entry in the database
 =cut
 
 post '/add' => require_login sub {
-    if ( params->{affix} && params->{definition} ) {
-        my $affix = _prefix_suffix(
-            params->{affix}, params->{prefix}, params->{suffix}
-        );
-
-        $SCHEMA->resultset('Fragment')->create(
-            {
-                affix      => $affix,
-                definition => params->{definition},
-                etymology  => params->{etymology},
-            }
-        );
-
-        redirect '/search';
-    }
-    else {
-        flash error => 'Neither affix nor definition can be NULL';
-        redirect '/new';
-    }
+    _add_entry(
+        affix      => params->{affix},
+        prefix     => params->{prefix},
+        suffix     => params->{suffix},
+        definition => params->{definition},
+        etymology  => params->{etymology},
+    );
+    redirect '/search';
 };
 
 =head2 /delete
@@ -90,21 +76,7 @@ Delete an entry from the database
 =cut
 
 get '/delete' => require_login sub {
-    my $id = params->{id};
-
-    my $fragment = $SCHEMA->resultset('Fragment')->find(
-        {
-            id => $id,
-        }
-    );
-
-    if ( $fragment ) {
-        $fragment->delete();
-    }
-    else {
-        flash error => "No fragment can be found for id $id";
-    }
-
+    _delete_entry( params->{id} );
     redirect '/search';
 };
 
@@ -115,34 +87,14 @@ Update an existing entry in the database
 =cut
 
 post '/update' => require_login sub {
-    my $id = params->{id};
-
-    my $fragment = $SCHEMA->resultset('Fragment')->find(
-        {
-            id => $id,
-        }
+    _update_entry(
+        id         => params->{id},
+        affix      => params->{affix},
+        prefix     => params->{prefix},
+        suffix     => params->{suffix},
+        definition => params->{definition},
+        etymology  => params->{etymology},
     );
-    unless ( $fragment ) {
-        flash error => "Can't find fragment for id: $id";
-        redirect '/search';
-    }
-
-    if ( params->{affix} && params->{definition} ) {
-        my $affix = _prefix_suffix(
-            params->{affix}, params->{prefix}, params->{suffix}
-        );
-
-        $fragment->affix($affix);
-        $fragment->definition( params->{definition} );
-        $fragment->etymology( params->{etymology} );
-        $fragment->update;
-
-        redirect '/search';
-    }
-    else {
-        flash error => 'Neither affix nor definition can be NULL';
-        redirect "/edit?id=$id";
-    }
 };
 
 =head2 /edit
@@ -183,8 +135,117 @@ Show the parse form and results
 =cut
 
 get '/parse' => sub {
-    my $results;
+    my $results = _parse_word( params->{query} );
+
+    my $user = logged_in_user;
+
+    template 'parse',
+      {
+        query          => params->{query},
+        results        => $results,
+        logged_in_user => $user,
+      };
+};
+
+=head2 /search
+
+Show the search form and results
+
+=cut
+
+get '/search' => sub {
     my $query = params->{query};
+    my $etym  = params->{etymology};
+    my $type  = params->{type};
+
+    $type //= 'affix';
+
+    my $results = _search_term(
+        query     => $query,
+        type      => $type,
+        etymology => $etym,
+    );
+
+    my $user = logged_in_user;
+
+    template 'search',
+        {
+            query          => $query,
+            results        => $results,
+            checked        => $type,
+            etymology      => $etym,
+            logged_in_user => $user,
+        };
+};
+
+sub _add_entry {
+    my %args = @_;
+
+    if ( params->{affix} && params->{definition} ) {
+        my $affix = _prefix_suffix( $args{affix}, $args{prefix}, $args{suffix} );
+
+        $SCHEMA->resultset('Fragment')->create(
+            {
+                affix      => $affix,
+                definition => $args{definition},
+                etymology  => $args{etymology},
+            }
+        );
+    }
+    else {
+        flash error => 'Neither affix nor definition can be NULL';
+        redirect '/new';
+    }
+}
+
+sub _delete_entry {
+    my $id = shift;
+    my $fragment = $SCHEMA->resultset('Fragment')->find(
+        {
+            id => $id,
+        }
+    );
+    if ( $fragment ) {
+        $fragment->delete();
+    }
+    else {
+        flash error => "No fragment can be found for id $id";
+    }
+}
+
+sub _update_entry {
+    my %args = @_;
+
+    my $fragment = $SCHEMA->resultset('Fragment')->find(
+        {
+            id => $args{id},
+        }
+    );
+    unless ( $fragment ) {
+        flash error => "Can't find fragment for id: $args{id}";
+        redirect '/search';
+    }
+
+    if ( $args{affix} && $args{definition} ) {
+        my $affix = _prefix_suffix( $args{affix}, $args{prefix}, $args{suffix} );
+
+        $fragment->affix( $args{affix} );
+        $fragment->definition( $args{definition} );
+        $fragment->etymology( $args{etymology} );
+        $fragment->update;
+
+        redirect '/search';
+    }
+    else {
+        flash error => 'Neither affix nor definition can be empty';
+        redirect "/edit?id=$args{id}";
+    }
+}
+
+sub _parse_word {
+    my $query = shift;
+
+    my $results;
 
     if ( $query && length $query > $MAX_QUERY_SIZE ) {
         flash error => "The word cannot have more than $MAX_QUERY_SIZE letters";
@@ -210,34 +271,17 @@ get '/parse' => sub {
         }
     }
 
-    my $user = logged_in_user;
+    return $results;
+}
 
-    template 'parse',
-      {
-        query          => $query,
-        results        => $results,
-        logged_in_user => $user,
-      };
-};
+sub _search_term {
+    my %args = @_;
 
-=head2 /search
+    my @results;
 
-Show the search form and results
-
-=cut
-
-get '/search' => sub {
-    my $query = params->{query};
-
-    my $type = params->{type};
-    $type //= 'affix';
-
-    my $etym = params->{etymology};
-
-    my $results;
-    if ( length $query ) {
+    if ( length $args{query} ) {
         # Allow entry of prefix/suffix indicators with hyphens
-        my ( $suffix, $affix, $prefix ) = $query =~ m/^(-?)([;,\s\w]+)(-?)$/g;
+        my ( $suffix, $affix, $prefix ) = $args{query} =~ m/^(-?)([;,.\s\w]+)(-?)$/g;
         $affix //= '';
         $prefix = $prefix ? $PREFIX : '';
         $suffix = $suffix ? $SUFFIX : '';
@@ -245,16 +289,16 @@ get '/search' => sub {
 
         my $fragments = $SCHEMA->resultset('Fragment')->search(
             {
-                $type => { like => '%' . $like . '%' },
-                $etym ? ( etymology => $etym ) : (),
+                $args{type} => { like => '%' . $like . '%' },
+                $args{etym} ? ( etymology => $args{etym} ) : (),
             },
             {
-                order_by => { -asc => $type }
+                order_by => { -asc => $args{type} }
             }
         );
 
         while ( my $result = $fragments->next ) {
-            push @$results,
+            push @results,
                 {
                     id         => $result->id,
                     affix      => $result->affix,
@@ -264,17 +308,15 @@ get '/search' => sub {
         }
     }
 
-    my $user = logged_in_user;
+    return \@results;
+}
 
-    template 'search',
-        {
-            query          => $query,
-            results        => $results,
-            checked        => $type,
-            etymology      => $etym,
-            logged_in_user => $user,
-        };
-};
+sub _prefix_suffix {
+    my ( $affix, $prefix, $suffix ) = @_;
+    $affix  = $SUFFIX . $affix if $suffix;
+    $affix .= $PREFIX          if $prefix;
+    return $affix;
+}
 
 sub _login_page_handler {
     my $login_fail_message = vars->{login_failed} ? 'LOGIN FAILED' : '';
@@ -283,13 +325,6 @@ sub _login_page_handler {
             return_url         => params->{return_url},
             login_fail_message => $login_fail_message,
         };
-}
-
-sub _prefix_suffix {
-    my ( $affix, $prefix, $suffix ) = @_;
-    $affix  = $SUFFIX . $affix if $suffix;
-    $affix .= $PREFIX          if $prefix;
-    return $affix;
 }
 
 true;
