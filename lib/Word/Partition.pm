@@ -281,7 +281,7 @@ sub _search_term {
 
     if ( length $args{query} ) {
         # Allow entry of prefix/suffix indicators with hyphens
-        my ( $suffix, $affix, $prefix ) = $args{query} =~ m/^(-?)([;,.\s\w]+)(-?)$/g;
+        my ( $suffix, $affix, $prefix ) = $args{query} =~ m/^(-?)([();,.\s\w]+)(-?)$/g;
         $affix //= '';
         $prefix = $prefix ? $PREFIX : '';
         $suffix = $suffix ? $SUFFIX : '';
