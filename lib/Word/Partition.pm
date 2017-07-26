@@ -265,9 +265,24 @@ sub _parse_word {
         $p->power;
         my $score = $p->score_parts( '[', ']' );
 
-        for my $key ( reverse sort keys %$score )
-        {
+        for my $key ( reverse sort keys %$score ) {
             push @$results, $score->{$key};
+        }
+
+        my @elements;
+        for my $key ( keys %$score ) {
+            for my $element ( @{ $score->{$key} } ) {
+                push @elements, $element;
+            }
+        }
+        for my $element (
+            sort {
+                $b->{familiarity}[1] <=> $a->{familiarity}[1]
+                ||
+                $b->{familiarity}[0] <=> $a->{familiarity}[0]
+            } @elements
+        ) {
+            push @$results, $element;
         }
     }
 

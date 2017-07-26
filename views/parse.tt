@@ -34,28 +34,26 @@
         </div>
 
         <% FOREACH row = results %>
-            <% FOREACH r = row %>
             <hr />
             <div class="row">
                 <div class="large-3 columns">
-                    <% FILTER format('%.2f%%') %><% r.familiarity.0 * 100 %><% END %> chunks
+                    <% FILTER format('%.2f%%') %><% row.familiarity.0 * 100 %><% END %> chunks
                     <br/>
-                    <% FILTER format('%.2f%%') %><% r.familiarity.1 * 100 %><% END %> chars
+                    <% FILTER format('%.2f%%') %><% row.familiarity.1 * 100 %><% END %> chars
                 </div>
                 <div class="large-3 columns">
-                <% FOREACH p = r.partition %>
+                <% FOREACH p = row.partition %>
                     <% p %>
                     <br />
                 <% END %>
                 </div>
                 <div class="large-6 columns">
-                <% FOREACH d = r.definition %>
+                <% FOREACH d = row.definition %>
                     <a href="/search?type=definition&query=<% d %>"><% d %></a>
                     <br />
                 <% END %>
                 </div>
             </div>
-            <% END %>
         <% END %>
     <% ELSE %>
         <div class="row">
