@@ -10,7 +10,6 @@
           <li><a href="/search">Search Entries</a> (<% entries %>)</li>
           <li><a href="/parse">Parse a Term</a></li>
           <li>Build a Term</li>
-          <li>Modify Entries</li>
         </ul>
       </li>
       <li>
@@ -23,9 +22,9 @@
       <li>
         <h3><b>Presentations</b></h3>
         <ul class="links">
-          <li><a href="/WordPart/index.html">Word-part Manipulation</a> (slideshow)</li>
-          <li><a href="http://techn.ology.net/word-parsing/">Word Parsing</a> (blog post)</li>
-          <li><a href="http://techn.ology.net/word-parsing-part-2/">Word Parsing, Part 2</a> (blog post)</li>
+          <li><a href="/WordPart/index.html">Word-part Manipulation</a></li>
+          <li><a href="http://techn.ology.net/word-parsing/">Word Parsing</a></li>
+          <li><a href="http://techn.ology.net/word-parsing-part-2/">Word Parsing, Part 2</a></li>
         </ul>
       </li>
         <li>
