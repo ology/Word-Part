@@ -52,7 +52,7 @@
       <h2>What this all means in a nutshell</h2>
  -->
 
-      <ol>          
+      <ul>          
         <li>
           <h2>Words are made of components</h2>
           <p>
@@ -79,7 +79,7 @@
           </p>
         </li>
 
-      </ol>
+      </ul>
     </div>
   </div>
 </div>
