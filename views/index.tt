@@ -47,11 +47,6 @@
     </div>
 
     <div id="getting-started">
-<!--  
-      <h1>Summary</h1>
-      <h2>What this all means in a nutshell</h2>
- -->
-
       <ul>          
         <li>
           <h2>Words are made of components</h2>
