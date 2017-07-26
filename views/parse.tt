@@ -38,9 +38,9 @@
             <hr />
             <div class="row">
                 <div class="large-3 columns">
-                    <% r.score.knowns %>:<% r.score.unknowns %> chunks
-                    /
-                    <% r.score.knownc %>:<% r.score.unknownc %> chars
+                    <% r.score.familiarity.0 %> chunks
+                    :
+                    <% r.score.familiarity.1 %> chars
                 </div>
                 <div class="large-3 columns">
                 <% FOREACH p = r.partition %>
