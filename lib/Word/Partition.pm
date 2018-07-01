@@ -5,6 +5,7 @@ use Dancer::Plugin::DBIC;
 use Dancer::Plugin::Auth::Extensible;
 use Dancer::Plugin::FlashMessage;
 
+use lib '/Users/gene/sandbox/Lingua-Word-Parser/lib';
 use Lingua::Word::Parser;
 use Readonly;
 
@@ -136,6 +137,25 @@ Show the parse form and results
 
 get '/parse' => sub {
     my $results = _parse_word( params->{query} );
+
+    my $user = logged_in_user;
+
+    template 'parse',
+      {
+        query          => params->{query},
+        results        => $results,
+        logged_in_user => $user,
+      };
+};
+
+=head2 /build
+
+Show the build form and results
+
+=cut
+
+get '/build' => sub {
+    my $results = _build_term( params->{query} );
 
     my $user = logged_in_user;
 
@@ -316,6 +336,39 @@ sub _search_term {
                     definition => $result->definition,
                     etymology  => $result->etymology,
                 };
+        }
+    }
+
+    return \@results;
+}
+
+sub _build_term {
+    my %args = @_;
+
+    my @results;
+
+    if ( length $args{query} ) {
+        my @defn = split /\s+/, $args{query};
+
+        for my $def ( @defn ) {
+            my $fragments = $SCHEMA->resultset('Fragment')->search(
+                {
+                    definition => { like => '%' . $def . '%' },
+                },
+                {
+                    order_by => { -asc => 'definition' }
+                }
+            );
+
+            while ( my $result = $fragments->next ) {
+                push @results,
+                    {
+                        id         => $result->id,
+                        affix      => $result->affix,
+                        definition => $result->definition,
+                        etymology  => $result->etymology,
+                    };
+            }
         }
     }
 
