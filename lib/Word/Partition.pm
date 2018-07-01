@@ -159,7 +159,7 @@ get '/build' => sub {
 
     my $user = logged_in_user;
 
-    template 'parse',
+    template 'build',
       {
         query          => params->{query},
         results        => $results,
