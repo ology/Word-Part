@@ -181,9 +181,9 @@ get '/search' => sub {
     $type //= 'affix';
 
     my $results = _search_term(
-        query     => $query,
-        type      => $type,
-        etymology => $etym,
+        query => $query,
+        type  => $type,
+        etym  => $etym,
     );
 
     my $user = logged_in_user;
