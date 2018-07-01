@@ -155,7 +155,7 @@ Show the build form and results
 =cut
 
 get '/build' => sub {
-    my $results = _build_term( params->{query} );
+    my $results = _build_term( query => params->{query} );
 
     my $user = logged_in_user;
 
