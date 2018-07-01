@@ -6,26 +6,26 @@
     </div>
     <div class="large-4 columns">
         <% IF logged_in_user %>
-            <% IF request.path == "/new" %>
+            <% IF request.path == "//new" %>
                 <b>New</b>
             <% ELSE %>
                 <a href="/new">New</a>
             <% END %>
             |
         <% END %>
-        <% IF request.path == "/search" %>
+        <% IF request.path == "//search" %>
             <b>Lookup</b>
         <% ELSE %>
             <a href="/search">Lookup</a>
         <% END %>
         |
-        <% IF request.path == "/parse" %>
+        <% IF request.path == "//parse" %>
             <b>Parse</b>
         <% ELSE %>
             <a href="/parse">Parse</a>
         <% END %>
         |
-        <% IF request.path == "/build" %>
+        <% IF request.path == "//build" %>
             <b>Build</b>
         <% ELSE %>
             <a href="/build">Build</a>
