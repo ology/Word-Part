@@ -9,7 +9,6 @@ use FindBin;
 use Cwd qw( realpath );
 use Dancer qw( :syntax );
 use Dancer::Test;
-use Word::Partition;
 use Test::WWW::Mechanize::PSGI;
 set apphandler => 'PSGI';
 
