@@ -24,6 +24,12 @@
         <% ELSE %>
             <a href="/parse">Parse</a>
         <% END %>
+        |
+        <% IF request.path == "/build" %>
+            <b>Build</b>
+        <% ELSE %>
+            <a href="/build">Build</a>
+        <% END %>
         <% IF logged_in_user %>
             |
             <a href="/logout">Logout</a>
