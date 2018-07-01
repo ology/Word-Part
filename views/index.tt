@@ -9,7 +9,7 @@
           <% END %>
           <li><a href="/search">Search Entries</a> (<% entries %>)</li>
           <li><a href="/parse">Parse a Term</a></li>
-          <li>Build a Term</li>
+          <li><a href="/build">Build a Term</a></li>
         </ul>
       </li>
       <li>
