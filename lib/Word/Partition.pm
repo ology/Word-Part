@@ -263,7 +263,7 @@ sub _parse_word {
         # Find the known word-part positions.
         $p->knowns;
         $p->power;
-        my $score = $p->score_parts( '[', ']' );
+        my $score = $p->score_parts( '<i><b>', '</b></i>' );
 
         my @elements;
         for my $key ( keys %$score ) {
