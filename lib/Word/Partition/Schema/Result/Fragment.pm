@@ -81,7 +81,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint(
-    constraint_name => [ qw( affix ) ],
+    constraint_name => [ qw( affix etymology ) ],
 );
 
 
