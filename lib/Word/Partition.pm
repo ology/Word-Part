@@ -5,7 +5,7 @@ use Dancer::Plugin::DBIC;
 use Dancer::Plugin::Auth::Extensible;
 use Dancer::Plugin::FlashMessage;
 
-use lib '/Users/gene/sandbox/Lingua-Word-Parser/lib';
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Lingua-Word-Parser);
 use Lingua::Word::Parser;
 use Readonly;
 
