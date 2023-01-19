@@ -10,12 +10,11 @@ session: "YAML"
 
 plugins:
   Database:
-        driver: 'mysql'
+        driver: 'sqlite'
         database: 'word_part'
         host: 'localhost'
-        port: 3306
-        username: 'root'
-        password: 'abc123'
+        username: ''
+        password: ''
         connection_check_threshold: 10
         dbi_params:
             RaiseError: 1
@@ -25,9 +24,9 @@ plugins:
   DBIC:
     "word_part":
         schema_class: Word::Partition::Schema
-        dsn: "dbi:mysql:database=word_part"
-        user: 'root'
-        password: 'abc123'
+        dsn: "dbi:SQLite:dbname=word_part.db"
+        user: ''
+        password: ''
   Auth::Extensible:
         exit_page: '/'
         login_page_handler: 'Word::Partition::_login_page_handler'
